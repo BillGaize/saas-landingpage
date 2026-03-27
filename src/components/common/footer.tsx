@@ -1,4 +1,3 @@
-'use client'
 import Link from 'next/link'
 import Image from 'next/image'
 import Typography from '@components/ui/typography'
@@ -36,6 +35,7 @@ export function Footer() {
           <Link
             href="https://calendly.com/me--52uo/30min"
             target="_blank"
+            rel="noopener noreferrer"
             className="pointer block w-fit flex-1"
           >
             <Typography variant="p" className="w-max">

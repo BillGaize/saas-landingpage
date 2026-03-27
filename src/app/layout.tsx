@@ -1,9 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
-import { ThemeProvider } from '@/providers/theme-provider'
-import { Header } from '@/components/common/header'
-import { Footer } from '@/components/common/footer'
+import { SiteShell } from '@/components/site/site-shell'
 import { Analytics } from '@vercel/analytics/react'
 import { siteConfig } from '@/lib/site'
 
@@ -12,8 +10,7 @@ const inter = Inter({ subsets: ['latin'] })
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default:
-      'Bill Gaize | Shopify Integrations, Web Development, and AI Workflows',
+    default: 'Bill Gaize | Full Stack Portfolio',
     template: '%s | Bill Gaize'
   },
   description: siteConfig.description,
@@ -23,16 +20,14 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     url: siteConfig.url,
-    title:
-      'Bill Gaize | Shopify Integrations, Web Development, and AI Workflows',
+    title: 'Bill Gaize | Full Stack Portfolio',
     description: siteConfig.description,
     siteName: 'Bill Gaize',
     images: '/opengraph-image.png'
   },
   twitter: {
     card: 'summary_large_image',
-    title:
-      'Bill Gaize | Shopify Integrations, Web Development, and AI Workflows',
+    title: 'Bill Gaize | Full Stack Portfolio',
     description: siteConfig.description,
     images: [`${siteConfig.url}/opengraph-image.png`]
   }
@@ -49,26 +44,9 @@ export default function RootLayout({
       suppressHydrationWarning
       className="antialiased"
     >
-      <Analytics />
       <body className={inter.className}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <main
-            className={`flex min-h-screen flex-col ${inter.className}`}
-          >
-            <Header />
-            <div className="flex flex-1 justify-center w-full">
-              <div className="flex w-full max-w-[1280px] h-full">
-                {children}
-              </div>
-            </div>
-            <Footer />
-          </main>
-        </ThemeProvider>
+        <Analytics />
+        <SiteShell>{children}</SiteShell>
       </body>
     </html>
   )

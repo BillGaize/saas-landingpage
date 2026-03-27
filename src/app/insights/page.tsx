@@ -1,8 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { Button } from '@/components/ui/button'
 import { PostCard } from '@/components/insights/post-card'
-import Typography from '@/components/ui/typography'
 import { getAllPosts } from '@/lib/posts'
 import { siteConfig } from '@/lib/site'
 
@@ -26,50 +24,26 @@ export default function InsightsPage() {
   const posts = getAllPosts()
 
   return (
-    <div className="flex w-full justify-center px-6 py-12 md:px-12 md:py-24">
-      <div className="w-full max-w-5xl space-y-12">
-        <div
-          className="space-y-6 rounded-[2rem] border border-border/70
-            bg-gradient-to-br from-card via-card to-background p-8
-            md:p-12"
-        >
-          <div className="space-y-4">
-            <p className="text-xs uppercase tracking-[0.32em] text-muted-foreground">
-              Insights
-            </p>
-            <Typography variant="h1" className="max-w-3xl">
-              Articulos largos sobre Shopify, desarrollo web
-              y flujos con IA.
-            </Typography>
-            <Typography
-              variant="p"
-              className="max-w-2xl text-muted-foreground"
-            >
-              Esta seccion funciona como tu hub editorial:
-              posts indexables, con URL propia, metadata
-              fuerte y una estructura limpia para Google.
-            </Typography>
-          </div>
-          <div className="flex flex-wrap gap-4">
-            <Link href="/">
-              <Button size="tiny" variant="ghost">
-                Volver al inicio
-              </Button>
-            </Link>
-            <Link href="mailto:me@billgaize.com">
-              <Button size="tiny" variant="outline">
-                Hablemos
-              </Button>
-            </Link>
-          </div>
-        </div>
+    <div className="space-y-10 pb-14 pt-6 sm:pt-10">
+      <section className="space-y-4">
+        <p className="text-sm uppercase tracking-[0.24em] text-subtle">
+          Blog
+        </p>
+        <h1 className="section-title">Insights</h1>
+        <p className="body-lg max-w-3xl">
+          Long-form notes on modern web development,
+          integrations, and practical AI workflows.
+        </p>
+        <Link href="/" className="inline-block text-sm text-subtle underline">
+          Back to home
+        </Link>
+      </section>
 
-        <div className="grid gap-6 md:grid-cols-2">
-          {posts.map((post) => (
-            <PostCard key={post.slug} post={post} />
-          ))}
-        </div>
-      </div>
+      <section className="space-y-4">
+        {posts.map((post) => (
+          <PostCard key={post.slug} post={post} />
+        ))}
+      </section>
     </div>
   )
 }

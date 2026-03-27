@@ -1,13 +1,7 @@
-// app/page.tsx
 import type { Metadata } from 'next'
-import { Button } from '@/components/ui/button'
-import Typography from '@/components/ui/typography'
 import Link from 'next/link'
-import InteractiveCube from '@/components/ui/InteractiveCube'
-import Feature from './feature'
-import { ArrowUpDown, Timer, Workflow } from 'lucide-react'
 import { getFeaturedPosts } from '@/lib/posts'
-import { PostCard } from '@/components/insights/post-card'
+import { profileFacts, coreServices } from '@/lib/profile-data'
 
 export const metadata: Metadata = {
   alternates: {
@@ -19,118 +13,90 @@ export default function Home() {
   const featuredPosts = getFeaturedPosts()
 
   return (
-    <div
-      className="flex flex-col h-full md:py-36 md:px-32 pt-11 pb-24 px-8
-        w-full items-center text-center gap-12"
-    >
-      <div className="flex flex-col gap-6 items-center">
-        <Typography className="max-w-2xl" variant="h1">
-          Hello there 👨🏻
-        </Typography>
-        <Typography className="max-w-2xl" variant="h5">
-          I am Bill Gaize, Full Stack MERN Developer
-          experienced in API Integrations with a weirdly
-          helpful background in Medical Lab Science.
-        </Typography>
-        <Link
-          href="https://www.linkedin.com/in/billgaize/"
-          target="_blank"
-        >
-          <Button size="tiny" variant="ghost">
-            {`Take a look`}
-          </Button>
-        </Link>
-        <InteractiveCube />
-
-        {/* PDF Link Added Here */}
-        <div className="mt-12">
-          {' '}
-          {/* Adjust margin-top as needed */}
+    <div className="space-y-14 pb-12 pt-6 sm:pt-10">
+      <section className="space-y-8">
+        <p className="text-sm uppercase tracking-[0.24em] text-subtle">
+          Full Stack Portfolio
+        </p>
+        <h1 className="section-title">Hello there 👋</h1>
+        <p className="body-lg max-w-3xl">
+          I am {profileFacts.name}, a {profileFacts.role}. I
+          design and ship clean digital products, API
+          integrations, and AI-assisted workflows with a
+          process-first mindset shaped by medical science.
+        </p>
+        <div className="flex flex-wrap items-center gap-3">
           <Link
-            href="/properties_dayana.pdf"
+            href="/projects"
+            className="rounded-xl bg-black px-5 py-3 text-base font-medium text-white"
+          >
+            View projects
+          </Link>
+          <a
+            href={profileFacts.linkedin}
             target="_blank"
             rel="noopener noreferrer"
+            className="rounded-xl border border-line px-5 py-3 text-base font-medium"
           >
-            <Button size="tiny" variant="ghost">
-              View My Proposal (PDF)
-            </Button>
-          </Link>
+            LinkedIn
+          </a>
+          <a
+            href={`mailto:${profileFacts.contactEmail}`}
+            className="rounded-xl border border-line px-5 py-3 text-base font-medium"
+          >
+            Contact me
+          </a>
         </div>
-      </div>
+      </section>
 
-      <div className="flex flex-col md:pt-24 md:gap-36 gap-24 items-center">
-        <div className="flex flex-col gap-12 items-center">
-          <Typography className="max-w-2xl" variant="h1">
-            Ready to help you in that app/website idea you
-            have in mind
-          </Typography>
-          <div className="flex md:flex-row flex-col gap-12">
-            <Feature
-              icon={<Timer size={24} />}
-              headline="Quick Web Solutions"
-              description="Build your online presence in no time! With my extensive web development background, I craft high-quality sites and lightning-fast web solutions."
-            />
-            <Feature
-              icon={<ArrowUpDown size={24} />}
-              headline="Adaptable & Responsive"
-              description="Fully responsive designs that fit any tech platform! Specializing in e-commerce and Shopify, I will get you selling online like a pro within hours."
-            />
-            <Feature
-              icon={<Workflow size={24} />}
-              headline="Seamless Integration"
-              description="Leverage my expertise in system and API integration to connect your tech stack effortlessly, delivering secure and efficient solutions for your organization."
-            />
-          </div>
-        </div>
-        <div className="flex flex-col gap-6 max-w-2xl items-center">
-          <Typography className="max-w-2xl" variant="h1">
-            Fast and Professional Solutions
-          </Typography>
-          <Typography className="max-w-2xl" variant="p">
-            Got a vision for your online idea? Lets bring it
-            to life! Reach out now, and together we will
-            transform your idea into a thriving e-commerce
-            success story. 💬
-          </Typography>
-        </div>
-        <div className="flex flex-col gap-6 items-center">
-          <Typography className="max-w-2xl" variant="h1">
-            Get in touch
-          </Typography>
-          <div>Book a slot, or email me</div>
-          <Link
-            href="https://calendly.com/me--52uo/30min"
-            target="_blank"
-          >
-            <Button size="tiny" variant="ghost">
-              {`Book now`}
-            </Button>
+      <section className="notion-card space-y-5">
+        <h2 className="text-3xl font-semibold tracking-tight">
+          What I can build with you
+        </h2>
+        <ul className="grid gap-3 sm:grid-cols-2">
+          {coreServices.map((service) => (
+            <li
+              key={service}
+              className="rounded-xl border border-line bg-zinc-50 px-4 py-3 text-base text-zinc-700"
+            >
+              {service}
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <section className="space-y-6">
+        <div className="flex items-end justify-between gap-4">
+          <h2 className="text-4xl font-semibold tracking-tight">
+            Featured insights
+          </h2>
+          <Link href="/insights" className="text-sm text-subtle underline">
+            View all posts
           </Link>
         </div>
-        <div className="flex w-full max-w-5xl flex-col gap-8 items-center">
-          <div className="flex flex-col gap-4 items-center">
-            <Typography className="max-w-3xl" variant="h1">
-              Insights that let visitors read your thinking,
-              not just scan your services
-            </Typography>
-            <Typography className="max-w-2xl" variant="p">
-              Publish long-form posts directly inside the
-              site, with clean article pages that are easy
-              to expand later into a full content hub.
-            </Typography>
-          </div>
-          <div className="grid w-full gap-6 md:grid-cols-2 text-left">
-            {featuredPosts.map((post) => (
-              <PostCard key={post.slug} post={post} />
-            ))}
-          </div>
-          <Link href="/insights">
-            <Button size="tiny" variant="outline">
-              Browse all posts
-            </Button>
-          </Link>
+
+        <div className="space-y-4">
+          {featuredPosts.slice(0, 3).map((post) => (
+            <Link
+              key={post.slug}
+              href={`/insights/${post.slug}`}
+              className="block rounded-2xl border border-line bg-white px-5 py-4 transition-colors hover:bg-zinc-50"
+            >
+              <p className="text-sm text-subtle">
+                {new Date(post.publishedAt).toLocaleDateString('es-CL', {
+                  month: 'long',
+                  day: 'numeric',
+                  year: 'numeric'
+                })}
+              </p>
+              <h3 className="mt-1 text-2xl font-semibold tracking-tight">
+                {post.title}
+              </h3>
+              <p className="mt-1 text-base text-zinc-700">{post.description}</p>
+            </Link>
+          ))}
         </div>
-      </div>
+      </section>
     </div>
   )
 }

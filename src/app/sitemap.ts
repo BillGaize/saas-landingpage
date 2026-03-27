@@ -3,7 +3,14 @@ import { getAllPosts } from '@/lib/posts'
 import { siteConfig } from '@/lib/site'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const staticRoutes = ['', '/insights', '/privacy-policy', '/terms-of-service']
+  const staticRoutes = [
+    '',
+    '/projects',
+    '/insights',
+    '/contact',
+    '/privacy-policy',
+    '/terms-of-service'
+  ]
 
   const staticEntries = staticRoutes.map((route) => ({
     url: `${siteConfig.url}${route}`,

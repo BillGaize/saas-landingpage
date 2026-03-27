@@ -1,141 +1,55 @@
 export default function Page() {
   return (
-    <div className="relative mx-auto p-6">
-      <h1 className="text-3xl font-bold mb-4">
-        Privacy Policy
-      </h1>
-      <p className="mb-2">
-        <strong>Last updated:</strong> May 10, 2024
-      </p>
-      <p className="mb-4">
-        This Privacy Policy describes Our policies and
-        procedures on the collection, use, and disclosure of
-        Your information when You use the Service. It also
-        tells You about Your privacy rights and how the law
-        protects You. By using the Service, You agree to the
-        collection and use of information in accordance with
-        this Privacy Policy.
-      </p>
-
-      <section>
-        <h2 className="text-2xl font-semibold mt-4 mb-2">
-          Interpretation and Definitions
-        </h2>
-        <h3 className="text-xl font-semibold mt-4 mb-2">
-          Interpretation
-        </h3>
-        <p>
-          Words with capitalized initial letters have
-          meanings defined under the following conditions.
-          The definitions apply regardless of whether they
-          are singular or plural.
+    <article className="space-y-8 pb-14 pt-6 sm:pt-10">
+      <header className="space-y-4">
+        <p className="text-sm uppercase tracking-[0.24em] text-subtle">
+          Legal
         </p>
-        <h3 className="text-xl font-semibold mt-4 mb-2">
-          Definitions
-        </h3>
+        <h1 className="section-title">Privacy Policy</h1>
+        <p className="text-base text-subtle">Last updated: March 27, 2026</p>
+      </header>
+
+      <section className="notion-card space-y-4 text-base leading-8 text-zinc-700">
         <p>
-          For the purposes of this Privacy Policy: -{' '}
-          <strong>Account:</strong> A unique account created
-          to access our Service. -{' '}
-          <strong>Affiliate:</strong> An entity that
-          controls, is controlled by, or is under common
-          control with a party. - <strong>Company:</strong>{' '}
-          Refers to the individual or entity that owns this
-          portfolio website. - <strong>Device:</strong> Any
-          device that can access the Service, such as a
-          computer, mobile phone, or tablet. -{' '}
-          <strong>Service:</strong> Refers to the Portfolio
-          Website. - <strong>Service Provider:</strong> Any
-          natural or legal person who processes data on
-          behalf of the Company. -{' '}
-          <strong>Usage Data:</strong> Data collected
-          automatically through the Service or its
-          infrastructure. - <strong>Website:</strong> Refers
-          to this Portfolio, accessible from
-          http://your-portfolio-url.com. -{' '}
-          <strong>You:</strong> The individual or entity
-          using the Portfolio Website.
+          This website collects limited data required to
+          operate and improve the portfolio experience.
+          Information is never sold.
+        </p>
+        <p>
+          Data may include anonymized usage information,
+          browser metadata, and contact details you
+          voluntarily provide through email or scheduling
+          links.
         </p>
       </section>
 
-      <section>
-        <h2 className="text-2xl font-semibold mt-4 mb-2">
-          Collecting and Using Your Personal Data
-        </h2>
-        <h3 className="text-xl font-semibold mt-4 mb-2">
-          Types of Data Collected
-        </h3>
-        <h3 className="text-lg font-semibold mt-4 mb-2">
-          Personal Data
-        </h3>
-        <p>
-          While using Our Service, We may ask You to provide
-          certain personally identifiable information, such
-          as an email address, first name, and last name.
-        </p>
-        <h3 className="text-lg font-semibold mt-4 mb-2">
-          Usage Data
-        </h3>
-        <p>
-          Usage Data is collected automatically when using
-          the Service and may include information like IP
-          address, browser type, and the pages visited.
-        </p>
-        <h3 className="text-lg font-semibold mt-4 mb-2">
-          Tracking Technologies and Cookies
-        </h3>
-        <p>
-          We use Cookies and other tracking technologies to
-          track activity on the Service and store
-          information. You can refuse Cookies, but it may
-          affect your experience with the Service.
-        </p>
-      </section>
-
-      <section>
-        <h2 className="text-2xl font-semibold mt-4 mb-2">
-          Use of Your Personal Data
-        </h2>
-        <p>
-          The Company may use Personal Data for purposes
-          like:
-        </p>
-        <ul>
-          <li>Providing and maintaining the Service</li>
-          <li>Managing Your Account</li>
-          <li>Contacting You</li>
-          <li>Improving and analyzing the Service</li>
+      <section className="notion-card space-y-4 text-base leading-8 text-zinc-700">
+        <h2 className="text-2xl font-semibold text-black">How information is used</h2>
+        <ul className="list-disc space-y-2 pl-5">
+          <li>Respond to inquiries and collaboration requests.</li>
+          <li>Understand site performance and improve UX.</li>
+          <li>Maintain site security and reliability.</li>
         </ul>
       </section>
 
-      <section>
-        <h2 className="text-2xl font-semibold mt-4 mb-2">
-          Contact Us
-        </h2>
+      <section className="notion-card space-y-4 text-base leading-8 text-zinc-700">
+        <h2 className="text-2xl font-semibold text-black">Third-party services</h2>
         <p>
-          If You have any questions about this Privacy
-          Policy, You can contact us:
+          This site may use trusted external services (for
+          example analytics, scheduling, and hosting). Each
+          provider handles data according to its own policy.
         </p>
-        <ul className="list-inside">
-          <li>
-            By email:{' '}
-            <a
-              href="mailto:me@billgaize.com"
-              className="text-blue-600 hover:underline"
-            >
-              me@billgaize.com
-            </a>
-          </li>
-        </ul>
       </section>
 
-      {/* Microscope Emoji in Background */}
-      <div
-        className="absolute inset-0 flex items-center justify-center opacity-10
-          text-8xl"
-      >
-        🔬
-      </div>
-    </div>
+      <section className="notion-card space-y-4 text-base leading-8 text-zinc-700">
+        <h2 className="text-2xl font-semibold text-black">Contact</h2>
+        <p>
+          For privacy-related questions, email:
+          <a href="mailto:me@billgaize.com" className="ml-1 underline">
+            me@billgaize.com
+          </a>
+        </p>
+      </section>
+    </article>
   )
 }

@@ -3,7 +3,6 @@ import Link from 'next/link'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import { notFound } from 'next/navigation'
-import { Button } from '@/components/ui/button'
 import { getAllPosts, getPostBySlug } from '@/lib/posts'
 import { siteConfig } from '@/lib/site'
 
@@ -79,95 +78,69 @@ export default function PostPage({
   }
 
   return (
-    <div className="flex w-full justify-center px-6 py-12 md:px-12 md:py-24">
-      <article className="w-full max-w-3xl space-y-10">
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(articleSchema)
-          }}
-        />
-        <div className="space-y-6">
-          <Link
-            href="/insights"
-            className="inline-flex text-sm text-muted-foreground transition-colors
-              hover:text-foreground"
+    <article className="space-y-10 pb-16 pt-6 sm:pt-10">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(articleSchema)
+        }}
+      />
+
+      <header className="space-y-5">
+        <Link href="/insights" className="inline-block text-sm text-subtle underline">
+          Back to insights
+        </Link>
+
+        <div className="flex flex-wrap items-center gap-2 text-sm text-subtle">
+          <span>{new Date(post.publishedAt).toLocaleDateString('es-CL')}</span>
+          <span>•</span>
+          <span>{post.readingTime}</span>
+          <span>•</span>
+          <span>{post.category}</span>
+        </div>
+
+        <h1 className="text-5xl font-semibold tracking-tight sm:text-6xl">
+          {post.title}
+        </h1>
+        <p className="body-lg max-w-3xl">{post.description}</p>
+      </header>
+
+      <div className="rounded-2xl border border-line bg-zinc-50 px-6 py-5 text-lg leading-8 text-zinc-700">
+        {post.hero}
+      </div>
+
+      <div className="post-body">
+        <ReactMarkdown remarkPlugins={[remarkGfm]}>
+          {post.body}
+        </ReactMarkdown>
+      </div>
+
+      <div className="notion-card space-y-4">
+        <h2 className="text-2xl font-semibold tracking-tight">
+          Want to build something similar?
+        </h2>
+        <p className="text-base leading-8 text-zinc-700">
+          If this content style or workflow resonates with
+          your team, we can design a solution around your
+          stack and goals.
+        </p>
+        <div className="flex flex-wrap gap-3">
+          <a
+            href="mailto:me@billgaize.com"
+            className="rounded-xl bg-black px-4 py-2.5 text-sm font-medium text-white"
           >
-            Volver a insights
-          </Link>
-          <div className="space-y-4">
-            <div
-              className="flex flex-wrap items-center gap-3 text-xs uppercase
-                tracking-[0.24em] text-muted-foreground"
-            >
-              <span>{post.category}</span>
-              <span className="h-1 w-1 rounded-full bg-muted-foreground" />
-              <span>{post.readingTime}</span>
-              <span className="h-1 w-1 rounded-full bg-muted-foreground" />
-              <span>
-                {new Date(
-                  post.publishedAt
-                ).toLocaleDateString('es-CL', {
-                  month: 'long',
-                  day: 'numeric',
-                  year: 'numeric'
-                })}
-              </span>
-            </div>
-            <h1
-              className="text-4xl font-extrabold tracking-tight text-foreground
-                md:text-6xl"
-            >
-              {post.title}
-            </h1>
-            <p className="max-w-2xl text-lg leading-8 text-muted-foreground">
-              {post.description}
-            </p>
-          </div>
+            Email me
+          </a>
+          <a
+            href="https://calendly.com/me--52uo/30min"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="rounded-xl border border-line px-4 py-2.5 text-sm font-medium"
+          >
+            Book a slot
+          </a>
         </div>
-
-        <div
-          className="rounded-[2rem] border border-border/70 bg-gradient-to-br
-            from-card via-card to-background p-8 text-xl font-medium
-            leading-9 text-foreground md:p-10"
-        >
-          {post.hero}
-        </div>
-
-        <div className="post-body">
-          <ReactMarkdown remarkPlugins={[remarkGfm]}>
-            {post.body}
-          </ReactMarkdown>
-        </div>
-
-        <div className="rounded-[2rem] border border-border/70 bg-card/60 p-8">
-          <div className="space-y-4">
-            <h2 className="text-2xl font-semibold tracking-tight">
-              Quieres publicar mas contenido como este?
-            </h2>
-            <p className="text-sm leading-7 text-muted-foreground">
-              Ahora ya tienes una base para escribir,
-              administrar e indexar contenido dentro de tu
-              propio sitio.
-            </p>
-            <div className="flex flex-wrap gap-4">
-              <Link href="mailto:me@billgaize.com">
-                <Button size="tiny" variant="ghost">
-                  Email me
-                </Button>
-              </Link>
-              <Link
-                href="https://calendly.com/me--52uo/30min"
-                target="_blank"
-              >
-                <Button size="tiny" variant="outline">
-                  Book a slot
-                </Button>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </article>
-    </div>
+      </div>
+    </article>
   )
 }

@@ -1,147 +1,60 @@
 export default function Page() {
   return (
-    <div className="relative p-6 rounded-md shadow">
-      <h1 className="text-3xl font-bold mb-4">
-        Terms of Service
-      </h1>
-      <p className="mb-2">
-        <strong>Last updated:</strong> May 10, 2024
-      </p>
-      <p className="mb-4">
-        Please read these terms and conditions carefully
-        before using Our Portfolio Website.
-      </p>
-
-      <section>
-        <h2 className="text-2xl font-semibold mt-4 mb-2">
-          Interpretation and Definitions
-        </h2>
-        <h3>Interpretation</h3>
-        <p>
-          Words with capitalized initial letters have
-          meanings defined in the following conditions. The
-          definitions apply regardless of whether they are
-          singular or plural.
+    <article className="space-y-8 pb-14 pt-6 sm:pt-10">
+      <header className="space-y-4">
+        <p className="text-sm uppercase tracking-[0.24em] text-subtle">
+          Legal
         </p>
-        <h3>Definitions</h3>
+        <h1 className="section-title">Terms of Service</h1>
+        <p className="text-base text-subtle">Last updated: March 27, 2026</p>
+      </header>
+
+      <section className="notion-card space-y-4 text-base leading-8 text-zinc-700">
         <p>
-          For these Terms and Conditions: -{' '}
-          <strong>Affiliate:</strong> An entity that
-          controls, is controlled by, or is under common
-          control with a party. - <strong>Country:</strong>{' '}
-          Refers to: Ontario, Canada. -{' '}
-          <strong>Company:</strong> Refers to the individual
-          or entity that owns this portfolio website. -{' '}
-          <strong>Device:</strong> Any device that can
-          access the website, such as a computer, mobile
-          phone, or tablet. - <strong>Service:</strong>{' '}
-          Refers to the Portfolio Website. -{' '}
-          <strong>Terms and Conditions:</strong> These Terms
-          form the entire agreement regarding the use of the
-          Portfolio Website. -{' '}
-          <strong>Third-party Content:</strong> Services or
-          content from third parties, including articles o
-          tools displayed on the Portfolio Website. -{' '}
-          <strong>Website:</strong> Refers to this
-          Portfolio, accessible from http://billgaize.com. -{' '}
-          <strong>You:</strong> The individual or entity
-          using the Portfolio Website.
+          By using this portfolio website, you agree to these
+          terms. If you do not agree, please do not use the
+          website.
         </p>
       </section>
 
-      <section>
-        <h2 className="text-2xl font-semibold mt-4 mb-2">
-          Acknowledgment
-        </h2>
+      <section className="notion-card space-y-4 text-base leading-8 text-zinc-700">
+        <h2 className="text-2xl font-semibold text-black">Use of content</h2>
         <p>
-          These Terms govern your use of this Portfolio
-          Website and constitute the agreement between You
-          and the Company. Your access to the Portfolio
-          Website is conditioned on Your acceptance of these
-          Terms. By accessing or using the Portfolio
-          Website, You agree to be bound by these Terms. If
-          You do not agree, stop using the Portfolio
-          Website. You represent that You are over 18 years
-          old.
+          All original content and project descriptions are
+          provided for informational purposes. Reuse or
+          reproduction should include clear attribution unless
+          otherwise stated.
         </p>
       </section>
 
-      <h2 className="text-2xl font-semibold mt-4 mb-2">
-        Links to Third-Party Websites
-      </h2>
-      <p>
-        This Portfolio Website may contain links to
-        third-party websites that are not controlled by the
-        Company. The Company is not responsible for
-        third-party content, privacy policies, or practices.
-        We strongly advise You to read the Terms and Privacy
-        Policies of any third-party websites You visit.
-      </p>
-
-      <h2 className="text-2xl font-semibold mt-4 mb-2">
-        Termination
-      </h2>
-      <p>
-        We may terminate or suspend Your access immediately
-        for any reason, including breach of these Terms.
-        Upon termination, Your right to use the Portfolio
-        Website will cease immediately.
-      </p>
-
-      <h2 className="text-2xl font-semibold mt-4 mb-2">
-        Limitation of Liability
-      </h2>
-      <p>
-        To the maximum extent permitted by law, the Company
-        shall not be liable for any damages arising from the
-        use of the Portfolio Website.
-      </p>
-
-      <h2 className="text-2xl font-semibold mt-4 mb-2">
-        Governing Law
-      </h2>
-      <p>
-        The laws of the Country will govern these Terms and
-        the use of the Portfolio Website.
-      </p>
-
-      <h2 className="text-2xl font-semibold mt-4 mb-2">
-        Changes to These Terms
-      </h2>
-      <p>
-        We may modify these Terms at any time. By continuing
-        to access or use the Portfolio Website, You agree to
-        the updated Terms.
-      </p>
-
-      <section>
-        <h2 className="text-2xl font-semibold mt-4 mb-2">
-          Contact Us
-        </h2>
+      <section className="notion-card space-y-4 text-base leading-8 text-zinc-700">
+        <h2 className="text-2xl font-semibold text-black">External links</h2>
         <p>
-          If You have any questions about these Terms, You
-          can contact us:
+          This website may include links to third-party
+          services. Those services are governed by their own
+          terms and privacy policies.
         </p>
-        <ul className="list-inside">
-          <li>
-            By email:{' '}
-            <a
-              href="mailto:me@billgaize.com"
-              className="text-blue-600 hover:underline"
-            >
-              me@billgaize.com
-            </a>
-          </li>
-        </ul>
       </section>
 
-      {/* Microscope Emoji in Background */}
-      <div
-        className="absolute inset-0 flex items-center justify-center opacity-10
-          text-8xl"
-      >
-        🔬
-      </div>
-    </div>
+      <section className="notion-card space-y-4 text-base leading-8 text-zinc-700">
+        <h2 className="text-2xl font-semibold text-black">Liability</h2>
+        <p>
+            The portfolio is provided &quot;as is&quot; without warranties
+          of any kind. To the extent permitted by law, no
+          liability is assumed for direct or indirect damages
+          resulting from use of this site.
+        </p>
+      </section>
+
+      <section className="notion-card space-y-4 text-base leading-8 text-zinc-700">
+        <h2 className="text-2xl font-semibold text-black">Contact</h2>
+        <p>
+          For legal questions, email:
+          <a href="mailto:me@billgaize.com" className="ml-1 underline">
+            me@billgaize.com
+          </a>
+        </p>
+      </section>
+    </article>
   )
 }

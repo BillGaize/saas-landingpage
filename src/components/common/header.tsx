@@ -60,6 +60,7 @@ export function Header({ className }: SidebarProps) {
       <Link
         href="mailto:me@billgaize.com"
         target="_blank"
+        rel="noopener noreferrer"
         // </div>>
         // <Typography variant="p">Login</Typography>
         // </Link>
@@ -67,7 +68,7 @@ export function Header({ className }: SidebarProps) {
         // href="https://map.sistilli.dev/public/coding/SaaS+Boilerplate"
         // target="_blank"
       >
-        <Button size="tiny" color="ghost">
+        <Button size="tiny" variant="ghost">
           <Typography variant="p" className="text-black">
             Email me
           </Typography>
@@ -91,6 +92,11 @@ export function Header({ className }: SidebarProps) {
               target={
                 item.openInNewTab ? '_blank' : undefined
               }
+                rel={
+                  item.openInNewTab
+                    ? 'noopener noreferrer'
+                    : undefined
+                }
               key={item.title}
             >
               <Typography
