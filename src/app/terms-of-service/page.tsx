@@ -6,29 +6,35 @@ export default function Page() {
           Legal
         </p>
         <h1 className="section-title">Terms of Service</h1>
-        <p className="text-base text-subtle">Last updated: March 27, 2026</p>
+        <p className="text-base text-subtle">
+          Last updated: March 27, 2026
+        </p>
       </header>
 
       <section className="notion-card space-y-4 text-base leading-8 text-zinc-700">
         <p>
-          By using this portfolio website, you agree to these
-          terms. If you do not agree, please do not use the
-          website.
+          By using this portfolio website, you agree to
+          these terms. If you do not agree, please do not
+          use the website.
         </p>
       </section>
 
       <section className="notion-card space-y-4 text-base leading-8 text-zinc-700">
-        <h2 className="text-2xl font-semibold text-black">Use of content</h2>
+        <h2 className="text-2xl font-semibold text-black">
+          Use of content
+        </h2>
         <p>
           All original content and project descriptions are
           provided for informational purposes. Reuse or
-          reproduction should include clear attribution unless
-          otherwise stated.
+          reproduction should include clear attribution
+          unless otherwise stated.
         </p>
       </section>
 
       <section className="notion-card space-y-4 text-base leading-8 text-zinc-700">
-        <h2 className="text-2xl font-semibold text-black">External links</h2>
+        <h2 className="text-2xl font-semibold text-black">
+          External links
+        </h2>
         <p>
           This website may include links to third-party
           services. Those services are governed by their own
@@ -37,20 +43,28 @@ export default function Page() {
       </section>
 
       <section className="notion-card space-y-4 text-base leading-8 text-zinc-700">
-        <h2 className="text-2xl font-semibold text-black">Liability</h2>
+        <h2 className="text-2xl font-semibold text-black">
+          Liability
+        </h2>
         <p>
-            The portfolio is provided &quot;as is&quot; without warranties
-          of any kind. To the extent permitted by law, no
-          liability is assumed for direct or indirect damages
-          resulting from use of this site.
+          The portfolio is provided &quot;as is&quot;
+          without warranties of any kind. To the extent
+          permitted by law, no liability is assumed for
+          direct or indirect damages resulting from use of
+          this site.
         </p>
       </section>
 
       <section className="notion-card space-y-4 text-base leading-8 text-zinc-700">
-        <h2 className="text-2xl font-semibold text-black">Contact</h2>
+        <h2 className="text-2xl font-semibold text-black">
+          Contact
+        </h2>
         <p>
           For legal questions, email:
-          <a href="mailto:me@billgaize.com" className="ml-1 underline">
+          <a
+            href="mailto:me@billgaize.com"
+            className="ml-1 underline"
+          >
             me@billgaize.com
           </a>
         </p>

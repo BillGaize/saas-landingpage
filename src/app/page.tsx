@@ -1,7 +1,10 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { getFeaturedPosts } from '@/lib/posts'
-import { profileFacts, coreServices } from '@/lib/profile-data'
+import {
+  profileFacts,
+  coreServices
+} from '@/lib/profile-data'
 
 export const metadata: Metadata = {
   alternates: {
@@ -28,7 +31,8 @@ export default function Home() {
         <div className="flex flex-wrap items-center gap-3">
           <Link
             href="/projects"
-            className="rounded-xl bg-black px-5 py-3 text-base font-medium text-white"
+            className="rounded-xl bg-black px-5 py-3 text-base font-medium
+              text-white"
           >
             View projects
           </Link>
@@ -36,13 +40,15 @@ export default function Home() {
             href={profileFacts.linkedin}
             target="_blank"
             rel="noopener noreferrer"
-            className="rounded-xl border border-line px-5 py-3 text-base font-medium"
+            className="rounded-xl border border-line px-5 py-3 text-base
+              font-medium"
           >
             LinkedIn
           </a>
           <a
             href={`mailto:${profileFacts.contactEmail}`}
-            className="rounded-xl border border-line px-5 py-3 text-base font-medium"
+            className="rounded-xl border border-line px-5 py-3 text-base
+              font-medium"
           >
             Contact me
           </a>
@@ -57,7 +63,8 @@ export default function Home() {
           {coreServices.map((service) => (
             <li
               key={service}
-              className="rounded-xl border border-line bg-zinc-50 px-4 py-3 text-base text-zinc-700"
+              className="rounded-xl border border-line bg-zinc-50 px-4 py-3 text-base
+                text-zinc-700"
             >
               {service}
             </li>
@@ -70,7 +77,10 @@ export default function Home() {
           <h2 className="text-4xl font-semibold tracking-tight">
             Featured insights
           </h2>
-          <Link href="/insights" className="text-sm text-subtle underline">
+          <Link
+            href="/insights"
+            className="text-sm text-subtle underline"
+          >
             View all posts
           </Link>
         </div>
@@ -80,10 +90,13 @@ export default function Home() {
             <Link
               key={post.slug}
               href={`/insights/${post.slug}`}
-              className="block rounded-2xl border border-line bg-white px-5 py-4 transition-colors hover:bg-zinc-50"
+              className="block rounded-2xl border border-line bg-white px-5 py-4
+                transition-colors hover:bg-zinc-50"
             >
               <p className="text-sm text-subtle">
-                {new Date(post.publishedAt).toLocaleDateString('es-CL', {
+                {new Date(
+                  post.publishedAt
+                ).toLocaleDateString('es-CL', {
                   month: 'long',
                   day: 'numeric',
                   year: 'numeric'
@@ -92,7 +105,9 @@ export default function Home() {
               <h3 className="mt-1 text-2xl font-semibold tracking-tight">
                 {post.title}
               </h3>
-              <p className="mt-1 text-base text-zinc-700">{post.description}</p>
+              <p className="mt-1 text-base text-zinc-700">
+                {post.description}
+              </p>
             </Link>
           ))}
         </div>

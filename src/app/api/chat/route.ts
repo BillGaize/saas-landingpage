@@ -61,7 +61,9 @@ function tokenize(text: string) {
     .toLowerCase()
     .replace(/[^a-z0-9\s]/gi, ' ')
     .split(/\s+/)
-    .filter((token) => token.length > 1 && !STOP_WORDS.has(token))
+    .filter(
+      (token) => token.length > 1 && !STOP_WORDS.has(token)
+    )
 }
 
 function score(text: string, queryTokens: string[]) {
@@ -114,7 +116,11 @@ function quickReply(message: string) {
   const normalized = message.toLowerCase()
 
   for (const entry of quickAnswers) {
-    if (entry.keywords.some((keyword) => normalized.includes(keyword))) {
+    if (
+      entry.keywords.some((keyword) =>
+        normalized.includes(keyword)
+      )
+    ) {
       return entry.answer
     }
   }
@@ -164,7 +170,7 @@ export async function POST(request: Request) {
       .join('\n')
 
     const reply = [
-      'Based on Bill\'s portfolio details:',
+      "Based on Bill's portfolio details:",
       context,
       '',
       'If you want, I can also suggest which project is most relevant for your use case.'

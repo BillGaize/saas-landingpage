@@ -48,7 +48,9 @@ export function AdminLoginForm() {
       }}
     >
       <label className="space-y-2 block">
-        <span className="text-sm font-medium">Password</span>
+        <span className="text-sm font-medium">
+          Password
+        </span>
         <input
           type="password"
           value={password}
@@ -61,7 +63,8 @@ export function AdminLoginForm() {
       </label>
       <button
         type="submit"
-        className="rounded-xl bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground"
+        className="rounded-xl bg-primary px-4 py-2 text-sm font-semibold
+          text-primary-foreground"
         disabled={loading}
       >
         {loading ? 'Entrando...' : 'Entrar'}

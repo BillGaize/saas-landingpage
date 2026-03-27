@@ -4,7 +4,9 @@ import { cookies } from 'next/headers'
 const COOKIE_NAME = 'bill_admin_session'
 
 function getSecret() {
-  return process.env.SESSION_SECRET ?? 'change-me-in-production'
+  return (
+    process.env.SESSION_SECRET ?? 'change-me-in-production'
+  )
 }
 
 function sign(value: string) {
@@ -45,7 +47,9 @@ export function verifySessionValue(sessionValue?: string) {
 
 export function isAdminAuthenticated() {
   const cookieStore = cookies()
-  return verifySessionValue(cookieStore.get(COOKIE_NAME)?.value)
+  return verifySessionValue(
+    cookieStore.get(COOKIE_NAME)?.value
+  )
 }
 
 export function getAdminCookieName() {

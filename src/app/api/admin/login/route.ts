@@ -23,13 +23,17 @@ export async function POST(request: Request) {
   }
 
   const response = NextResponse.json({ ok: true })
-  response.cookies.set(getAdminCookieName(), createSessionValue(), {
-    httpOnly: true,
-    sameSite: 'lax',
-    secure: process.env.NODE_ENV === 'production',
-    path: '/',
-    maxAge: 60 * 60 * 24 * 14
-  })
+  response.cookies.set(
+    getAdminCookieName(),
+    createSessionValue(),
+    {
+      httpOnly: true,
+      sameSite: 'lax',
+      secure: process.env.NODE_ENV === 'production',
+      path: '/',
+      maxAge: 60 * 60 * 24 * 14
+    }
+  )
 
   return response
 }

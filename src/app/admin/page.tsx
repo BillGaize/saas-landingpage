@@ -23,14 +23,16 @@ export default function AdminPostsPage() {
               Gestion de posts
             </h1>
             <p className="text-sm leading-7 text-muted-foreground">
-              Crea, edita y borra posts. Si usas GitHub como storage, cada cambio
-              dispara un nuevo deploy del sitio.
+              Crea, edita y borra posts. Si usas GitHub como
+              storage, cada cambio dispara un nuevo deploy
+              del sitio.
             </p>
           </div>
           <div className="flex gap-3">
             <Link
               href="/admin/new"
-              className="rounded-xl bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground"
+              className="rounded-xl bg-primary px-4 py-2 text-sm font-semibold
+                text-primary-foreground"
             >
               Nuevo post
             </Link>
@@ -42,10 +44,18 @@ export default function AdminPostsPage() {
           <table className="w-full">
             <thead className="bg-card/80">
               <tr className="text-left text-sm">
-                <th className="px-6 py-4 font-medium">Titulo</th>
-                <th className="px-6 py-4 font-medium">Slug</th>
-                <th className="px-6 py-4 font-medium">Fecha</th>
-                <th className="px-6 py-4 font-medium">Estado</th>
+                <th className="px-6 py-4 font-medium">
+                  Titulo
+                </th>
+                <th className="px-6 py-4 font-medium">
+                  Slug
+                </th>
+                <th className="px-6 py-4 font-medium">
+                  Fecha
+                </th>
+                <th className="px-6 py-4 font-medium">
+                  Estado
+                </th>
               </tr>
             </thead>
             <tbody>
@@ -69,7 +79,9 @@ export default function AdminPostsPage() {
                     {post.publishedAt}
                   </td>
                   <td className="px-6 py-4 text-muted-foreground">
-                    {post.featured ? 'Featured' : 'Standard'}
+                    {post.featured
+                      ? 'Featured'
+                      : 'Standard'}
                   </td>
                 </tr>
               ))}

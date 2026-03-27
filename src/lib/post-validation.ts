@@ -27,9 +27,7 @@ export function slugify(input: string) {
     .replace(/^-+|-+$/g, '')
 }
 
-export function normalizePostInput(
-  input: PostInput
-): Post {
+export function normalizePostInput(input: PostInput): Post {
   const title = input.title?.trim() ?? ''
   const slug = slugify(input.slug ?? title)
 
@@ -42,7 +40,8 @@ export function normalizePostInput(
     title,
     description: input.description?.trim() ?? '',
     seoTitle: input.seoTitle?.trim() ?? undefined,
-    seoDescription: input.seoDescription?.trim() ?? undefined,
+    seoDescription:
+      input.seoDescription?.trim() ?? undefined,
     category: input.category?.trim() ?? 'General',
     publishedAt: input.publishedAt?.trim() ?? '',
     updatedAt: input.updatedAt?.trim() ?? undefined,

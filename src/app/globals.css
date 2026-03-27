@@ -70,11 +70,26 @@
   }
 
   .mesh-bg {
-    background:
-      radial-gradient(circle at 5% 18%, rgba(141, 184, 255, 0.14), transparent 45%),
-      radial-gradient(circle at 83% 2%, rgba(187, 220, 255, 0.25), transparent 40%),
-      radial-gradient(circle at 82% 78%, rgba(145, 171, 255, 0.16), transparent 45%),
-      radial-gradient(circle at 18% 88%, rgba(195, 220, 255, 0.2), transparent 45%),
+    background: radial-gradient(
+        circle at 5% 18%,
+        rgba(141, 184, 255, 0.14),
+        transparent 45%
+      ),
+      radial-gradient(
+        circle at 83% 2%,
+        rgba(187, 220, 255, 0.25),
+        transparent 40%
+      ),
+      radial-gradient(
+        circle at 82% 78%,
+        rgba(145, 171, 255, 0.16),
+        transparent 45%
+      ),
+      radial-gradient(
+        circle at 18% 88%,
+        rgba(195, 220, 255, 0.2),
+        transparent 45%
+      ),
       #fff;
     background-size: 110% 110%;
     animation: meshFloat 18s ease-in-out infinite alternate;

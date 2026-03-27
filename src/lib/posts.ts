@@ -16,7 +16,10 @@ export interface Post {
   body: string
 }
 
-const postsDirectory = path.join(process.cwd(), 'content/posts')
+const postsDirectory = path.join(
+  process.cwd(),
+  'content/posts'
+)
 
 function readPostFile(filePath: string) {
   const raw = fs.readFileSync(filePath, 'utf8')

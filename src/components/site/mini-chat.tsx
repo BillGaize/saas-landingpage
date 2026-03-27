@@ -1,7 +1,11 @@
 'use client'
 
 import { useState } from 'react'
-import { MessageCircle, SendHorizonal, X } from 'lucide-react'
+import {
+  MessageCircle,
+  SendHorizonal,
+  X
+} from 'lucide-react'
 
 interface ChatMessage {
   role: 'user' | 'assistant'
@@ -16,7 +20,7 @@ export function MiniChat() {
     {
       role: 'assistant',
       content:
-        'Hi, I am Bill\'s portfolio assistant. Ask about projects, tech stack, blog posts, or contact.'
+        "Hi, I am Bill's portfolio assistant. Ask about projects, tech stack, blog posts, or contact."
     }
   ])
 
@@ -52,7 +56,9 @@ export function MiniChat() {
         throw new Error('Chat request failed')
       }
 
-      const data = (await response.json()) as { reply?: string }
+      const data = (await response.json()) as {
+        reply?: string
+      }
 
       setMessages((prev) => [
         ...prev,
@@ -81,15 +87,20 @@ export function MiniChat() {
     <div className="fixed bottom-4 right-4 z-50 sm:bottom-6 sm:right-6">
       {open ? (
         <div className="w-[320px] rounded-2xl border border-line bg-paper shadow-xl">
-          <div className="flex items-center justify-between border-b border-line px-4 py-3">
-            <p className="text-sm font-semibold">Ask Bill AI</p>
+          <div
+            className="flex items-center justify-between border-b border-line px-4
+              py-3"
+          >
+            <p className="text-sm font-semibold">
+              Ask Bill AI
+            </p>
             <button
               type="button"
               aria-label="Close chat"
               className="rounded-md p-1 hover:bg-zinc-100"
-                onClick={() => {
-                  setOpen(false)
-                }}
+              onClick={() => {
+                setOpen(false)
+              }}
             >
               <X size={18} />
             </button>
@@ -99,12 +110,17 @@ export function MiniChat() {
             {messages.map((message, index) => (
               <div
                 key={`${message.role}-${index.toString()}`}
-                className={message.role === 'assistant' ? 'mr-5' : 'ml-5'}
+                className={
+                  message.role === 'assistant'
+                    ? 'mr-5'
+                    : 'ml-5'
+                }
               >
                 <p
                   className={
                     message.role === 'assistant'
-                      ? 'rounded-xl border border-line bg-white px-3 py-2 text-sm text-zinc-700'
+                      ? `rounded-xl border border-line bg-white px-3 py-2 text-sm
+                        text-zinc-700`
                       : 'rounded-xl bg-black px-3 py-2 text-sm text-white'
                   }
                 >
@@ -113,7 +129,9 @@ export function MiniChat() {
               </div>
             ))}
             {loading ? (
-              <p className="text-xs text-zinc-500">Thinking...</p>
+              <p className="text-xs text-zinc-500">
+                Thinking...
+              </p>
             ) : null}
           </div>
 
@@ -125,17 +143,19 @@ export function MiniChat() {
             }}
           >
             <input
-              className="h-10 flex-1 rounded-xl border border-line bg-white px-3 text-sm outline-none focus:border-black"
+              className="h-10 flex-1 rounded-xl border border-line bg-white px-3
+                text-sm outline-none focus:border-black"
               placeholder="Ask about projects, skills, contact..."
               value={value}
-                onChange={(event) => {
-                  setValue(event.target.value)
-                }}
+              onChange={(event) => {
+                setValue(event.target.value)
+              }}
             />
             <button
               type="submit"
               aria-label="Send"
-              className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-black text-white disabled:opacity-50"
+              className="inline-flex h-10 w-10 items-center justify-center rounded-xl
+                bg-black text-white disabled:opacity-50"
               disabled={loading || !value.trim()}
             >
               <SendHorizonal size={16} />
@@ -147,11 +167,13 @@ export function MiniChat() {
       {!open ? (
         <button
           type="button"
-          className="inline-flex h-14 w-14 items-center justify-center rounded-full border border-line bg-white text-black shadow-lg"
+          className="inline-flex h-14 w-14 items-center justify-center
+            rounded-full border border-line bg-white text-black
+            shadow-lg"
           aria-label="Open portfolio assistant"
-            onClick={() => {
-              setOpen(true)
-            }}
+          onClick={() => {
+            setOpen(true)
+          }}
         >
           <MessageCircle size={22} />
         </button>

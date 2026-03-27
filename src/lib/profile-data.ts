@@ -33,7 +33,13 @@ export const portfolioProjects: PortfolioProject[] = [
       'A custom operations dashboard to centralize orders, fulfillment status, and support workflows.',
     impact:
       'Reduced manual order handling time by 42% through workflow automation and API orchestration.',
-    stack: ['Next.js', 'TypeScript', 'Node.js', 'PostgreSQL', 'Shopify API']
+    stack: [
+      'Next.js',
+      'TypeScript',
+      'Node.js',
+      'PostgreSQL',
+      'Shopify API'
+    ]
   },
   {
     slug: 'clinical-insights-pipeline',
@@ -51,7 +57,13 @@ export const portfolioProjects: PortfolioProject[] = [
       'A writing assistant for drafting, refining, and publishing long-form technical content with controlled tone.',
     impact:
       'Enabled fast editorial workflows while preserving consistent voice and SEO structure.',
-    stack: ['OpenAI API', 'Next.js', 'Tailwind CSS', 'Redis', 'Vercel']
+    stack: [
+      'OpenAI API',
+      'Next.js',
+      'Tailwind CSS',
+      'Redis',
+      'Vercel'
+    ]
   },
   {
     slug: 'portfolio-redesign-system',
@@ -60,14 +72,25 @@ export const portfolioProjects: PortfolioProject[] = [
       'A minimalist portfolio architecture inspired by Notion, focused on readability and professional storytelling.',
     impact:
       'Created a clearer narrative for recruiters and clients with stronger UX consistency across pages.',
-    stack: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS']
+    stack: [
+      'React',
+      'Next.js',
+      'TypeScript',
+      'Tailwind CSS'
+    ]
   }
 ]
 
 export const quickAnswers = [
   {
     id: 'background',
-    keywords: ['who', 'background', 'about', 'experience', 'bio'],
+    keywords: [
+      'who',
+      'background',
+      'about',
+      'experience',
+      'bio'
+    ],
     answer:
       'Bill is a Full Stack MERN Developer with a Medical Laboratory Science background. He combines technical depth with process-oriented thinking to build reliable software.'
   },
@@ -79,7 +102,13 @@ export const quickAnswers = [
   },
   {
     id: 'contact',
-    keywords: ['contact', 'email', 'book', 'call', 'meeting'],
+    keywords: [
+      'contact',
+      'email',
+      'book',
+      'call',
+      'meeting'
+    ],
     answer:
       'You can reach Bill at me@billgaize.com or book a call at calendly.com/me--52uo/30min.'
   }

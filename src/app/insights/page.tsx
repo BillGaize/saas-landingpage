@@ -34,7 +34,10 @@ export default function InsightsPage() {
           Long-form notes on modern web development,
           integrations, and practical AI workflows.
         </p>
-        <Link href="/" className="inline-block text-sm text-subtle underline">
+        <Link
+          href="/"
+          className="inline-block text-sm text-subtle underline"
+        >
           Back to home
         </Link>
       </section>

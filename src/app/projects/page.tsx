@@ -17,23 +17,32 @@ export default function ProjectsPage() {
         <p className="text-sm uppercase tracking-[0.24em] text-subtle">
           Selected work
         </p>
-        <h1 className="section-title">Developer Projects</h1>
+        <h1 className="section-title">
+          Developer Projects
+        </h1>
         <p className="body-lg max-w-3xl">
           Practical products focused on measurable outcomes,
-          clean implementation, and long-term maintainability.
+          clean implementation, and long-term
+          maintainability.
         </p>
       </section>
 
       <section className="space-y-4">
         {portfolioProjects.map((project) => (
-          <article key={project.slug} className="notion-card space-y-4">
+          <article
+            key={project.slug}
+            className="notion-card space-y-4"
+          >
             <h2 className="text-4xl font-semibold tracking-tight">
               {project.title}
             </h2>
             <p className="text-lg leading-8 text-zinc-700">
               {project.summary}
             </p>
-            <p className="rounded-xl border border-line bg-zinc-50 px-4 py-3 text-base text-zinc-700">
+            <p
+              className="rounded-xl border border-line bg-zinc-50 px-4 py-3 text-base
+                text-zinc-700"
+            >
               {project.impact}
             </p>
             <div className="flex flex-wrap gap-2">

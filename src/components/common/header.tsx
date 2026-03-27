@@ -92,11 +92,11 @@ export function Header({ className }: SidebarProps) {
               target={
                 item.openInNewTab ? '_blank' : undefined
               }
-                rel={
-                  item.openInNewTab
-                    ? 'noopener noreferrer'
-                    : undefined
-                }
+              rel={
+                item.openInNewTab
+                  ? 'noopener noreferrer'
+                  : undefined
+              }
               key={item.title}
             >
               <Typography

@@ -9,10 +9,15 @@ export function PostCard({ post }: PostCardProps) {
   return (
     <Link
       href={`/insights/${post.slug}`}
-      className="group block rounded-2xl border border-line bg-white px-6 py-5 transition-colors hover:bg-zinc-50"
+      className="group block rounded-2xl border border-line bg-white px-6
+        py-5 transition-colors hover:bg-zinc-50"
     >
       <div className="flex items-center gap-3 text-sm text-subtle">
-        <span>{new Date(post.publishedAt).toLocaleDateString('es-CL')}</span>
+        <span>
+          {new Date(post.publishedAt).toLocaleDateString(
+            'es-CL'
+          )}
+        </span>
         <span>•</span>
         <span>{post.readingTime}</span>
         <span>•</span>
@@ -26,7 +31,10 @@ export function PostCard({ post }: PostCardProps) {
       </p>
       <div className="mt-4 text-sm font-medium text-black">
         <span className="inline-flex items-center gap-2">
-          Read article <span className="transition-transform group-hover:translate-x-1">→</span>
+          Read article{' '}
+          <span className="transition-transform group-hover:translate-x-1">
+            →
+          </span>
         </span>
       </div>
     </Link>

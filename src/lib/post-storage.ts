@@ -1,6 +1,10 @@
 import fs from 'fs'
 import path from 'path'
-import { getPostFilePath, serializePost, type Post } from '@/lib/posts'
+import {
+  getPostFilePath,
+  serializePost,
+  type Post
+} from '@/lib/posts'
 
 interface GithubFile {
   sha: string
@@ -56,7 +60,9 @@ async function getGithubFile(pathname: string) {
   }
 
   if (!response.ok) {
-    throw new Error(`GitHub read failed: ${response.status}`)
+    throw new Error(
+      `GitHub read failed: ${response.status}`
+    )
   }
 
   return (await response.json()) as GithubFile

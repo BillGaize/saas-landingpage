@@ -28,7 +28,8 @@ export default function AdminPostPage({
       <div className="w-full max-w-5xl space-y-6">
         <Link
           href="/admin"
-          className="inline-flex text-sm text-muted-foreground hover:text-foreground"
+          className="inline-flex text-sm text-muted-foreground
+            hover:text-foreground"
         >
           Volver al admin
         </Link>

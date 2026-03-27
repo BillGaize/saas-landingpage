@@ -13,7 +13,8 @@ export default function NewPostPage() {
       <div className="w-full max-w-5xl space-y-6">
         <Link
           href="/admin"
-          className="inline-flex text-sm text-muted-foreground hover:text-foreground"
+          className="inline-flex text-sm text-muted-foreground
+            hover:text-foreground"
         >
           Volver al admin
         </Link>
@@ -22,7 +23,8 @@ export default function NewPostPage() {
             Crear nuevo post
           </h1>
           <p className="text-sm leading-7 text-muted-foreground">
-            Escribe el cuerpo en Markdown. Al guardar, el sitio se redeploya.
+            Escribe el cuerpo en Markdown. Al guardar, el
+            sitio se redeploya.
           </p>
         </div>
         <PostEditor />

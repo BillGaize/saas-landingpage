@@ -30,7 +30,9 @@ export function PostEditor({ post }: PostEditorProps) {
   const [description, setDescription] = useState(
     post?.description ?? ''
   )
-  const [seoTitle, setSeoTitle] = useState(post?.seoTitle ?? '')
+  const [seoTitle, setSeoTitle] = useState(
+    post?.seoTitle ?? ''
+  )
   const [seoDescription, setSeoDescription] = useState(
     post?.seoDescription ?? ''
   )
@@ -46,7 +48,9 @@ export function PostEditor({ post }: PostEditorProps) {
   const [readingTime, setReadingTime] = useState(
     post?.readingTime ?? '4 min read'
   )
-  const [featured, setFeatured] = useState(post?.featured ?? false)
+  const [featured, setFeatured] = useState(
+    post?.featured ?? false
+  )
   const [hero, setHero] = useState(post?.hero ?? '')
   const [body, setBody] = useState(post?.body ?? '')
   const [status, setStatus] = useState('')
@@ -67,7 +71,9 @@ export function PostEditor({ post }: PostEditorProps) {
     setStatus('')
 
     const response = await fetch(
-      post ? `/api/admin/posts/${post.slug}` : '/api/admin/posts',
+      post
+        ? `/api/admin/posts/${post.slug}`
+        : '/api/admin/posts',
       {
         method: post ? 'PUT' : 'POST',
         headers: {
@@ -124,11 +130,15 @@ export function PostEditor({ post }: PostEditorProps) {
     setSaving(true)
     setStatus('')
 
-    const response = await fetch(`/api/admin/posts/${post.slug}`, {
-      method: 'DELETE'
-    })
+    const response = await fetch(
+      `/api/admin/posts/${post.slug}`,
+      {
+        method: 'DELETE'
+      }
+    )
 
-    const data = (await response.json()) as DeletePostResponse
+    const data =
+      (await response.json()) as DeletePostResponse
 
     if (!response.ok) {
       setStatus(data.error ?? 'No se pudo borrar el post.')
@@ -142,14 +152,17 @@ export function PostEditor({ post }: PostEditorProps) {
 
   return (
     <form
-      className="space-y-8 rounded-[2rem] border border-border/70 bg-card/60 p-6 md:p-10"
+      className="space-y-8 rounded-[2rem] border border-border/70 bg-card/60
+        p-6 md:p-10"
       onSubmit={(event) => {
         void handleSubmit(event)
       }}
     >
       <div className="grid gap-6 md:grid-cols-2">
         <label className="space-y-2">
-          <span className="text-sm font-medium">Titulo</span>
+          <span className="text-sm font-medium">
+            Titulo
+          </span>
           <input
             className="w-full rounded-xl border bg-background px-4 py-3"
             value={title}
@@ -172,7 +185,9 @@ export function PostEditor({ post }: PostEditorProps) {
           />
         </label>
         <label className="space-y-2">
-          <span className="text-sm font-medium">Descripcion</span>
+          <span className="text-sm font-medium">
+            Descripcion
+          </span>
           <input
             className="w-full rounded-xl border bg-background px-4 py-3"
             value={description}
@@ -183,7 +198,9 @@ export function PostEditor({ post }: PostEditorProps) {
           />
         </label>
         <label className="space-y-2">
-          <span className="text-sm font-medium">Categoria</span>
+          <span className="text-sm font-medium">
+            Categoria
+          </span>
           <input
             className="w-full rounded-xl border bg-background px-4 py-3"
             value={category}
@@ -193,7 +210,9 @@ export function PostEditor({ post }: PostEditorProps) {
           />
         </label>
         <label className="space-y-2">
-          <span className="text-sm font-medium">Fecha de publicacion</span>
+          <span className="text-sm font-medium">
+            Fecha de publicacion
+          </span>
           <input
             type="date"
             className="w-full rounded-xl border bg-background px-4 py-3"
@@ -205,7 +224,9 @@ export function PostEditor({ post }: PostEditorProps) {
           />
         </label>
         <label className="space-y-2">
-          <span className="text-sm font-medium">Fecha de actualizacion</span>
+          <span className="text-sm font-medium">
+            Fecha de actualizacion
+          </span>
           <input
             type="date"
             className="w-full rounded-xl border bg-background px-4 py-3"
@@ -216,7 +237,9 @@ export function PostEditor({ post }: PostEditorProps) {
           />
         </label>
         <label className="space-y-2">
-          <span className="text-sm font-medium">Reading time</span>
+          <span className="text-sm font-medium">
+            Reading time
+          </span>
           <input
             className="w-full rounded-xl border bg-background px-4 py-3"
             value={readingTime}
@@ -236,7 +259,9 @@ export function PostEditor({ post }: PostEditorProps) {
           />
         </label>
         <label className="space-y-2 md:col-span-2">
-          <span className="text-sm font-medium">SEO title</span>
+          <span className="text-sm font-medium">
+            SEO title
+          </span>
           <input
             className="w-full rounded-xl border bg-background px-4 py-3"
             value={seoTitle}
@@ -246,7 +271,9 @@ export function PostEditor({ post }: PostEditorProps) {
           />
         </label>
         <label className="space-y-2 md:col-span-2">
-          <span className="text-sm font-medium">SEO description</span>
+          <span className="text-sm font-medium">
+            SEO description
+          </span>
           <textarea
             className="min-h-24 w-full rounded-xl border bg-background px-4 py-3"
             value={seoDescription}
@@ -256,9 +283,12 @@ export function PostEditor({ post }: PostEditorProps) {
           />
         </label>
         <label className="space-y-2 md:col-span-2">
-          <span className="text-sm font-medium">Body en Markdown</span>
+          <span className="text-sm font-medium">
+            Body en Markdown
+          </span>
           <textarea
-            className="min-h-[420px] w-full rounded-xl border bg-background px-4 py-3 font-mono text-sm"
+            className="min-h-[420px] w-full rounded-xl border bg-background px-4
+              py-3 font-mono text-sm"
             value={body}
             onChange={(event) => {
               setBody(event.target.value)
@@ -282,7 +312,8 @@ export function PostEditor({ post }: PostEditorProps) {
       <div className="flex flex-wrap items-center gap-4">
         <button
           type="submit"
-          className="rounded-xl bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground"
+          className="rounded-xl bg-primary px-4 py-2 text-sm font-semibold
+            text-primary-foreground"
           disabled={saving}
         >
           {saving ? 'Guardando...' : 'Guardar post'}
@@ -291,7 +322,8 @@ export function PostEditor({ post }: PostEditorProps) {
           <a
             href={previewUrl}
             target="_blank"
-            className="text-sm text-muted-foreground underline-offset-4 hover:underline"
+            className="text-sm text-muted-foreground underline-offset-4
+              hover:underline"
           >
             Ver post
           </a>
@@ -302,7 +334,8 @@ export function PostEditor({ post }: PostEditorProps) {
             onClick={() => {
               void handleDelete()
             }}
-            className="rounded-xl border border-destructive px-4 py-2 text-sm font-semibold text-destructive"
+            className="rounded-xl border border-destructive px-4 py-2 text-sm
+              font-semibold text-destructive"
             disabled={saving}
           >
             Borrar post
@@ -311,7 +344,9 @@ export function PostEditor({ post }: PostEditorProps) {
       </div>
 
       {status ? (
-        <p className="text-sm text-muted-foreground">{status}</p>
+        <p className="text-sm text-muted-foreground">
+          {status}
+        </p>
       ) : null}
     </form>
   )

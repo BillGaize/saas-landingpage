@@ -87,12 +87,19 @@ export default function PostPage({
       />
 
       <header className="space-y-5">
-        <Link href="/insights" className="inline-block text-sm text-subtle underline">
+        <Link
+          href="/insights"
+          className="inline-block text-sm text-subtle underline"
+        >
           Back to insights
         </Link>
 
         <div className="flex flex-wrap items-center gap-2 text-sm text-subtle">
-          <span>{new Date(post.publishedAt).toLocaleDateString('es-CL')}</span>
+          <span>
+            {new Date(post.publishedAt).toLocaleDateString(
+              'es-CL'
+            )}
+          </span>
           <span>•</span>
           <span>{post.readingTime}</span>
           <span>•</span>
@@ -102,10 +109,15 @@ export default function PostPage({
         <h1 className="text-5xl font-semibold tracking-tight sm:text-6xl">
           {post.title}
         </h1>
-        <p className="body-lg max-w-3xl">{post.description}</p>
+        <p className="body-lg max-w-3xl">
+          {post.description}
+        </p>
       </header>
 
-      <div className="rounded-2xl border border-line bg-zinc-50 px-6 py-5 text-lg leading-8 text-zinc-700">
+      <div
+        className="rounded-2xl border border-line bg-zinc-50 px-6 py-5 text-lg
+          leading-8 text-zinc-700"
+      >
         {post.hero}
       </div>
 
@@ -127,7 +139,8 @@ export default function PostPage({
         <div className="flex flex-wrap gap-3">
           <a
             href="mailto:me@billgaize.com"
-            className="rounded-xl bg-black px-4 py-2.5 text-sm font-medium text-white"
+            className="rounded-xl bg-black px-4 py-2.5 text-sm font-medium
+              text-white"
           >
             Email me
           </a>
@@ -135,7 +148,8 @@ export default function PostPage({
             href="https://calendly.com/me--52uo/30min"
             target="_blank"
             rel="noopener noreferrer"
-            className="rounded-xl border border-line px-4 py-2.5 text-sm font-medium"
+            className="rounded-xl border border-line px-4 py-2.5 text-sm
+              font-medium"
           >
             Book a slot
           </a>

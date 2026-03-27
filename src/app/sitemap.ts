@@ -19,7 +19,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const postEntries = getAllPosts().map((post) => ({
     url: `${siteConfig.url}/insights/${post.slug}`,
-    lastModified: new Date(post.updatedAt ?? post.publishedAt)
+    lastModified: new Date(
+      post.updatedAt ?? post.publishedAt
+    )
   }))
 
   return [...staticEntries, ...postEntries]
