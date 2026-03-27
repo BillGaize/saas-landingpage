@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { cookies } from 'next/headers'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import { notFound } from 'next/navigation'
@@ -52,6 +53,30 @@ export function generateMetadata({
 export default function PostPage({
   params
 }: PostPageProps) {
+  const lang =
+    cookies().get('site-lang')?.value === 'en' ? 'en' : 'es'
+
+  const copy =
+    lang === 'en'
+      ? {
+          back: 'Back to insights',
+          ctaTitle: 'Want to build something similar?',
+          ctaText:
+            'If this style of content or workflow fits your team, we can design a solution aligned to your stack and goals.',
+          contact: 'Write me',
+          schedule: 'Book a call',
+          locale: 'en-US'
+        }
+      : {
+          back: 'Volver a insights',
+          ctaTitle: 'Quieres construir algo similar?',
+          ctaText:
+            'Si este estilo de contenido o workflow encaja con tu equipo, podemos disenar una solucion alineada a tu stack y objetivos.',
+          contact: 'Escribeme',
+          schedule: 'Agendar llamada',
+          locale: 'es-CL'
+        }
+
   const post = getPostBySlug(params.slug)
 
   if (!post) {
@@ -91,13 +116,13 @@ export default function PostPage({
           href="/insights"
           className="inline-block text-sm text-subtle underline"
         >
-          Volver a insights
+          {copy.back}
         </Link>
 
         <div className="flex flex-wrap items-center gap-2 text-sm text-subtle">
           <span>
             {new Date(post.publishedAt).toLocaleDateString(
-              'es-CL'
+              copy.locale
             )}
           </span>
           <span>•</span>
@@ -129,12 +154,10 @@ export default function PostPage({
 
       <div className="notion-card space-y-4">
         <h2 className="text-2xl font-semibold tracking-tight">
-          Quieres construir algo similar?
+          {copy.ctaTitle}
         </h2>
         <p className="text-base leading-8 text-zinc-700">
-          Si este estilo de contenido o workflow encaja con
-          tu equipo, podemos disenar una solucion alineada a
-          tu stack y objetivos.
+          {copy.ctaText}
         </p>
         <div className="flex flex-wrap gap-3">
           <a
@@ -142,7 +165,7 @@ export default function PostPage({
             className="rounded-xl bg-black px-4 py-2.5 text-sm font-medium
               text-white"
           >
-            Escribeme
+            {copy.contact}
           </a>
           <a
             href="https://calendly.com/me--52uo/30min"
@@ -151,7 +174,7 @@ export default function PostPage({
             className="rounded-xl border border-line px-4 py-2.5 text-sm
               font-medium"
           >
-            Agendar llamada
+            {copy.schedule}
           </a>
         </div>
       </div>

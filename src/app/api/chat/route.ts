@@ -11,6 +11,7 @@ import {
 interface ChatBody {
   message?: string
   history?: Array<{ role: string; content: string }>
+  language?: ReplyLanguage
 }
 
 interface Chunk {
@@ -236,10 +237,12 @@ function formatChunkSnippet(text: string) {
 function buildOpenReply(
   message: string,
   ranked: Array<{ chunk: Chunk; confidence: number }>,
-  history: Array<{ role: string; content: string }>
+  history: Array<{ role: string; content: string }>,
+  forcedLanguage?: ReplyLanguage
 ) {
   const intent = detectIntent(message)
-  const language = detectLanguage(message, history)
+  const language =
+    forcedLanguage ?? detectLanguage(message, history)
   const introByIntent =
     language === 'en'
       ? {
@@ -300,7 +303,10 @@ function buildOpenReply(
   return `${introByIntent[intent]}\n${rankedDetails}${continuation}${closing}`
 }
 
-function quickReply(message: string) {
+function quickReply(
+  message: string,
+  language: ReplyLanguage
+) {
   const normalized = message.toLowerCase()
 
   for (const entry of quickAnswers) {
@@ -313,6 +319,28 @@ function quickReply(message: string) {
     }
   }
 
+  if (language === 'en') {
+    if (
+      /age|how old/.test(normalized)
+    ) {
+      return 'Bill is 29 years old.'
+    }
+
+    if (
+      /health|bioanalyst|bioanalista/.test(normalized)
+    ) {
+      return 'Bill is a Bioanalyst from Universidad de Carabobo in Venezuela. This healthcare background brings analytical rigor and process thinking to digital projects.'
+    }
+
+    if (
+      /language|languages|english|spanish|ai|rag/.test(
+        normalized
+      )
+    ) {
+      return 'Bill speaks both English and Spanish, and is fluent with AI tools, model workflows, and RAG implementations for real business use cases.'
+    }
+  }
+
   return null
 }
 
@@ -321,18 +349,21 @@ export async function POST(request: Request) {
     const body = (await request.json()) as ChatBody
     const message = body.message?.trim()
     const history = body.history ?? []
+    const language =
+      body.language === 'en' ? 'en' : 'es'
 
     if (!message) {
       return NextResponse.json(
         {
-          reply:
-            'Escribeme una pregunta y con gusto te respondo.'
+          reply: language === 'en'
+            ? 'Write your question and I will gladly help.'
+            : 'Escribeme una pregunta y con gusto te respondo.'
         },
         { status: 400 }
       )
     }
 
-    const canned = quickReply(message)
+    const canned = quickReply(message, language)
 
     if (canned) {
       return NextResponse.json({ reply: canned })
@@ -360,12 +391,18 @@ export async function POST(request: Request) {
 
     if (ranked.length === 0) {
       return NextResponse.json({
-        reply:
-          'No encontre una coincidencia exacta todavia, pero puedo ayudarte con proyectos, stack, experiencia, articulos, servicios o contacto.'
+        reply: language === 'en'
+          ? 'I did not find an exact match yet, but I can help with projects, stack, experience, articles, services, or contact details.'
+          : 'No encontre una coincidencia exacta todavia, pero puedo ayudarte con proyectos, stack, experiencia, articulos, servicios o contacto.'
       })
     }
 
-    const reply = buildOpenReply(message, ranked, history)
+    const reply = buildOpenReply(
+      message,
+      ranked,
+      history,
+      language
+    )
 
     return NextResponse.json({ reply })
   } catch {

@@ -1,12 +1,17 @@
 'use client'
 
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import {
+  usePathname,
+  useRouter
+} from 'next/navigation'
 import { cn } from '@/lib/utils'
 import {
   Briefcase,
   Check,
   Copy,
+  Eye,
+  EyeOff,
   FileText,
   Home,
   Mail,
@@ -16,6 +21,7 @@ import {
 } from 'lucide-react'
 import { useEffect, useMemo, useState } from 'react'
 import { MiniChat } from '@/components/site/mini-chat'
+import { SiteFooter } from '@/components/site/site-footer'
 
 interface SiteShellProps {
   children: React.ReactNode
@@ -53,7 +59,9 @@ const shellCopy = {
     copy: 'Copiar',
     copied: 'Copiado',
     emailAria: 'Copiar correo',
-    toggleLang: 'EN'
+    langButtonAria: 'Cambiar idioma',
+    showAssistant: 'Mostrar asistente',
+    hideAssistant: 'Ocultar asistente'
   },
   en: {
     openNav: 'Open navigation',
@@ -61,16 +69,20 @@ const shellCopy = {
     copy: 'Copy',
     copied: 'Copied',
     emailAria: 'Copy email',
-    toggleLang: 'ES'
+    langButtonAria: 'Change language',
+    showAssistant: 'Show assistant',
+    hideAssistant: 'Hide assistant'
   }
 } as const
 
 export function SiteShell({ children }: SiteShellProps) {
+  const router = useRouter()
   const pathname = usePathname()
   const [mobileOpen, setMobileOpen] = useState(false)
   const [emailCopied, setEmailCopied] = useState(false)
   const [language, setLanguage] =
     useState<SiteLanguage>('es')
+  const [chatOpen, setChatOpen] = useState(true)
 
   const copy = shellCopy[language]
   const items = navItems[language]
@@ -96,7 +108,13 @@ export function SiteShell({ children }: SiteShellProps) {
     setLanguage(next)
     window.localStorage.setItem('site-lang', next)
     document.cookie = `site-lang=${next}; path=/; max-age=31536000; samesite=lax`
+    document.documentElement.lang = next
+    router.refresh()
   }
+
+  useEffect(() => {
+    document.documentElement.lang = language
+  }, [language])
 
   const copyEmailToClipboard = async () => {
     try {
@@ -137,11 +155,11 @@ export function SiteShell({ children }: SiteShellProps) {
           <div className="flex items-center gap-2">
             <button
               type="button"
-              aria-label="Toggle language"
+              aria-label={copy.langButtonAria}
               className="rounded-xl border border-line px-3 py-2 text-sm font-medium"
               onClick={toggleLanguage}
             >
-              {copy.toggleLang}
+              {language === 'es' ? '🇺🇸' : '🇪🇸'}
             </button>
             <button
               type="button"
@@ -176,11 +194,11 @@ export function SiteShell({ children }: SiteShellProps) {
               </Link>
               <button
                 type="button"
-                aria-label="Toggle language"
+                aria-label={copy.langButtonAria}
                 className="rounded-xl border border-line px-3 py-2 text-sm font-medium"
                 onClick={toggleLanguage}
               >
-                {copy.toggleLang}
+                {language === 'es' ? '🇺🇸' : '🇪🇸'}
               </button>
             </div>
 
@@ -221,6 +239,22 @@ export function SiteShell({ children }: SiteShellProps) {
                 <MessageSquareText size={18} />
                 {copy.writeMe}
               </a>
+              <button
+                type="button"
+                onClick={() => {
+                  setChatOpen((prev) => !prev)
+                }}
+                className="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-line bg-zinc-50 px-4 py-2.5 text-sm"
+              >
+                {chatOpen ? (
+                  <EyeOff size={16} />
+                ) : (
+                  <Eye size={16} />
+                )}
+                {chatOpen
+                  ? copy.hideAssistant
+                  : copy.showAssistant}
+              </button>
               <button
                 type="button"
                 onClick={() => {
@@ -310,9 +344,29 @@ export function SiteShell({ children }: SiteShellProps) {
             {children}
           </div>
 
-          <div className="mt-10 xl:hidden">
-            <MiniChat language={language} />
-          </div>
+          {chatOpen ? (
+            <div className="mt-10 xl:hidden">
+              <MiniChat
+                language={language}
+                onHide={() => {
+                  setChatOpen(false)
+                }}
+              />
+            </div>
+          ) : (
+            <div className="mt-10 xl:hidden">
+              <button
+                type="button"
+                onClick={() => {
+                  setChatOpen(true)
+                }}
+                className="inline-flex items-center gap-2 rounded-xl border border-line px-4 py-2.5 text-sm font-medium"
+              >
+                <Eye size={16} />
+                {copy.showAssistant}
+              </button>
+            </div>
+          )}
         </main>
 
         <aside
@@ -320,10 +374,30 @@ export function SiteShell({ children }: SiteShellProps) {
             xl:block"
         >
           <div className="sticky top-8">
-            <MiniChat language={language} />
+            {chatOpen ? (
+              <MiniChat
+                language={language}
+                onHide={() => {
+                  setChatOpen(false)
+                }}
+              />
+            ) : (
+              <button
+                type="button"
+                onClick={() => {
+                  setChatOpen(true)
+                }}
+                className="inline-flex items-center gap-2 rounded-xl border border-line px-4 py-2.5 text-sm font-medium"
+              >
+                <Eye size={16} />
+                {copy.showAssistant}
+              </button>
+            )}
           </div>
         </aside>
       </div>
+
+      <SiteFooter language={language} />
     </div>
   )
 }

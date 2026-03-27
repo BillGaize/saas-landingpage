@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { cookies } from 'next/headers'
 import { getFeaturedPosts } from '@/lib/posts'
 import {
   profileFacts,
@@ -14,19 +15,49 @@ export const metadata: Metadata = {
 
 export default function Home() {
   const featuredPosts = getFeaturedPosts()
+  const lang =
+    cookies().get('site-lang')?.value === 'en' ? 'en' : 'es'
+
+  const copy =
+    lang === 'en'
+      ? {
+          portfolio: 'Technology Portfolio',
+          heading: 'Hi, I am Bill 👋',
+          intro:
+            'I am {name}, {role}. I lead digital products, API integrations, and AI-assisted workflows with a process-first mindset grounded in applied science.',
+          viewProjects: 'View projects',
+          contact: 'Contact me',
+          help: 'How I can help',
+          insightsTitle: 'Featured insights',
+          allInsights: 'See all articles',
+          locale: 'en-US'
+        }
+      : {
+          portfolio: 'Portafolio de tecnologia',
+          heading: 'Hola, soy Bill 👋',
+          intro:
+            'Soy {name}, {role}. Lidero productos digitales, integraciones API y flujos asistidos por IA con un enfoque de proceso basado en ciencia aplicada.',
+          viewProjects: 'Ver proyectos',
+          contact: 'Contactarme',
+          help: 'En que te puedo ayudar',
+          insightsTitle: 'Insights destacados',
+          allInsights: 'Ver todos los articulos',
+          locale: 'es-CL'
+        }
+
+  const introText = copy.intro
+    .replace('{name}', profileFacts.name)
+    .replace('{role}', profileFacts.role)
 
   return (
     <div className="space-y-14 pb-12 pt-6 sm:pt-10">
       <section className="space-y-8">
         <p className="text-sm uppercase tracking-[0.24em] text-subtle">
-          Portafolio Full Stack
+          {copy.portfolio}
         </p>
-        <h1 className="section-title">Hola, soy Bill 👋</h1>
+        <h1 className="section-title">{copy.heading}</h1>
         <p className="body-lg max-w-3xl">
-          Soy {profileFacts.name}, {profileFacts.role}.
-          Diseno y construyo productos digitales claros,
-          integraciones API y flujos asistidos por IA con un
-          enfoque de proceso basado en ciencia aplicada.
+          {introText}
         </p>
         <div className="flex flex-wrap items-center gap-3">
           <Link
@@ -34,7 +65,7 @@ export default function Home() {
             className="rounded-xl bg-black px-5 py-3 text-base font-medium
               text-white"
           >
-            Ver proyectos
+            {copy.viewProjects}
           </Link>
           <a
             href={profileFacts.linkedin}
@@ -50,14 +81,14 @@ export default function Home() {
             className="rounded-xl border border-line px-5 py-3 text-base
               font-medium"
           >
-            Contactarme
+            {copy.contact}
           </a>
         </div>
       </section>
 
       <section className="notion-card space-y-5">
         <h2 className="text-3xl font-semibold tracking-tight">
-          En que te puedo ayudar
+          {copy.help}
         </h2>
         <ul className="grid gap-3 sm:grid-cols-2">
           {coreServices.map((service) => (
@@ -75,13 +106,13 @@ export default function Home() {
       <section className="space-y-6">
         <div className="flex items-end justify-between gap-4">
           <h2 className="text-4xl font-semibold tracking-tight">
-            Insights destacados
+            {copy.insightsTitle}
           </h2>
           <Link
             href="/insights"
             className="text-sm text-subtle underline"
           >
-            Ver todos los articulos
+            {copy.allInsights}
           </Link>
         </div>
 
@@ -96,7 +127,7 @@ export default function Home() {
               <p className="text-sm text-subtle">
                 {new Date(
                   post.publishedAt
-                ).toLocaleDateString('es-CL', {
+                ).toLocaleDateString(copy.locale, {
                   month: 'long',
                   day: 'numeric',
                   year: 'numeric'

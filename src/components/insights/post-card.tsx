@@ -3,9 +3,24 @@ import type { Post } from '@/lib/posts'
 
 interface PostCardProps {
   post: Post
+  language: 'es' | 'en'
 }
 
-export function PostCard({ post }: PostCardProps) {
+export function PostCard({
+  post,
+  language
+}: PostCardProps) {
+  const copy =
+    language === 'en'
+      ? {
+          readArticle: 'Read article',
+          locale: 'en-US'
+        }
+      : {
+          readArticle: 'Leer articulo',
+          locale: 'es-CL'
+        }
+
   return (
     <Link
       href={`/insights/${post.slug}`}
@@ -15,7 +30,7 @@ export function PostCard({ post }: PostCardProps) {
       <div className="flex items-center gap-3 text-sm text-subtle">
         <span>
           {new Date(post.publishedAt).toLocaleDateString(
-            'es-CL'
+            copy.locale
           )}
         </span>
         <span>•</span>
@@ -31,7 +46,7 @@ export function PostCard({ post }: PostCardProps) {
       </p>
       <div className="mt-4 text-sm font-medium text-black">
         <span className="inline-flex items-center gap-2">
-          Leer articulo{' '}
+          {copy.readArticle}{' '}
           <span className="transition-transform group-hover:translate-x-1">
             →
           </span>
