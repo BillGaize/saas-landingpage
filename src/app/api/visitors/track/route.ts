@@ -1,5 +1,8 @@
 import { NextResponse } from 'next/server'
-import { registerVisit, readStats } from '@/lib/visitor-stats'
+import {
+  registerVisit,
+  readStats
+} from '@/lib/visitor-stats'
 
 interface VisitorTrackBody {
   sessionId?: string

@@ -56,9 +56,7 @@ export default function Home() {
           {copy.portfolio}
         </p>
         <h1 className="section-title">{copy.heading}</h1>
-        <p className="body-lg max-w-3xl">
-          {introText}
-        </p>
+        <p className="body-lg max-w-3xl">{introText}</p>
         <div className="flex flex-wrap items-center gap-3">
           <Link
             href="/projects"

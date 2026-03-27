@@ -52,7 +52,11 @@ function loadFromDisk() {
     const raw = fs.readFileSync(STORAGE_FILE, 'utf8')
     const parsed = JSON.parse(raw) as VisitorStatsState
 
-    if (!parsed.counts || !parsed.events || !parsed.seenSessions) {
+    if (
+      !parsed.counts ||
+      !parsed.events ||
+      !parsed.seenSessions
+    ) {
       return null
     }
 
@@ -98,7 +102,9 @@ export function registerVisit(input: {
   countryCode: string
 }) {
   const state = getState()
-  const countryCode = normalizeCountryCode(input.countryCode)
+  const countryCode = normalizeCountryCode(
+    input.countryCode
+  )
 
   if (state.seenSessions[input.sessionId]) {
     return state
@@ -134,9 +140,12 @@ export function registerVisit(input: {
 export function readStats(since?: number) {
   const state = getState()
 
-  const events = typeof since === 'number'
-    ? state.events.filter((event) => event.timestamp > since)
-    : state.events
+  const events =
+    typeof since === 'number'
+      ? state.events.filter(
+          (event) => event.timestamp > since
+        )
+      : state.events
 
   const latestTimestamp =
     state.events.length > 0

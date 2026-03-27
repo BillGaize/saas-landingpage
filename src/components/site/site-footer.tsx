@@ -83,8 +83,8 @@ function getOrCreateSessionId() {
   }
 
   const generated =
-    (window.crypto?.randomUUID?.() ??
-      `${Date.now()}-${Math.random().toString(36).slice(2)}`)
+    window.crypto?.randomUUID?.() ??
+    `${Date.now()}-${Math.random().toString(36).slice(2)}`
 
   window.sessionStorage.setItem(
     'visitor-session-id',
@@ -96,8 +96,10 @@ function getOrCreateSessionId() {
 
 export function SiteFooter({ language }: SiteFooterProps) {
   const copy = COPY[language]
-  const [counts, setCounts] =
-    useState<Record<string, number> | null>(null)
+  const [counts, setCounts] = useState<Record<
+    string,
+    number
+  > | null>(null)
   const [latestTimestamp, setLatestTimestamp] = useState(0)
   const [sessionId, setSessionId] = useState('')
   const [toast, setToast] = useState('')
@@ -173,7 +175,12 @@ export function SiteFooter({ language }: SiteFooterProps) {
     return () => {
       window.clearInterval(interval)
     }
-  }, [copy.newVisitor, language, latestTimestamp, sessionId])
+  }, [
+    copy.newVisitor,
+    language,
+    latestTimestamp,
+    sessionId
+  ])
 
   useEffect(() => {
     if (!toast) {
@@ -226,18 +233,29 @@ export function SiteFooter({ language }: SiteFooterProps) {
             >
               {copy.schedule}
             </a>
-            <span className="text-zinc-400">{copy.legal}</span>
-            <Link href="/terms-of-service" className="underline">
+            <span className="text-zinc-400">
+              {copy.legal}
+            </span>
+            <Link
+              href="/terms-of-service"
+              className="underline"
+            >
               {copy.terms}
             </Link>
-            <Link href="/privacy-policy" className="underline">
+            <Link
+              href="/privacy-policy"
+              className="underline"
+            >
               {copy.privacy}
             </Link>
           </div>
         </div>
 
         <div className="rounded-2xl border border-line bg-zinc-50 px-4 py-3">
-          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-zinc-500">
+          <p
+            className="text-xs font-semibold uppercase tracking-[0.16em]
+              text-zinc-500"
+          >
             {copy.recentVisitors}
           </p>
           {rankedCountries.length > 0 ? (
@@ -245,7 +263,8 @@ export function SiteFooter({ language }: SiteFooterProps) {
               {rankedCountries.map((country) => (
                 <span
                   key={country.code}
-                  className="inline-flex items-center gap-2 rounded-full border border-line bg-white px-3 py-1 text-xs"
+                  className="inline-flex items-center gap-2 rounded-full border
+                    border-line bg-white px-3 py-1 text-xs"
                 >
                   <span>{country.meta.flag}</span>
                   <span>
@@ -268,7 +287,11 @@ export function SiteFooter({ language }: SiteFooterProps) {
       </div>
 
       {toast ? (
-        <div className="pointer-events-none fixed bottom-4 left-4 z-50 max-w-xs rounded-xl border border-line bg-white px-3 py-2 text-xs text-zinc-700 shadow-lg">
+        <div
+          className="pointer-events-none fixed bottom-4 left-4 z-50 max-w-xs
+            rounded-xl border border-line bg-white px-3 py-2 text-xs
+            text-zinc-700 shadow-lg"
+        >
           {toast}
         </div>
       ) : null}

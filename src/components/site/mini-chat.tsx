@@ -93,8 +93,7 @@ export function MiniChat({
   const [value, setValue] = useState('')
   const [loading, setLoading] = useState(false)
   const copy = CHAT_COPY[language]
-  const [suggestionIndex, setSuggestionIndex] =
-    useState(0)
+  const [suggestionIndex, setSuggestionIndex] = useState(0)
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
       role: 'assistant',
@@ -122,8 +121,8 @@ export function MiniChat({
   )
 
   const rotateSuggestions = () => {
-    setSuggestionIndex((prev) =>
-      (prev + 1) % copy.suggestionPools.length
+    setSuggestionIndex(
+      (prev) => (prev + 1) % copy.suggestionPools.length
     )
   }
 
@@ -205,7 +204,8 @@ export function MiniChat({
             <button
               type="button"
               onClick={onHide}
-              className="inline-flex items-center gap-1 rounded-lg border border-line px-2 py-1 text-xs font-medium text-zinc-700 hover:bg-zinc-50"
+              className="inline-flex items-center gap-1 rounded-lg border border-line
+                px-2 py-1 text-xs font-medium text-zinc-700 hover:bg-zinc-50"
             >
               <EyeOff size={14} />
               {copy.hide}

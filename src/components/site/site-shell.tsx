@@ -1,10 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import {
-  usePathname,
-  useRouter
-} from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import { cn } from '@/lib/utils'
 import {
   Briefcase,
@@ -244,7 +241,8 @@ export function SiteShell({ children }: SiteShellProps) {
                 onClick={() => {
                   setChatOpen((prev) => !prev)
                 }}
-                className="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-line bg-zinc-50 px-4 py-2.5 text-sm"
+                className="inline-flex w-full items-center justify-center gap-2
+                  rounded-xl border border-line bg-zinc-50 px-4 py-2.5 text-sm"
               >
                 {chatOpen ? (
                   <EyeOff size={16} />
@@ -360,7 +358,8 @@ export function SiteShell({ children }: SiteShellProps) {
                 onClick={() => {
                   setChatOpen(true)
                 }}
-                className="inline-flex items-center gap-2 rounded-xl border border-line px-4 py-2.5 text-sm font-medium"
+                className="inline-flex items-center gap-2 rounded-xl border border-line
+                  px-4 py-2.5 text-sm font-medium"
               >
                 <Eye size={16} />
                 {copy.showAssistant}
@@ -387,7 +386,8 @@ export function SiteShell({ children }: SiteShellProps) {
                 onClick={() => {
                   setChatOpen(true)
                 }}
-                className="inline-flex items-center gap-2 rounded-xl border border-line px-4 py-2.5 text-sm font-medium"
+                className="inline-flex items-center gap-2 rounded-xl border border-line
+                  px-4 py-2.5 text-sm font-medium"
               >
                 <Eye size={16} />
                 {copy.showAssistant}

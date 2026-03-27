@@ -29,7 +29,8 @@ export default function ContactPage() {
           schedule: 'Book a call',
           alsoFind: 'You can also find me on',
           linkedin: 'LinkedIn profile',
-          responseTime: 'I usually reply within 24 business hours.',
+          responseTime:
+            'I usually reply within 24 business hours.',
           commonRequests: 'Most common requests'
         }
       : {
@@ -53,9 +54,7 @@ export default function ContactPage() {
           {copy.label}
         </p>
         <h1 className="section-title">{copy.title}</h1>
-        <p className="body-lg max-w-3xl">
-          {copy.intro}
-        </p>
+        <p className="body-lg max-w-3xl">{copy.intro}</p>
       </section>
 
       <section className="grid gap-4 md:grid-cols-2">

@@ -17,7 +17,8 @@ export default function Page() {
           usageTitle: 'How information is used',
           usage1:
             'To respond to collaboration inquiries and requests.',
-          usage2: 'To analyze site performance and improve UX.',
+          usage2:
+            'To analyze site performance and improve UX.',
           usage3:
             'To maintain security and reliability of the website.',
           thirdPartyTitle: 'Third-party services',
@@ -29,7 +30,8 @@ export default function Page() {
       : {
           legal: 'Legal',
           title: 'Politica de privacidad',
-          updated: 'Ultima actualizacion: 27 de marzo de 2026',
+          updated:
+            'Ultima actualizacion: 27 de marzo de 2026',
           intro1:
             'Este sitio recopila datos minimos necesarios para operar y mejorar la experiencia del portafolio. La informacion no se vende.',
           intro2:
@@ -45,7 +47,8 @@ export default function Page() {
           thirdPartyText:
             'Este sitio puede usar servicios externos confiables (por ejemplo analytics, agendamiento y hosting). Cada proveedor maneja datos segun su propia politica.',
           contactTitle: 'Contacto',
-          contactText: 'Para consultas de privacidad, escribe a:'
+          contactText:
+            'Para consultas de privacidad, escribe a:'
         }
 
   return (
@@ -61,12 +64,8 @@ export default function Page() {
       </header>
 
       <section className="notion-card space-y-4 text-base leading-8 text-zinc-700">
-        <p>
-          {copy.intro1}
-        </p>
-        <p>
-          {copy.intro2}
-        </p>
+        <p>{copy.intro1}</p>
+        <p>{copy.intro2}</p>
       </section>
 
       <section className="notion-card space-y-4 text-base leading-8 text-zinc-700">
@@ -74,13 +73,9 @@ export default function Page() {
           {copy.usageTitle}
         </h2>
         <ul className="list-disc space-y-2 pl-5">
-          <li>
-            {copy.usage1}
-          </li>
+          <li>{copy.usage1}</li>
           <li>{copy.usage2}</li>
-          <li>
-            {copy.usage3}
-          </li>
+          <li>{copy.usage3}</li>
         </ul>
       </section>
 
@@ -88,9 +83,7 @@ export default function Page() {
         <h2 className="text-2xl font-semibold text-black">
           {copy.thirdPartyTitle}
         </h2>
-        <p>
-          {copy.thirdPartyText}
-        </p>
+        <p>{copy.thirdPartyText}</p>
       </section>
 
       <section className="notion-card space-y-4 text-base leading-8 text-zinc-700">

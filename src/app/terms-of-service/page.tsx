@@ -27,7 +27,8 @@ export default function Page() {
       : {
           legal: 'Legal',
           title: 'Terminos de servicio',
-          updated: 'Ultima actualizacion: 27 de marzo de 2026',
+          updated:
+            'Ultima actualizacion: 27 de marzo de 2026',
           intro:
             'Al usar este portafolio, aceptas estos terminos. Si no estas de acuerdo, por favor no utilices el sitio.',
           useTitle: 'Uso del contenido',
@@ -56,36 +57,28 @@ export default function Page() {
       </header>
 
       <section className="notion-card space-y-4 text-base leading-8 text-zinc-700">
-        <p>
-          {copy.intro}
-        </p>
+        <p>{copy.intro}</p>
       </section>
 
       <section className="notion-card space-y-4 text-base leading-8 text-zinc-700">
         <h2 className="text-2xl font-semibold text-black">
           {copy.useTitle}
         </h2>
-        <p>
-          {copy.useText}
-        </p>
+        <p>{copy.useText}</p>
       </section>
 
       <section className="notion-card space-y-4 text-base leading-8 text-zinc-700">
         <h2 className="text-2xl font-semibold text-black">
           {copy.linksTitle}
         </h2>
-        <p>
-          {copy.linksText}
-        </p>
+        <p>{copy.linksText}</p>
       </section>
 
       <section className="notion-card space-y-4 text-base leading-8 text-zinc-700">
         <h2 className="text-2xl font-semibold text-black">
           {copy.liabilityTitle}
         </h2>
-        <p>
-          {copy.liabilityText}
-        </p>
+        <p>{copy.liabilityText}</p>
       </section>
 
       <section className="notion-card space-y-4 text-base leading-8 text-zinc-700">

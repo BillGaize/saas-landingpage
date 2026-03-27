@@ -320,15 +320,11 @@ function quickReply(
   }
 
   if (language === 'en') {
-    if (
-      /age|how old/.test(normalized)
-    ) {
+    if (/age|how old/.test(normalized)) {
       return 'Bill is 29 years old.'
     }
 
-    if (
-      /health|bioanalyst|bioanalista/.test(normalized)
-    ) {
+    if (/health|bioanalyst|bioanalista/.test(normalized)) {
       return 'Bill is a Bioanalyst from Universidad de Carabobo in Venezuela. This healthcare background brings analytical rigor and process thinking to digital projects.'
     }
 
@@ -349,15 +345,15 @@ export async function POST(request: Request) {
     const body = (await request.json()) as ChatBody
     const message = body.message?.trim()
     const history = body.history ?? []
-    const language =
-      body.language === 'en' ? 'en' : 'es'
+    const language = body.language === 'en' ? 'en' : 'es'
 
     if (!message) {
       return NextResponse.json(
         {
-          reply: language === 'en'
-            ? 'Write your question and I will gladly help.'
-            : 'Escribeme una pregunta y con gusto te respondo.'
+          reply:
+            language === 'en'
+              ? 'Write your question and I will gladly help.'
+              : 'Escribeme una pregunta y con gusto te respondo.'
         },
         { status: 400 }
       )
@@ -391,9 +387,10 @@ export async function POST(request: Request) {
 
     if (ranked.length === 0) {
       return NextResponse.json({
-        reply: language === 'en'
-          ? 'I did not find an exact match yet, but I can help with projects, stack, experience, articles, services, or contact details.'
-          : 'No encontre una coincidencia exacta todavia, pero puedo ayudarte con proyectos, stack, experiencia, articulos, servicios o contacto.'
+        reply:
+          language === 'en'
+            ? 'I did not find an exact match yet, but I can help with projects, stack, experience, articles, services, or contact details.'
+            : 'No encontre una coincidencia exacta todavia, pero puedo ayudarte con proyectos, stack, experiencia, articulos, servicios o contacto.'
       })
     }
 
