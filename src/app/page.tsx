@@ -23,8 +23,8 @@ export default function Home() {
         </p>
         <h1 className="section-title">Hola, soy Bill 👋</h1>
         <p className="body-lg max-w-3xl">
-          Soy {profileFacts.name}, {profileFacts.role}. Diseno
-          y construyo productos digitales claros,
+          Soy {profileFacts.name}, {profileFacts.role}.
+          Diseno y construyo productos digitales claros,
           integraciones API y flujos asistidos por IA con un
           enfoque de proceso basado en ciencia aplicada.
         </p>

@@ -16,7 +16,12 @@ interface ChatBody {
 interface Chunk {
   id: string
   title: string
-  type: 'perfil' | 'servicio' | 'proyecto' | 'post' | 'contacto'
+  type:
+    | 'perfil'
+    | 'servicio'
+    | 'proyecto'
+    | 'post'
+    | 'contacto'
   text: string
   url?: string
 }
@@ -164,16 +169,22 @@ function detectIntent(message: string) {
   }
 
   if (
-    /proyecto|project|stack|tecnologia|tech/.test(normalized)
+    /proyecto|project|stack|tecnologia|tech/.test(
+      normalized
+    )
   ) {
     return 'proyectos'
   }
 
-  if (/blog|post|articulo|insight|contenido/.test(normalized)) {
+  if (
+    /blog|post|articulo|insight|contenido/.test(normalized)
+  ) {
     return 'blog'
   }
 
-  if (/servicio|ofreces|ayuda|trabajo|hire/.test(normalized)) {
+  if (
+    /servicio|ofreces|ayuda|trabajo|hire/.test(normalized)
+  ) {
     return 'servicios'
   }
 
@@ -202,8 +213,7 @@ function buildOpenReply(
       'Perfecto. Sobre proyectos y stack, esto es lo mas relevante:',
     servicios:
       'Claro. Sobre como Bill puede ayudarte, este es el panorama:',
-    blog:
-      'Buen punto. En el blog y contenido tecnico, esto es lo principal:',
+    blog: 'Buen punto. En el blog y contenido tecnico, esto es lo principal:',
     contacto:
       'Sin problema. Te dejo la forma mas directa de contacto y contexto util:'
   } as const
@@ -262,7 +272,8 @@ export async function POST(request: Request) {
     if (!message) {
       return NextResponse.json(
         {
-          reply: 'Escribeme una pregunta y con gusto te respondo.'
+          reply:
+            'Escribeme una pregunta y con gusto te respondo.'
         },
         { status: 400 }
       )
@@ -280,7 +291,9 @@ export async function POST(request: Request) {
       .map((entry) => entry.content)
       .join(' ')
 
-    const queryTokens = tokenize(`${recentUserText} ${message}`)
+    const queryTokens = tokenize(
+      `${recentUserText} ${message}`
+    )
     const knowledge = buildKnowledgeBase()
 
     const ranked = knowledge

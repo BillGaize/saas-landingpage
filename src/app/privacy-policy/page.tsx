@@ -5,7 +5,9 @@ export default function Page() {
         <p className="text-sm uppercase tracking-[0.24em] text-subtle">
           Legal
         </p>
-        <h1 className="section-title">Politica de privacidad</h1>
+        <h1 className="section-title">
+          Politica de privacidad
+        </h1>
         <p className="text-base text-subtle">
           Ultima actualizacion: 27 de marzo de 2026
         </p>
@@ -14,8 +16,8 @@ export default function Page() {
       <section className="notion-card space-y-4 text-base leading-8 text-zinc-700">
         <p>
           Este sitio recopila datos minimos necesarios para
-          operar y mejorar la experiencia del portafolio.
-          La informacion no se vende.
+          operar y mejorar la experiencia del portafolio. La
+          informacion no se vende.
         </p>
         <p>
           Los datos pueden incluir uso anonimo del sitio,
@@ -31,12 +33,15 @@ export default function Page() {
         </h2>
         <ul className="list-disc space-y-2 pl-5">
           <li>
-            Responder consultas y solicitudes de colaboracion.
+            Responder consultas y solicitudes de
+            colaboracion.
           </li>
           <li>
             Analizar rendimiento del sitio y mejorar UX.
           </li>
-          <li>Mantener seguridad y confiabilidad del sitio.</li>
+          <li>
+            Mantener seguridad y confiabilidad del sitio.
+          </li>
         </ul>
       </section>
 

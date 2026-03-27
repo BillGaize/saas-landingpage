@@ -22,8 +22,8 @@ export default function ProjectsPage() {
         </h1>
         <p className="body-lg max-w-3xl">
           Productos practicos enfocados en resultados
-          medibles, implementacion limpia y mantenibilidad
-          a largo plazo.
+          medibles, implementacion limpia y mantenibilidad a
+          largo plazo.
         </p>
       </section>
 

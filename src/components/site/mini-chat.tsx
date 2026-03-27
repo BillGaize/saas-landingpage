@@ -93,7 +93,10 @@ export function MiniChat() {
   return (
     <div className="fixed bottom-4 right-4 z-50 sm:bottom-6 sm:right-6">
       {open ? (
-        <div className="flex h-[520px] w-[360px] flex-col rounded-2xl border border-line bg-paper shadow-xl sm:w-[400px]">
+        <div
+          className="flex h-[520px] w-[360px] flex-col rounded-2xl border
+            border-line bg-paper shadow-xl sm:w-[400px]"
+        >
           <div
             className="flex items-center justify-between border-b border-line px-4
               py-3"
@@ -144,7 +147,9 @@ export function MiniChat() {
                     onClick={() => {
                       setValue(suggestion)
                     }}
-                    className="block w-full rounded-xl border border-line bg-zinc-50 px-3 py-2 text-left text-xs text-zinc-600 transition-colors hover:bg-zinc-100"
+                    className="block w-full rounded-xl border border-line bg-zinc-50 px-3
+                      py-2 text-left text-xs text-zinc-600 transition-colors
+                      hover:bg-zinc-100"
                   >
                     {suggestion}
                   </button>
@@ -190,8 +195,9 @@ export function MiniChat() {
       {!open ? (
         <button
           type="button"
-          className="inline-flex items-center gap-2 rounded-full border border-line
-            bg-white px-4 py-3 text-sm font-medium text-black shadow-lg"
+          className="inline-flex items-center gap-2 rounded-full border
+            border-line bg-white px-4 py-3 text-sm font-medium
+            text-black shadow-lg"
           aria-label="Abrir asistente del portafolio"
           onClick={() => {
             setOpen(true)

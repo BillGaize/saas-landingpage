@@ -5,7 +5,9 @@ export default function Page() {
         <p className="text-sm uppercase tracking-[0.24em] text-subtle">
           Legal
         </p>
-        <h1 className="section-title">Terminos de servicio</h1>
+        <h1 className="section-title">
+          Terminos de servicio
+        </h1>
         <p className="text-base text-subtle">
           Ultima actualizacion: 27 de marzo de 2026
         </p>
@@ -47,10 +49,11 @@ export default function Page() {
           Responsabilidad
         </h2>
         <p>
-          Este portafolio se entrega &quot;tal cual&quot;, sin
-          garantias de ningun tipo. En la medida permitida
-          por la ley, no se asume responsabilidad por danos
-          directos o indirectos derivados del uso del sitio.
+          Este portafolio se entrega &quot;tal cual&quot;,
+          sin garantias de ningun tipo. En la medida
+          permitida por la ley, no se asume responsabilidad
+          por danos directos o indirectos derivados del uso
+          del sitio.
         </p>
       </section>
 
