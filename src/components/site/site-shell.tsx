@@ -14,28 +14,66 @@ import {
   MessageSquareText,
   X
 } from 'lucide-react'
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { MiniChat } from '@/components/site/mini-chat'
 
 interface SiteShellProps {
   children: React.ReactNode
 }
 
-const navItems = [
-  { href: '/', label: 'Inicio', icon: Home },
-  {
-    href: '/projects',
-    label: 'Proyectos',
-    icon: Briefcase
+type SiteLanguage = 'es' | 'en'
+
+const navItems = {
+  es: [
+    { href: '/', label: 'Inicio', icon: Home },
+    {
+      href: '/projects',
+      label: 'Proyectos',
+      icon: Briefcase
+    },
+    { href: '/insights', label: 'Blog', icon: FileText },
+    { href: '/contact', label: 'Contacto', icon: Mail }
+  ],
+  en: [
+    { href: '/', label: 'Home', icon: Home },
+    {
+      href: '/projects',
+      label: 'Projects',
+      icon: Briefcase
+    },
+    { href: '/insights', label: 'Blog', icon: FileText },
+    { href: '/contact', label: 'Contact', icon: Mail }
+  ]
+} as const
+
+const shellCopy = {
+  es: {
+    openNav: 'Abrir navegacion',
+    writeMe: 'Escribeme',
+    copy: 'Copiar',
+    copied: 'Copiado',
+    emailAria: 'Copiar correo',
+    toggleLang: 'EN'
   },
-  { href: '/insights', label: 'Blog', icon: FileText },
-  { href: '/contact', label: 'Contacto', icon: Mail }
-]
+  en: {
+    openNav: 'Open navigation',
+    writeMe: 'Write me',
+    copy: 'Copy',
+    copied: 'Copied',
+    emailAria: 'Copy email',
+    toggleLang: 'ES'
+  }
+} as const
 
 export function SiteShell({ children }: SiteShellProps) {
   const pathname = usePathname()
   const [mobileOpen, setMobileOpen] = useState(false)
   const [emailCopied, setEmailCopied] = useState(false)
+  const [language, setLanguage] =
+    useState<SiteLanguage>('es')
+
+  const copy = shellCopy[language]
+  const items = navItems[language]
 
   const isAppRoute = useMemo(
     () =>
@@ -43,6 +81,22 @@ export function SiteShell({ children }: SiteShellProps) {
       pathname.startsWith('/api'),
     [pathname]
   )
+
+  useEffect(() => {
+    const saved = window.localStorage.getItem('site-lang')
+    if (saved === 'en' || saved === 'es') {
+      setLanguage(saved)
+    }
+  }, [])
+
+  const toggleLanguage = () => {
+    const next: SiteLanguage =
+      language === 'es' ? 'en' : 'es'
+
+    setLanguage(next)
+    window.localStorage.setItem('site-lang', next)
+    document.cookie = `site-lang=${next}; path=/; max-age=31536000; samesite=lax`
+  }
 
   const copyEmailToClipboard = async () => {
     try {
@@ -80,41 +134,61 @@ export function SiteShell({ children }: SiteShellProps) {
           >
             Bill Gaize Dev
           </Link>
-          <button
-            type="button"
-            aria-label="Abrir navegacion"
-            className="rounded-xl border border-line p-2.5"
-            onClick={() => {
-              setMobileOpen((prev) => !prev)
-            }}
-          >
-            {mobileOpen ? (
-              <X size={24} />
-            ) : (
-              <Menu size={24} />
-            )}
-          </button>
+          <div className="flex items-center gap-2">
+            <button
+              type="button"
+              aria-label="Toggle language"
+              className="rounded-xl border border-line px-3 py-2 text-sm font-medium"
+              onClick={toggleLanguage}
+            >
+              {copy.toggleLang}
+            </button>
+            <button
+              type="button"
+              aria-label={copy.openNav}
+              className="rounded-xl border border-line p-2.5"
+              onClick={() => {
+                setMobileOpen((prev) => !prev)
+              }}
+            >
+              {mobileOpen ? (
+                <X size={24} />
+              ) : (
+                <Menu size={24} />
+              )}
+            </button>
+          </div>
         </div>
       </header>
 
-      <div className="mx-auto flex w-full max-w-7xl gap-0 lg:min-h-screen">
+      <div className="mx-auto flex w-full max-w-[1500px] gap-0 lg:min-h-screen">
         <aside
           className="hidden w-[280px] shrink-0 border-r border-line px-5 py-8
             lg:block"
         >
           <div className="sticky top-8 space-y-10">
-            <Link
-              href="/"
-              className="block text-4xl font-semibold tracking-tight"
-            >
-              Bill Gaize Dev
-            </Link>
+            <div className="flex items-center justify-between gap-3">
+              <Link
+                href="/"
+                className="block text-4xl font-semibold tracking-tight"
+              >
+                Bill Gaize Dev
+              </Link>
+              <button
+                type="button"
+                aria-label="Toggle language"
+                className="rounded-xl border border-line px-3 py-2 text-sm font-medium"
+                onClick={toggleLanguage}
+              >
+                {copy.toggleLang}
+              </button>
+            </div>
 
             <nav
               className="space-y-2"
               aria-label="Navegacion principal"
             >
-              {navItems.map((item) => {
+              {items.map((item) => {
                 const Icon = item.icon
                 const active =
                   pathname === item.href ||
@@ -145,13 +219,14 @@ export function SiteShell({ children }: SiteShellProps) {
                   border-line px-4 py-3 text-base"
               >
                 <MessageSquareText size={18} />
-                Escribeme
+                {copy.writeMe}
               </a>
               <button
                 type="button"
                 onClick={() => {
                   void copyEmailToClipboard()
                 }}
+                aria-label={copy.emailAria}
                 className="flex w-full items-center justify-between rounded-xl border
                   border-line bg-zinc-50 px-4 py-2.5 text-sm text-zinc-700"
               >
@@ -164,7 +239,7 @@ export function SiteShell({ children }: SiteShellProps) {
                   ) : (
                     <Copy size={14} />
                   )}
-                  {emailCopied ? 'Copiado' : 'Copiar'}
+                  {emailCopied ? copy.copied : copy.copy}
                 </span>
               </button>
             </div>
@@ -181,7 +256,7 @@ export function SiteShell({ children }: SiteShellProps) {
                 className="space-y-1"
                 aria-label="Navegacion movil"
               >
-                {navItems.map((item) => {
+                {items.map((item) => {
                   const Icon = item.icon
                   const active =
                     pathname === item.href ||
@@ -225,7 +300,7 @@ export function SiteShell({ children }: SiteShellProps) {
                   ) : (
                     <Copy size={14} />
                   )}
-                  {emailCopied ? 'Copiado' : 'Copiar'}
+                  {emailCopied ? copy.copied : copy.copy}
                 </span>
               </button>
             </div>
@@ -234,10 +309,21 @@ export function SiteShell({ children }: SiteShellProps) {
           <div className="mx-auto w-full max-w-4xl">
             {children}
           </div>
-        </main>
-      </div>
 
-      <MiniChat />
+          <div className="mt-10 xl:hidden">
+            <MiniChat language={language} />
+          </div>
+        </main>
+
+        <aside
+          className="hidden w-[420px] shrink-0 border-l border-line px-4 py-8
+            xl:block"
+        >
+          <div className="sticky top-8">
+            <MiniChat language={language} />
+          </div>
+        </aside>
+      </div>
     </div>
   )
 }

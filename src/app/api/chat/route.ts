@@ -26,6 +26,8 @@ interface Chunk {
   url?: string
 }
 
+type ReplyLanguage = 'es' | 'en'
+
 const STOP_WORDS = new Set([
   'i',
   'you',
@@ -142,8 +144,8 @@ function buildKnowledgeBase() {
       id: `project-${project.slug}`,
       title: project.title,
       type: 'proyecto' as const,
-      text: `${project.title}. Resumen: ${project.summary}. Impacto: ${project.impact}. Stack: ${project.stack.join(', ')}.`,
-      url: '/projects'
+      text: `${project.title}. Resumen: ${project.summary}. Rol: ${project.role}. Alcance: ${project.scope}. Impacto: ${project.impact}. Stack: ${project.stack.join(', ')}.`,
+      url: project.href ?? '/projects'
     })),
     ...posts.map((post) => ({
       id: `post-${post.slug}`,
@@ -191,6 +193,37 @@ function detectIntent(message: string) {
   return 'general'
 }
 
+function detectLanguage(
+  message: string,
+  history: Array<{ role: string; content: string }>
+): ReplyLanguage {
+  const sample = `${history
+    .slice(-4)
+    .map((entry) => entry.content)
+    .join(' ')} ${message}`.toLowerCase()
+
+  const englishMarkers = [
+    'project',
+    'help',
+    'background',
+    'english',
+    'contact',
+    'work',
+    'experience',
+    'how old',
+    'rag'
+  ]
+
+  let hits = 0
+  for (const marker of englishMarkers) {
+    if (sample.includes(marker)) {
+      hits += 1
+    }
+  }
+
+  return hits >= 2 ? 'en' : 'es'
+}
+
 function formatChunkSnippet(text: string) {
   const compact = text.replace(/\s+/g, ' ').trim()
   if (compact.length <= 180) {
@@ -206,17 +239,33 @@ function buildOpenReply(
   history: Array<{ role: string; content: string }>
 ) {
   const intent = detectIntent(message)
-  const introByIntent = {
-    general:
-      'Excelente pregunta. Te comparto una respuesta amplia basada en la informacion del portafolio:',
-    proyectos:
-      'Perfecto. Sobre proyectos y stack, esto es lo mas relevante:',
-    servicios:
-      'Claro. Sobre como Bill puede ayudarte, este es el panorama:',
-    blog: 'Buen punto. En el blog y contenido tecnico, esto es lo principal:',
-    contacto:
-      'Sin problema. Te dejo la forma mas directa de contacto y contexto util:'
-  } as const
+  const language = detectLanguage(message, history)
+  const introByIntent =
+    language === 'en'
+      ? {
+          general:
+            "Great question. Here's the most relevant context from Bill's portfolio:",
+          proyectos:
+            "Perfect. On projects and execution scope, this is the key information:",
+          servicios:
+            'Sure. Here is how Bill can support your goals:',
+          blog:
+            'Good point. From the blog and technical content, these are the highlights:',
+          contacto:
+            'Absolutely. Here is the most direct way to contact Bill:'
+        }
+      : {
+          general:
+            'Excelente pregunta. Te comparto una respuesta amplia basada en la informacion del portafolio:',
+          proyectos:
+            'Perfecto. Sobre proyectos y alcance de trabajo, esto es lo mas relevante:',
+          servicios:
+            'Claro. Sobre como Bill puede ayudarte, este es el panorama:',
+          blog:
+            'Buen punto. En el blog y contenido tecnico, esto es lo principal:',
+          contacto:
+            'Sin problema. Te dejo la forma mas directa de contacto y contexto util:'
+        }
 
   const recentUserContext = history
     .filter((entry) => entry.role === 'user')
@@ -230,7 +279,9 @@ function buildOpenReply(
       const label = `${entry.chunk.type.toUpperCase()}: ${entry.chunk.title}`
       const snippet = formatChunkSnippet(entry.chunk.text)
       const linkText = entry.chunk.url
-        ? ` Ruta recomendada: ${entry.chunk.url}.`
+        ? language === 'en'
+          ? ` Suggested link: ${entry.chunk.url}.`
+          : ` Ruta recomendada: ${entry.chunk.url}.`
         : ''
 
       return `- ${label}. ${snippet}.${linkText}`
@@ -238,11 +289,15 @@ function buildOpenReply(
     .join('\n')
 
   const continuation = recentUserContext.length
-    ? `\nTambien estoy considerando el contexto reciente de la conversacion: ${recentUserContext.join(' | ')}`
+    ? language === 'en'
+      ? `\nI am also considering the recent chat context: ${recentUserContext.join(' | ')}`
+      : `\nTambien estoy considerando el contexto reciente de la conversacion: ${recentUserContext.join(' | ')}`
     : ''
 
   const closing =
-    '\n\nSi quieres, puedo profundizar en una de estas opciones con mas detalle tecnico, alcance estimado y stack recomendado segun tu caso.'
+    language === 'en'
+      ? '\n\nIf you want, I can go deeper into one option with detailed scope, execution plan, and recommended stack for your case.'
+      : '\n\nSi quieres, puedo profundizar en una de estas opciones con mas detalle tecnico, alcance estimado y stack recomendado segun tu caso.'
 
   return `${introByIntent[intent]}\n${rankedDetails}${continuation}${closing}`
 }
@@ -302,7 +357,7 @@ export async function POST(request: Request) {
         confidence: score(chunk.text, queryTokens)
       }))
       .sort((a, b) => b.confidence - a.confidence)
-      .slice(0, 3)
+      .slice(0, 4)
       .filter((entry) => entry.confidence > 0)
 
     if (ranked.length === 0) {
