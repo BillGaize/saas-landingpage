@@ -125,7 +125,7 @@ export function SiteShell({ children }: SiteShellProps) {
                     href={item.href}
                     className={cn(
                       `flex items-center gap-3 rounded-xl px-3 py-2.5 text-xl
-                      transition-colors`,
+                        transition-colors`,
                       active
                         ? 'bg-black text-white'
                         : 'text-black hover:bg-zinc-100'
@@ -195,7 +195,7 @@ export function SiteShell({ children }: SiteShellProps) {
                       }}
                       className={cn(
                         `flex items-center gap-3 rounded-xl px-3 py-3 text-lg
-                        transition-colors`,
+                          transition-colors`,
                         active
                           ? 'bg-black text-white'
                           : 'text-black hover:bg-zinc-100'
