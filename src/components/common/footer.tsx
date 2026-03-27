@@ -29,7 +29,7 @@ export function Footer() {
             className="pointer block w-fit flex-1"
           >
             <Typography variant="p" className="w-max">
-              Insights
+              Blog
             </Typography>
           </Link>
           <Link
@@ -39,7 +39,7 @@ export function Footer() {
             className="pointer block w-fit flex-1"
           >
             <Typography variant="p" className="w-max">
-              Book a slot
+              Agendar llamada
             </Typography>
           </Link>
           <Link
@@ -47,7 +47,7 @@ export function Footer() {
             className="pointer block w-fit flex-1"
           >
             <Typography variant="p" className="w-max">
-              Terms of service
+              Terminos de servicio
             </Typography>
           </Link>
           <Link
@@ -55,7 +55,7 @@ export function Footer() {
             className="pointer block w-fit"
           >
             <Typography variant="p">
-              Privacy Policy
+              Politica de privacidad
             </Typography>
           </Link>
         </div>

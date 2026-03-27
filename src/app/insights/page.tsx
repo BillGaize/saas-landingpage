@@ -31,14 +31,14 @@ export default function InsightsPage() {
         </p>
         <h1 className="section-title">Insights</h1>
         <p className="body-lg max-w-3xl">
-          Long-form notes on modern web development,
-          integrations, and practical AI workflows.
+          Articulos largos sobre desarrollo web moderno,
+          integraciones y flujos practicos con IA.
         </p>
         <Link
           href="/"
           className="inline-block text-sm text-subtle underline"
         >
-          Back to home
+          Volver al inicio
         </Link>
       </section>
 

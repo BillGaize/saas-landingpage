@@ -20,8 +20,15 @@ export function MiniChat() {
     {
       role: 'assistant',
       content:
-        "Hi, I am Bill's portfolio assistant. Ask about projects, tech stack, blog posts, or contact."
+        'Hola. Soy el asistente del portafolio de Bill. Puedes preguntarme sobre experiencia, proyectos, stack, articulos del blog o como contactarlo.'
     }
+  ])
+
+  const [suggestions] = useState([
+    'Que tipo de proyectos construye Bill?',
+    'En que me puede ayudar para mi negocio?',
+    'Resume su experiencia en 3 puntos',
+    'Como lo contacto para trabajar juntos?'
   ])
 
   const sendMessage = async () => {
@@ -66,7 +73,7 @@ export function MiniChat() {
           role: 'assistant',
           content:
             data.reply ??
-            'I could not find that right now, but you can email Bill at me@billgaize.com.'
+            'No encontre contexto suficiente en este momento, pero puedes escribirme a me@billgaize.com.'
         }
       ])
     } catch {
@@ -75,7 +82,7 @@ export function MiniChat() {
         {
           role: 'assistant',
           content:
-            'I had a small issue answering that. You can still reach Bill at me@billgaize.com.'
+            'Tuve un problema temporal respondiendo. Igual puedes escribirme a me@billgaize.com.'
         }
       ])
     } finally {
@@ -86,17 +93,17 @@ export function MiniChat() {
   return (
     <div className="fixed bottom-4 right-4 z-50 sm:bottom-6 sm:right-6">
       {open ? (
-        <div className="w-[320px] rounded-2xl border border-line bg-paper shadow-xl">
+        <div className="flex h-[520px] w-[360px] flex-col rounded-2xl border border-line bg-paper shadow-xl sm:w-[400px]">
           <div
             className="flex items-center justify-between border-b border-line px-4
               py-3"
           >
             <p className="text-sm font-semibold">
-              Ask Bill AI
+              Chat con Bill AI
             </p>
             <button
               type="button"
-              aria-label="Close chat"
+              aria-label="Cerrar chat"
               className="rounded-md p-1 hover:bg-zinc-100"
               onClick={() => {
                 setOpen(false)
@@ -106,7 +113,7 @@ export function MiniChat() {
             </button>
           </div>
 
-          <div className="max-h-72 space-y-3 overflow-y-auto px-4 py-3">
+          <div className="flex-1 space-y-3 overflow-y-auto px-4 py-3">
             {messages.map((message, index) => (
               <div
                 key={`${message.role}-${index.toString()}`}
@@ -128,9 +135,25 @@ export function MiniChat() {
                 </p>
               </div>
             ))}
+            {messages.length <= 1 ? (
+              <div className="space-y-2 pt-1">
+                {suggestions.map((suggestion) => (
+                  <button
+                    key={suggestion}
+                    type="button"
+                    onClick={() => {
+                      setValue(suggestion)
+                    }}
+                    className="block w-full rounded-xl border border-line bg-zinc-50 px-3 py-2 text-left text-xs text-zinc-600 transition-colors hover:bg-zinc-100"
+                  >
+                    {suggestion}
+                  </button>
+                ))}
+              </div>
+            ) : null}
             {loading ? (
               <p className="text-xs text-zinc-500">
-                Thinking...
+                Pensando...
               </p>
             ) : null}
           </div>
@@ -145,7 +168,7 @@ export function MiniChat() {
             <input
               className="h-10 flex-1 rounded-xl border border-line bg-white px-3
                 text-sm outline-none focus:border-black"
-              placeholder="Ask about projects, skills, contact..."
+              placeholder="Preguntame cualquier cosa sobre Bill..."
               value={value}
               onChange={(event) => {
                 setValue(event.target.value)
@@ -153,7 +176,7 @@ export function MiniChat() {
             />
             <button
               type="submit"
-              aria-label="Send"
+              aria-label="Enviar"
               className="inline-flex h-10 w-10 items-center justify-center rounded-xl
                 bg-black text-white disabled:opacity-50"
               disabled={loading || !value.trim()}
@@ -167,15 +190,15 @@ export function MiniChat() {
       {!open ? (
         <button
           type="button"
-          className="inline-flex h-14 w-14 items-center justify-center
-            rounded-full border border-line bg-white text-black
-            shadow-lg"
-          aria-label="Open portfolio assistant"
+          className="inline-flex items-center gap-2 rounded-full border border-line
+            bg-white px-4 py-3 text-sm font-medium text-black shadow-lg"
+          aria-label="Abrir asistente del portafolio"
           onClick={() => {
             setOpen(true)
           }}
         >
-          <MessageCircle size={22} />
+          <MessageCircle size={18} />
+          Chat
         </button>
       ) : null}
     </div>

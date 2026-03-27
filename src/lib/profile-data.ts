@@ -9,30 +9,39 @@ export interface PortfolioProject {
 
 export const profileFacts = {
   name: 'Bill Gaize',
-  role: 'Full Stack MERN Developer',
-  bio: 'I build practical web products, Shopify integrations, and AI-assisted workflows with a strong foundation in Medical Laboratory Science.',
-  location: 'Remote, open to global collaboration',
+  role: 'Desarrollador Full Stack MERN',
+  bio: 'Construyo productos web utiles, integraciones para Shopify y flujos asistidos por IA, con una base fuerte en Ciencias de Laboratorio Clinico.',
+  location: 'Remoto, abierto a colaborar globalmente',
   contactEmail: 'me@billgaize.com',
   calendly: 'https://calendly.com/me--52uo/30min',
-  linkedin: 'https://www.linkedin.com/in/billgaize/'
+  linkedin: 'https://www.linkedin.com/in/billgaize/',
+  valueProposition:
+    'Combino pensamiento de producto, ejecucion tecnica y enfoque operativo para entregar software mantenible con impacto real.'
 }
 
 export const coreServices = [
-  'Full stack product development',
-  'Shopify integrations and automation',
-  'Internal tools and operations workflows',
-  'API architecture and third-party integrations',
-  'Technical writing and developer education'
+  'Desarrollo full stack de productos web',
+  'Integraciones y automatizacion para Shopify',
+  'Herramientas internas y workflows operativos',
+  'Arquitectura de APIs e integraciones de terceros',
+  'Contenido tecnico y educacion para developers'
+]
+
+export const profileHighlights = [
+  'Experiencia combinando e-commerce, integraciones y automatizacion operativa.',
+  'Fuerte orientacion a claridad de producto, performance y mantenibilidad.',
+  'Comunicacion tecnica clara para equipos mixtos: negocio, producto y desarrollo.',
+  'Background en ciencias medicas para decisiones guiadas por evidencia y proceso.'
 ]
 
 export const portfolioProjects: PortfolioProject[] = [
   {
     slug: 'shopify-ops-suite',
-    title: 'Shopify Ops Suite',
+    title: 'Suite Operativa para Shopify',
     summary:
-      'A custom operations dashboard to centralize orders, fulfillment status, and support workflows.',
+      'Dashboard operativo para centralizar pedidos, estado de fulfillment y flujos de soporte.',
     impact:
-      'Reduced manual order handling time by 42% through workflow automation and API orchestration.',
+      'Reduccion del 42% en tiempo de gestion manual de pedidos gracias a automatizacion y orquestacion de APIs.',
     stack: [
       'Next.js',
       'TypeScript',
@@ -43,20 +52,20 @@ export const portfolioProjects: PortfolioProject[] = [
   },
   {
     slug: 'clinical-insights-pipeline',
-    title: 'Clinical Insights Pipeline',
+    title: 'Pipeline de Analitica Clinica',
     summary:
-      'Data pipeline and analytics UI for turning raw laboratory events into reporting-ready metrics.',
+      'Pipeline de datos y UI analitica para transformar eventos de laboratorio en metricas listas para reportes.',
     impact:
-      'Improved reporting accuracy and cut processing delays from days to near real-time updates.',
+      'Mejora en precision de reportes y reduccion de demoras de dias a actualizaciones cercanas a tiempo real.',
     stack: ['Python', 'FastAPI', 'React', 'D3.js', 'Docker']
   },
   {
     slug: 'content-workbench-ai',
-    title: 'Content Workbench AI',
+    title: 'Content Workbench con IA',
     summary:
-      'A writing assistant for drafting, refining, and publishing long-form technical content with controlled tone.',
+      'Asistente editorial para redactar, refinar y publicar contenido tecnico largo con control de tono.',
     impact:
-      'Enabled fast editorial workflows while preserving consistent voice and SEO structure.',
+      'Flujos editoriales mas rapidos manteniendo voz consistente y estructura SEO clara.',
     stack: [
       'OpenAI API',
       'Next.js',
@@ -67,11 +76,11 @@ export const portfolioProjects: PortfolioProject[] = [
   },
   {
     slug: 'portfolio-redesign-system',
-    title: 'Portfolio Redesign System',
+    title: 'Sistema de Rediseno de Portafolio',
     summary:
-      'A minimalist portfolio architecture inspired by Notion, focused on readability and professional storytelling.',
+      'Arquitectura de portafolio minimalista inspirada en Notion, enfocada en legibilidad y narrativa profesional.',
     impact:
-      'Created a clearer narrative for recruiters and clients with stronger UX consistency across pages.',
+      'Narrativa mas clara para reclutadores y clientes, con mayor consistencia de UX entre paginas.',
     stack: [
       'React',
       'Next.js',
@@ -85,6 +94,8 @@ export const quickAnswers = [
   {
     id: 'background',
     keywords: [
+      'quien',
+      'eres',
       'who',
       'background',
       'about',
@@ -92,24 +103,39 @@ export const quickAnswers = [
       'bio'
     ],
     answer:
-      'Bill is a Full Stack MERN Developer with a Medical Laboratory Science background. He combines technical depth with process-oriented thinking to build reliable software.'
+      'Bill es un Desarrollador Full Stack MERN con base en Ciencias de Laboratorio Clinico. Combina profundidad tecnica y pensamiento orientado a procesos para construir software confiable.'
   },
   {
     id: 'services',
-    keywords: ['service', 'offer', 'help', 'work', 'hire'],
+    keywords: [
+      'service',
+      'offer',
+      'help',
+      'work',
+      'hire',
+      'servicio',
+      'servicios',
+      'trabajo',
+      'ayuda',
+      'ofreces'
+    ],
     answer:
-      'He helps with full-stack products, Shopify integrations, internal tools, API architecture, and AI-assisted workflows for teams that need practical outcomes.'
+      'Puede ayudarte con productos full stack, integraciones Shopify, herramientas internas, arquitectura de APIs y flujos asistidos por IA para equipos que necesitan resultados concretos.'
   },
   {
     id: 'contact',
     keywords: [
-      'contact',
+      'contacto',
+      'correo',
       'email',
+      'reunion',
+      'agendar',
+      'contact',
       'book',
       'call',
       'meeting'
     ],
     answer:
-      'You can reach Bill at me@billgaize.com or book a call at calendly.com/me--52uo/30min.'
+      'Puedes escribir a me@billgaize.com o agendar una llamada en calendly.com/me--52uo/30min.'
   }
 ]

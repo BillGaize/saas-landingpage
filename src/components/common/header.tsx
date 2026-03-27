@@ -26,11 +26,11 @@ export function Header({ className }: SidebarProps) {
     },
     {
       href: '/insights',
-      title: 'Insights'
+      title: 'Blog'
     },
     {
       href: 'https://calendly.com/me--52uo/30min',
-      title: 'Book a slot',
+      title: 'Agendar llamada',
       openInNewTab: true
     }
     // { href: '#pricing', title: 'Features' },
@@ -70,7 +70,7 @@ export function Header({ className }: SidebarProps) {
       >
         <Button size="tiny" variant="ghost">
           <Typography variant="p" className="text-black">
-            Email me
+            Escribeme
           </Typography>
         </Button>
       </Link>

@@ -2,9 +2,9 @@ import type { Metadata } from 'next'
 import { portfolioProjects } from '@/lib/profile-data'
 
 export const metadata: Metadata = {
-  title: 'Projects',
+  title: 'Proyectos',
   description:
-    'Selected projects by Bill Gaize across full-stack development, integrations, and AI-assisted workflows.',
+    'Proyectos seleccionados de Bill Gaize en desarrollo full stack, integraciones y flujos asistidos por IA.',
   alternates: {
     canonical: '/projects'
   }
@@ -15,15 +15,15 @@ export default function ProjectsPage() {
     <div className="space-y-10 pb-14 pt-6 sm:pt-10">
       <section className="space-y-4">
         <p className="text-sm uppercase tracking-[0.24em] text-subtle">
-          Selected work
+          Trabajo seleccionado
         </p>
         <h1 className="section-title">
-          Developer Projects
+          Proyectos de desarrollo
         </h1>
         <p className="body-lg max-w-3xl">
-          Practical products focused on measurable outcomes,
-          clean implementation, and long-term
-          maintainability.
+          Productos practicos enfocados en resultados
+          medibles, implementacion limpia y mantenibilidad
+          a largo plazo.
         </p>
       </section>
 

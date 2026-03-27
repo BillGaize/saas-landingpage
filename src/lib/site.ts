@@ -2,5 +2,5 @@ export const siteConfig = {
   name: 'Bill Gaize',
   url: 'https://www.billgaize.com',
   description:
-    'Minimalist portfolio of Bill Gaize, a full-stack developer building web products, integrations, and AI-assisted workflows.'
+    'Portafolio minimalista de Bill Gaize, desarrollador full stack enfocado en productos web, integraciones y flujos asistidos por IA.'
 }

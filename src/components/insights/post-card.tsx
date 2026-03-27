@@ -31,7 +31,7 @@ export function PostCard({ post }: PostCardProps) {
       </p>
       <div className="mt-4 text-sm font-medium text-black">
         <span className="inline-flex items-center gap-2">
-          Read article{' '}
+          Leer articulo{' '}
           <span className="transition-transform group-hover:translate-x-1">
             →
           </span>

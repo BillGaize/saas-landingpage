@@ -91,7 +91,7 @@ export default function PostPage({
           href="/insights"
           className="inline-block text-sm text-subtle underline"
         >
-          Back to insights
+          Volver a insights
         </Link>
 
         <div className="flex flex-wrap items-center gap-2 text-sm text-subtle">
@@ -129,12 +129,12 @@ export default function PostPage({
 
       <div className="notion-card space-y-4">
         <h2 className="text-2xl font-semibold tracking-tight">
-          Want to build something similar?
+          Quieres construir algo similar?
         </h2>
         <p className="text-base leading-8 text-zinc-700">
-          If this content style or workflow resonates with
-          your team, we can design a solution around your
-          stack and goals.
+          Si este estilo de contenido o workflow encaja con
+          tu equipo, podemos disenar una solucion alineada a
+          tu stack y objetivos.
         </p>
         <div className="flex flex-wrap gap-3">
           <a
@@ -142,7 +142,7 @@ export default function PostPage({
             className="rounded-xl bg-black px-4 py-2.5 text-sm font-medium
               text-white"
           >
-            Email me
+            Escribeme
           </a>
           <a
             href="https://calendly.com/me--52uo/30min"
@@ -151,7 +151,7 @@ export default function PostPage({
             className="rounded-xl border border-line px-4 py-2.5 text-sm
               font-medium"
           >
-            Book a slot
+            Agendar llamada
           </a>
         </div>
       </div>

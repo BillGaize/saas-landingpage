@@ -10,7 +10,7 @@ const inter = Inter({ subsets: ['latin'] })
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: 'Bill Gaize | Full Stack Portfolio',
+    default: 'Bill Gaize | Portafolio Full Stack',
     template: '%s | Bill Gaize'
   },
   description: siteConfig.description,
@@ -20,14 +20,14 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     url: siteConfig.url,
-    title: 'Bill Gaize | Full Stack Portfolio',
+    title: 'Bill Gaize | Portafolio Full Stack',
     description: siteConfig.description,
     siteName: 'Bill Gaize',
     images: '/opengraph-image.png'
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Bill Gaize | Full Stack Portfolio',
+    title: 'Bill Gaize | Portafolio Full Stack',
     description: siteConfig.description,
     images: [`${siteConfig.url}/opengraph-image.png`]
   }
@@ -40,7 +40,7 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="en"
+      lang="es"
       suppressHydrationWarning
       className="antialiased"
     >
