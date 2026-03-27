@@ -12,9 +12,8 @@ export const metadata: Metadata = {
 }
 
 export default function ProjectsPage() {
-  const lang = cookies().get('site-lang')?.value === 'en'
-    ? 'en'
-    : 'es'
+  const lang =
+    cookies().get('site-lang')?.value === 'en' ? 'en' : 'es'
 
   const copy =
     lang === 'en'
@@ -62,11 +61,15 @@ export default function ProjectsPage() {
               {project.summary}
             </p>
             <p className="text-base text-zinc-700">
-              <span className="font-semibold">{copy.roleLabel}</span>{' '}
+              <span className="font-semibold">
+                {copy.roleLabel}
+              </span>{' '}
               {project.role}
             </p>
             <p className="text-base text-zinc-700">
-              <span className="font-semibold">{copy.scopeLabel}</span>{' '}
+              <span className="font-semibold">
+                {copy.scopeLabel}
+              </span>{' '}
               {project.scope}
             </p>
             <p
@@ -90,7 +93,8 @@ export default function ProjectsPage() {
                 href={project.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex rounded-xl border border-line px-4 py-2 text-sm font-medium transition-colors hover:bg-zinc-50"
+                className="inline-flex rounded-xl border border-line px-4 py-2 text-sm
+                  font-medium transition-colors hover:bg-zinc-50"
               >
                 {copy.visitProject}
               </a>

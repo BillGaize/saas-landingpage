@@ -246,11 +246,10 @@ function buildOpenReply(
           general:
             "Great question. Here's the most relevant context from Bill's portfolio:",
           proyectos:
-            "Perfect. On projects and execution scope, this is the key information:",
+            'Perfect. On projects and execution scope, this is the key information:',
           servicios:
             'Sure. Here is how Bill can support your goals:',
-          blog:
-            'Good point. From the blog and technical content, these are the highlights:',
+          blog: 'Good point. From the blog and technical content, these are the highlights:',
           contacto:
             'Absolutely. Here is the most direct way to contact Bill:'
         }
@@ -261,8 +260,7 @@ function buildOpenReply(
             'Perfecto. Sobre proyectos y alcance de trabajo, esto es lo mas relevante:',
           servicios:
             'Claro. Sobre como Bill puede ayudarte, este es el panorama:',
-          blog:
-            'Buen punto. En el blog y contenido tecnico, esto es lo principal:',
+          blog: 'Buen punto. En el blog y contenido tecnico, esto es lo principal:',
           contacto:
             'Sin problema. Te dejo la forma mas directa de contacto y contexto util:'
         }

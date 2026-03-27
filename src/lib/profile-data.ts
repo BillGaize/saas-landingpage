@@ -51,7 +51,11 @@ export const portfolioProjects: PortfolioProject[] = [
     role: 'Project Manager',
     scope:
       'Traduccion de vision del cliente al equipo de diseno/desarrollo, coordinacion de entregables, instalacion de apps y onboarding del cliente.',
-    stack: ['Shopify', 'E-commerce Operations', 'UX/UI Coordination'],
+    stack: [
+      'Shopify',
+      'E-commerce Operations',
+      'UX/UI Coordination'
+    ],
     href: 'https://nup.cl'
   },
   {
@@ -64,7 +68,11 @@ export const portfolioProjects: PortfolioProject[] = [
     role: 'Project Manager',
     scope:
       'Coordinacion end-to-end del proyecto, alineacion con stakeholders y soporte en decisiones de apps y procesos.',
-    stack: ['Shopify', 'E-commerce Operations', 'Stakeholder Management'],
+    stack: [
+      'Shopify',
+      'E-commerce Operations',
+      'Stakeholder Management'
+    ],
     href: 'https://murphfitness.cl'
   },
   {
@@ -77,7 +85,11 @@ export const portfolioProjects: PortfolioProject[] = [
     role: 'Project Manager',
     scope:
       'Planificacion de migracion, coordinacion tecnica y funcional, y acompanamiento al equipo en la ejecucion del cambio de plataforma.',
-    stack: ['Shopify', 'WooCommerce Migration', 'Process Management'],
+    stack: [
+      'Shopify',
+      'WooCommerce Migration',
+      'Process Management'
+    ],
     href: 'https://thebluelab.cl/'
   },
   {
@@ -90,7 +102,11 @@ export const portfolioProjects: PortfolioProject[] = [
     role: 'Lead Project Manager',
     scope:
       'Coordinacion de equipos regionales, habilitacion tecnica con partners y seguimiento del cumplimiento de flujos operativos.',
-    stack: ['API Integrations', 'Logistics Tech', 'B2B Operations'],
+    stack: [
+      'API Integrations',
+      'Logistics Tech',
+      'B2B Operations'
+    ],
     href: 'https://delivery.yango.com'
   },
   {

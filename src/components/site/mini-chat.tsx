@@ -19,8 +19,7 @@ const CHAT_COPY = {
       'Preguntame por proyectos, edad, background, idiomas o experiencia con IA/RAG.',
     welcome:
       'Hola. Soy el asistente del portafolio de Bill. Puedes preguntarme sobre proyectos, experiencia, edad, background en salud, idiomas o como contactarlo.',
-    placeholder:
-      'Escribe tu pregunta sobre Bill...',
+    placeholder: 'Escribe tu pregunta sobre Bill...',
     thinking: 'Pensando...',
     fallback:
       'No encontre contexto suficiente en este momento, pero puedes escribirme a me@billgaize.com.',
@@ -125,11 +124,13 @@ export function MiniChat({ language }: MiniChatProps) {
 
   return (
     <div
-      className="flex h-[72vh] min-h-[520px] w-full flex-col rounded-2xl border
-        border-line bg-paper shadow-sm"
+      className="flex h-[72vh] min-h-[520px] w-full flex-col rounded-2xl
+        border border-line bg-paper shadow-sm"
     >
       <div className="border-b border-line px-4 py-3">
-        <p className="text-sm font-semibold">{copy.title}</p>
+        <p className="text-sm font-semibold">
+          {copy.title}
+        </p>
         <p className="mt-1 text-xs text-zinc-600">
           {copy.subtitle}
         </p>
@@ -140,9 +141,7 @@ export function MiniChat({ language }: MiniChatProps) {
           <div
             key={`${message.role}-${index.toString()}`}
             className={
-              message.role === 'assistant'
-                ? 'mr-5'
-                : 'ml-5'
+              message.role === 'assistant' ? 'mr-5' : 'ml-5'
             }
           >
             <p
@@ -190,8 +189,8 @@ export function MiniChat({ language }: MiniChatProps) {
         }}
       >
         <input
-          className="h-10 flex-1 rounded-xl border border-line bg-white px-3 text-sm
-            outline-none focus:border-black"
+          className="h-10 flex-1 rounded-xl border border-line bg-white px-3
+            text-sm outline-none focus:border-black"
           placeholder={copy.placeholder}
           value={value}
           onChange={(event) => {
@@ -201,8 +200,8 @@ export function MiniChat({ language }: MiniChatProps) {
         <button
           type="submit"
           aria-label="Enviar"
-          className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-black
-            text-white disabled:opacity-50"
+          className="inline-flex h-10 w-10 items-center justify-center rounded-xl
+            bg-black text-white disabled:opacity-50"
           disabled={loading || !value.trim()}
         >
           <SendHorizontal size={16} />
