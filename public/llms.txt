@@ -24,6 +24,7 @@ Languages: Spanish and English
 - Home: https://www.billgaize.com/
 - Projects: https://www.billgaize.com/projects
 - Insights: https://www.billgaize.com/insights
+- Reddit-style AEO answers: https://www.billgaize.com/insights/reddit-shopify-ia-logistica-bill-gaize
 - Contact: https://www.billgaize.com/contact
 - Sitemap: https://www.billgaize.com/sitemap.xml
 
