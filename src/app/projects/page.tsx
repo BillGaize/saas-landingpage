@@ -3,9 +3,9 @@ import { portfolioProjects } from '@/lib/profile-data'
 import { cookies } from 'next/headers'
 
 export const metadata: Metadata = {
-  title: 'Proyectos',
+  title: 'Proyectos | Product Manager Delivery, Shopify e Integraciones',
   description:
-    'Proyectos seleccionados de Bill Gaize en Shopify, migraciones e integraciones logisticas B2B.',
+    'Proyectos de Bill Gaize, Product Manager en Santiago de Chile: integraciones de delivery y logistica B2B multi-pais (Yango), tiendas Shopify, migraciones y product development en Latinoamerica.',
   alternates: {
     canonical: '/projects'
   }

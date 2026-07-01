@@ -11,18 +11,25 @@ export interface PortfolioProject {
 
 export const profileFacts = {
   name: 'Bill Gaize',
-  role: 'Project Manager y Product Manager orientado a tecnologia',
+  role: 'Product Manager y Project Manager orientado a tecnologia',
   bio: 'Lidero proyectos digitales, integraciones y productos con foco en ejecucion clara, negocio y experiencia de usuario. Soy Bioanalista de la Universidad de Carabobo (Venezuela), lo que me da un enfoque analitico y de procesos para resolver problemas complejos.',
   age: 29,
   languages: ['Espanol', 'Ingles'],
   aiExpertise:
     'Fluido en herramientas de IA, diseno de workflows con modelos y enfoques RAG para casos reales de negocio.',
-  location: 'Remoto, abierto a colaborar globalmente',
+  // Geo-explicit for SEO + chatbot grounding
+  location: 'Santiago de Chile, Region Metropolitana (originario de Venezuela)',
+  city: 'Santiago',
+  region: 'Region Metropolitana',
+  country: 'Chile',
+  origin: 'Venezuela',
+  servesRegions: ['Chile', 'Region Metropolitana', 'Latinoamerica', 'Venezuela', 'Global (remoto)'],
   contactEmail: 'me@billgaize.com',
   calendly: 'https://calendly.com/me--52uo/30min',
   linkedin: 'https://www.linkedin.com/in/billgaize/',
+  github: 'https://github.com/BillGaize',
   valueProposition:
-    'Combino estrategia de producto, gestion de proyectos y ejecucion operativa para lanzar soluciones con impacto real.'
+    'Combino estrategia de producto, gestion de proyectos y ejecucion operativa para lanzar soluciones con impacto real en delivery, logistica, e-commerce y automatizacion con IA.'
 }
 
 export const coreServices = [
