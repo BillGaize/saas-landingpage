@@ -6,9 +6,9 @@ import {
 } from '@/lib/profile-data'
 
 export const metadata: Metadata = {
-  title: 'Contacto',
+  title: 'Contacto | Product Manager & Project Manager en Chile',
   description:
-    'Contacta a Bill Gaize para proyectos de desarrollo full stack, integraciones Shopify y flujos con IA.',
+    'Contacta a Bill Gaize, Product Manager y Project Manager en Santiago de Chile, para product development, delivery/logistica, integraciones Shopify/API y automatizacion con IA en Latinoamerica.',
   alternates: {
     canonical: '/contact'
   }

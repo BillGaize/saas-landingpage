@@ -13,6 +13,34 @@ interface MiniChatProps {
   onHide?: () => void
 }
 
+// Collect safe, public browser signals to personalize the assistant.
+// No permissions required; nothing private (no name, no precise GPS).
+function collectVisitorContext() {
+  try {
+    const now = new Date()
+    return {
+      timezone:
+        Intl.DateTimeFormat().resolvedOptions().timeZone ?? '',
+      localTime: now.toLocaleString(undefined, {
+        weekday: 'long',
+        hour: '2-digit',
+        minute: '2-digit'
+      }),
+      languages: Array.isArray(navigator.languages)
+        ? navigator.languages.slice(0, 4)
+        : [navigator.language],
+      platform:
+        (navigator as Navigator & { userAgentData?: { platform?: string } })
+          .userAgentData?.platform ?? navigator.platform ?? '',
+      screen: `${window.screen.width}x${window.screen.height}`,
+      referrer: document.referrer || '',
+      pagePath: window.location.pathname
+    }
+  } catch {
+    return undefined
+  }
+}
+
 const CHAT_COPY = {
   es: {
     title: 'Chat con Bill AI',
@@ -151,7 +179,8 @@ export function MiniChat({
         body: JSON.stringify({
           message: trimmed,
           language,
-          history: nextMessages.slice(-6)
+          history: nextMessages.slice(-6),
+          visitor: collectVisitorContext()
         })
       })
 
