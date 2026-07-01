@@ -10,6 +10,10 @@ import {
 import { callLlm, isLlmConfigured, type LlmMessage } from '@/lib/llm'
 import { allowLlm } from '@/lib/rate-limit'
 
+// Allow up to 30s on Vercel (Pro); harmless on other tiers.
+export const maxDuration = 30
+export const dynamic = 'force-dynamic'
+
 interface VisitorContext {
   timezone?: string
   localTime?: string
@@ -408,7 +412,7 @@ export async function POST(request: Request) {
     const llmReply = await callLlm(llmMessages, {
       maxTokens: 700,
       temperature: 0.4,
-      timeoutMs: 12000
+      timeoutMs: 8000
     })
 
     if (llmReply) {
