@@ -45,7 +45,7 @@ export async function callLlm(
     () => {
       controller.abort()
     },
-    options?.timeoutMs ?? 12000
+    options?.timeoutMs ?? 8000
   )
 
   try {
