@@ -9,6 +9,13 @@ export interface PortfolioProject {
   href?: string
 }
 
+export interface LinkedInFeedItem {
+  eyebrow: string
+  title: string
+  body: string
+  tags: string[]
+}
+
 export const profileFacts = {
   name: 'Bill Gaize',
   role: 'Project Manager y Product Manager orientado a tecnologia',
@@ -31,6 +38,27 @@ export const coreServices = [
   'Integraciones API de logistica para last mile y middle mile',
   'Product management para lanzamiento de features',
   'Estrategia de procesos y operacion apoyada con IA'
+]
+
+export const linkedinFeedItems: LinkedInFeedItem[] = [
+  {
+    eyebrow: 'AI workflow automation',
+    title: 'Automatizar no es reemplazar criterio',
+    body: 'Estoy probando agentes, voz clonada y flujos RAG para quitar friccion operativa sin perder revision humana donde importa.',
+    tags: ['AI', 'Operations', 'RAG']
+  },
+  {
+    eyebrow: 'Product & logistics',
+    title: 'La integracion no termina en el API',
+    body: 'En delivery B2B, el exito vive en pricing, soporte, operaciones y claridad para el partner, no solo en que el endpoint responda 200.',
+    tags: ['Product', 'Logistics', 'B2B']
+  },
+  {
+    eyebrow: 'Shopify delivery',
+    title: 'E-commerce simple, operacion clara',
+    body: 'Para tiendas Shopify, priorizo discovery, handoff y procesos que el cliente pueda operar despues del lanzamiento.',
+    tags: ['Shopify', 'E-commerce', 'PM']
+  }
 ]
 
 export const profileHighlights = [
