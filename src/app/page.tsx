@@ -4,7 +4,8 @@ import { cookies } from 'next/headers'
 import { getFeaturedPosts } from '@/lib/posts'
 import {
   profileFacts,
-  coreServices
+  coreServices,
+  linkedinFeedItems
 } from '@/lib/profile-data'
 
 export const metadata: Metadata = {
@@ -28,6 +29,11 @@ export default function Home() {
           viewProjects: 'View projects',
           contact: 'Contact me',
           help: 'How I can help',
+          linkedinTitle: 'LinkedIn activity',
+          linkedinDescription:
+            'A curated preview of the themes I publish and discuss on LinkedIn. Open my profile for the live feed.',
+          openLinkedin: 'Open live LinkedIn feed',
+          linkedinLiveLabel: 'Curated from LinkedIn topics',
           insightsTitle: 'Featured insights',
           allInsights: 'See all articles',
           locale: 'en-US'
@@ -40,6 +46,12 @@ export default function Home() {
           viewProjects: 'Ver proyectos',
           contact: 'Contactarme',
           help: 'En que te puedo ayudar',
+          linkedinTitle: 'Actividad en LinkedIn',
+          linkedinDescription:
+            'Una vista curada de los temas que publico y converso en LinkedIn. Abre mi perfil para ver el feed en vivo.',
+          openLinkedin: 'Abrir feed en LinkedIn',
+          linkedinLiveLabel:
+            'Curado desde temas de LinkedIn',
           insightsTitle: 'Insights destacados',
           allInsights: 'Ver todos los articulos',
           locale: 'es-CL'
@@ -99,6 +111,83 @@ export default function Home() {
             </li>
           ))}
         </ul>
+      </section>
+
+      <section className="notion-card space-y-6">
+        <div
+          className="flex flex-col gap-4 sm:flex-row sm:items-end
+            sm:justify-between"
+        >
+          <div className="space-y-3">
+            <p className="text-sm uppercase tracking-[0.22em] text-subtle">
+              LinkedIn
+            </p>
+            <div className="space-y-2">
+              <h2 className="text-3xl font-semibold tracking-tight">
+                {copy.linkedinTitle}
+              </h2>
+              <p className="max-w-2xl text-base leading-7 text-zinc-700">
+                {copy.linkedinDescription}
+              </p>
+            </div>
+          </div>
+          <a
+            href={`${profileFacts.linkedin}recent-activity/all/`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center rounded-xl
+              bg-[#0a66c2] px-5 py-3 text-base font-medium text-white
+              transition-colors hover:bg-[#004182]"
+          >
+            {copy.openLinkedin}
+          </a>
+        </div>
+
+        <div className="grid gap-4 lg:grid-cols-3">
+          {linkedinFeedItems.map((item) => (
+            <article
+              key={item.title}
+              className="flex min-h-[260px] flex-col justify-between rounded-2xl
+                border border-line bg-zinc-50 p-5"
+            >
+              <div className="space-y-4">
+                <div className="flex items-center justify-between gap-3">
+                  <span
+                    className="inline-flex h-10 w-10 items-center justify-center rounded-lg
+                      bg-[#0a66c2] text-lg font-bold text-white"
+                  >
+                    in
+                  </span>
+                  <span className="text-xs uppercase tracking-[0.18em] text-subtle">
+                    {copy.linkedinLiveLabel}
+                  </span>
+                </div>
+                <div className="space-y-2">
+                  <p className="text-sm font-medium text-[#0a66c2]">
+                    {item.eyebrow}
+                  </p>
+                  <h3 className="text-2xl font-semibold tracking-tight">
+                    {item.title}
+                  </h3>
+                  <p className="text-base leading-7 text-zinc-700">
+                    {item.body}
+                  </p>
+                </div>
+              </div>
+              <div className="mt-5 flex flex-wrap gap-2">
+                {item.tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="rounded-full border border-line bg-white px-3 py-1 text-xs
+                      font-medium text-zinc-700"
+                  >
+                    #{tag}
+                  </span>
+                ))}
+              </div>
+            </article>
+          ))}
+        </div>
       </section>
 
       <section className="space-y-6">
