@@ -242,11 +242,14 @@ function quickReply(message: string, language: ReplyLanguage) {
 // ---------- Browser-context helpers (the "wow" personalization) ----------
 
 function sanitize(value: string | undefined, max = 80) {
-  if (!value) {
-    return ''
-  }
-  // eslint-disable-next-line no-control-regex
-  return value.replace(/[\u0000-\u001f<>{}]/g, ' ').trim().slice(0, max)
+  if (!value) return ''
+  return Array.from(value, (character) => {
+    const codePoint = character.codePointAt(0) ?? 0
+    return codePoint <= 31 || '<>{}'.includes(character) ? ' ' : character
+  })
+    .join('')
+    .trim()
+    .slice(0, max)
 }
 
 function buildVisitorContext(

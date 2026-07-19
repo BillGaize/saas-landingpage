@@ -3,7 +3,8 @@ import { portfolioProjects } from '@/lib/profile-data'
 import { cookies } from 'next/headers'
 
 export const metadata: Metadata = {
-  title: 'Proyectos | Product Manager Delivery, Shopify e Integraciones',
+  title:
+    'Proyectos | Product Manager Delivery, Shopify e Integraciones',
   description:
     'Proyectos de Bill Gaize, Product Manager en Santiago de Chile: integraciones de delivery y logistica B2B multi-pais (Yango), tiendas Shopify, migraciones y product development en Latinoamerica.',
   alternates: {
@@ -11,9 +12,11 @@ export const metadata: Metadata = {
   }
 }
 
-export default function ProjectsPage() {
+export default async function ProjectsPage() {
   const lang =
-    cookies().get('site-lang')?.value === 'en' ? 'en' : 'es'
+    (await cookies()).get('site-lang')?.value === 'en'
+      ? 'en'
+      : 'es'
 
   const copy =
     lang === 'en'

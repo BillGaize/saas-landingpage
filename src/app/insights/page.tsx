@@ -21,10 +21,12 @@ export const metadata: Metadata = {
   }
 }
 
-export default function InsightsPage() {
+export default async function InsightsPage() {
   const posts = getAllPosts()
   const lang =
-    cookies().get('site-lang')?.value === 'en' ? 'en' : 'es'
+    (await cookies()).get('site-lang')?.value === 'en'
+      ? 'en'
+      : 'es'
 
   const copy =
     lang === 'en'

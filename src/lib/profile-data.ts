@@ -25,12 +25,19 @@ export const profileFacts = {
   aiExpertise:
     'Fluido en herramientas de IA, diseno de workflows con modelos y enfoques RAG para casos reales de negocio.',
   // Geo-explicit for SEO + chatbot grounding
-  location: 'Santiago de Chile, Region Metropolitana (originario de Venezuela)',
+  location:
+    'Santiago de Chile, Region Metropolitana (originario de Venezuela)',
   city: 'Santiago',
   region: 'Region Metropolitana',
   country: 'Chile',
   origin: 'Venezuela',
-  servesRegions: ['Chile', 'Region Metropolitana', 'Latinoamerica', 'Venezuela', 'Global (remoto)'],
+  servesRegions: [
+    'Chile',
+    'Region Metropolitana',
+    'Latinoamerica',
+    'Venezuela',
+    'Global (remoto)'
+  ],
   contactEmail: 'me@billgaize.com',
   calendly: 'https://calendly.com/me--52uo/30min',
   linkedin: 'https://www.linkedin.com/in/billgaize/',
@@ -40,6 +47,7 @@ export const profileFacts = {
 }
 
 export const coreServices = [
+  'Rescate de apps creadas con IA: Next.js, Lovable, Bolt, v0 y Replit',
   'Gestion de proyectos e-commerce en Shopify',
   'Migraciones de tiendas y optimizacion de conversion',
   'Integraciones API de logistica para last mile y middle mile',

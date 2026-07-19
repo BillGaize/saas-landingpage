@@ -45,8 +45,8 @@ export function verifySessionValue(sessionValue?: string) {
   )
 }
 
-export function isAdminAuthenticated() {
-  const cookieStore = cookies()
+export async function isAdminAuthenticated() {
+  const cookieStore = await cookies()
   return verifySessionValue(
     cookieStore.get(COOKIE_NAME)?.value
   )

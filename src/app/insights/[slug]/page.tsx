@@ -8,9 +8,9 @@ import { getAllPosts, getPostBySlug } from '@/lib/posts'
 import { siteConfig } from '@/lib/site'
 
 interface PostPageProps {
-  params: {
+  params: Promise<{
     slug: string
-  }
+  }>
 }
 
 export function generateStaticParams() {
@@ -19,9 +19,10 @@ export function generateStaticParams() {
   }))
 }
 
-export function generateMetadata({
-  params
-}: PostPageProps): Metadata {
+export async function generateMetadata(
+  props: PostPageProps
+): Promise<Metadata> {
+  const params = await props.params
   const post = getPostBySlug(params.slug)
 
   if (!post) {
@@ -50,11 +51,14 @@ export function generateMetadata({
   }
 }
 
-export default function PostPage({
-  params
-}: PostPageProps) {
+export default async function PostPage(
+  props: PostPageProps
+) {
+  const params = await props.params
   const lang =
-    cookies().get('site-lang')?.value === 'en' ? 'en' : 'es'
+    (await cookies()).get('site-lang')?.value === 'en'
+      ? 'en'
+      : 'es'
 
   const copy =
     lang === 'en'

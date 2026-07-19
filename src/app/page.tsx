@@ -14,10 +14,12 @@ export const metadata: Metadata = {
   }
 }
 
-export default function Home() {
+export default async function Home() {
   const featuredPosts = getFeaturedPosts()
   const lang =
-    cookies().get('site-lang')?.value === 'en' ? 'en' : 'es'
+    (await cookies()).get('site-lang')?.value === 'en'
+      ? 'en'
+      : 'es'
 
   const copy =
     lang === 'en'

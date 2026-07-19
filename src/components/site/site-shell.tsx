@@ -14,6 +14,7 @@ import {
   Mail,
   Menu,
   MessageSquareText,
+  Wrench,
   X
 } from 'lucide-react'
 import { useEffect, useMemo, useState } from 'react'
@@ -34,6 +35,11 @@ const navItems = {
       label: 'Proyectos',
       icon: Briefcase
     },
+    {
+      href: '/services/ai-app-rescue',
+      label: 'AI App Rescue',
+      icon: Wrench
+    },
     { href: '/insights', label: 'Blog', icon: FileText },
     { href: '/contact', label: 'Contacto', icon: Mail }
   ],
@@ -43,6 +49,11 @@ const navItems = {
       href: '/projects',
       label: 'Projects',
       icon: Briefcase
+    },
+    {
+      href: '/services/ai-app-rescue',
+      label: 'AI App Rescue',
+      icon: Wrench
     },
     { href: '/insights', label: 'Blog', icon: FileText },
     { href: '/contact', label: 'Contact', icon: Mail }

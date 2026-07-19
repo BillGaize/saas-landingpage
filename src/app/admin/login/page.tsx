@@ -2,8 +2,8 @@ import { redirect } from 'next/navigation'
 import { isAdminAuthenticated } from '@/lib/admin-auth'
 import { AdminLoginForm } from '@/components/insights/admin-login-form'
 
-export default function AdminLoginPage() {
-  if (isAdminAuthenticated()) {
+export default async function AdminLoginPage() {
+  if (await isAdminAuthenticated()) {
     redirect('/admin')
   }
 

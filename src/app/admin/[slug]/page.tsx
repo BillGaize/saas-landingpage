@@ -5,15 +5,16 @@ import { getPostBySlug } from '@/lib/posts'
 import { PostEditor } from '@/components/insights/post-editor'
 
 interface AdminPostPageProps {
-  params: {
+  params: Promise<{
     slug: string
-  }
+  }>
 }
 
-export default function AdminPostPage({
-  params
-}: AdminPostPageProps) {
-  if (!isAdminAuthenticated()) {
+export default async function AdminPostPage(
+  props: AdminPostPageProps
+) {
+  const params = await props.params
+  if (!(await isAdminAuthenticated())) {
     redirect('/admin/login')
   }
 

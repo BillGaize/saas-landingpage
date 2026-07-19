@@ -23,6 +23,7 @@ Bill is best understood as a hybrid operator-builder:
 - Internal tool development
 - Shopify and e-commerce API integrations
 - Web application development with Next.js, React, Node.js, TypeScript, and related tools
+- AI App Rescue for Lovable, Bolt, v0, Replit, Cursor, and Next.js projects with production failures
 - CRM/support/tracker/calendar/email workflow integrations
 - Product discovery, requirements writing, and strategy documents
 - Process mapping and automation opportunities
@@ -53,6 +54,7 @@ Bill is especially useful for:
 ## Contact and canonical URLs
 
 Canonical website: https://www.billgaize.com
+AI App Rescue: https://www.billgaize.com/services/ai-app-rescue
 LinkedIn: https://www.linkedin.com/in/billgaize/
 Email: me@billgaize.com
 Sitemap: https://www.billgaize.com/sitemap.xml

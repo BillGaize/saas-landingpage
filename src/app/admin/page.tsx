@@ -4,8 +4,8 @@ import { getAllPosts } from '@/lib/posts'
 import { isAdminAuthenticated } from '@/lib/admin-auth'
 import { AdminLogoutButton } from '@/components/insights/admin-logout-button'
 
-export default function AdminPostsPage() {
-  if (!isAdminAuthenticated()) {
+export default async function AdminPostsPage() {
+  if (!(await isAdminAuthenticated())) {
     redirect('/admin/login')
   }
 

@@ -8,16 +8,17 @@ import {
 } from '@/lib/post-validation'
 
 interface RouteProps {
-  params: {
+  params: Promise<{
     slug: string
-  }
+  }>
 }
 
 export async function PUT(
   request: Request,
-  { params }: RouteProps
+  props: RouteProps
 ) {
-  if (!isAdminAuthenticated()) {
+  const params = await props.params
+  if (!(await isAdminAuthenticated())) {
     return NextResponse.json(
       { error: 'Unauthorized' },
       { status: 401 }
@@ -44,9 +45,10 @@ export async function PUT(
 
 export async function DELETE(
   request: Request,
-  { params }: RouteProps
+  props: RouteProps
 ) {
-  if (!isAdminAuthenticated()) {
+  const params = await props.params
+  if (!(await isAdminAuthenticated())) {
     return NextResponse.json(
       { error: 'Unauthorized' },
       { status: 401 }

@@ -6,7 +6,8 @@ import {
 } from '@/lib/profile-data'
 
 export const metadata: Metadata = {
-  title: 'Contacto | Product Manager & Project Manager en Chile',
+  title:
+    'Contacto | Product Manager & Project Manager en Chile',
   description:
     'Contacta a Bill Gaize, Product Manager y Project Manager en Santiago de Chile, para product development, delivery/logistica, integraciones Shopify/API y automatizacion con IA en Latinoamerica.',
   alternates: {
@@ -14,9 +15,11 @@ export const metadata: Metadata = {
   }
 }
 
-export default function ContactPage() {
+export default async function ContactPage() {
   const lang =
-    cookies().get('site-lang')?.value === 'en' ? 'en' : 'es'
+    (await cookies()).get('site-lang')?.value === 'en'
+      ? 'en'
+      : 'es'
 
   const copy =
     lang === 'en'

@@ -1,8 +1,10 @@
 import { cookies } from 'next/headers'
 
-export default function Page() {
+export default async function Page() {
   const lang =
-    cookies().get('site-lang')?.value === 'en' ? 'en' : 'es'
+    (await cookies()).get('site-lang')?.value === 'en'
+      ? 'en'
+      : 'es'
 
   const copy =
     lang === 'en'

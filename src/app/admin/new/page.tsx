@@ -3,8 +3,8 @@ import { redirect } from 'next/navigation'
 import { isAdminAuthenticated } from '@/lib/admin-auth'
 import { PostEditor } from '@/components/insights/post-editor'
 
-export default function NewPostPage() {
-  if (!isAdminAuthenticated()) {
+export default async function NewPostPage() {
+  if (!(await isAdminAuthenticated())) {
     redirect('/admin/login')
   }
 

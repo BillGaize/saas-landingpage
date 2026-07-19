@@ -8,7 +8,7 @@ import {
 } from '@/lib/post-validation'
 
 export async function GET() {
-  if (!isAdminAuthenticated()) {
+  if (!(await isAdminAuthenticated())) {
     return NextResponse.json(
       { error: 'Unauthorized' },
       { status: 401 }
@@ -19,7 +19,7 @@ export async function GET() {
 }
 
 export async function POST(request: Request) {
-  if (!isAdminAuthenticated()) {
+  if (!(await isAdminAuthenticated())) {
     return NextResponse.json(
       { error: 'Unauthorized' },
       { status: 401 }

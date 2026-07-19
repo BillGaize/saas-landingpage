@@ -19,6 +19,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9
     },
     {
+      url: `${siteConfig.url}/services/ai-app-rescue`,
+      lastModified: now,
+      changeFrequency: 'weekly',
+      priority: 0.9
+    },
+    {
       url: `${siteConfig.url}/insights`,
       lastModified: now,
       changeFrequency: 'weekly',
@@ -44,14 +50,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }
   ]
 
-  const postEntries: MetadataRoute.Sitemap = getAllPosts().map(
-    (post) => ({
+  const postEntries: MetadataRoute.Sitemap =
+    getAllPosts().map((post) => ({
       url: `${siteConfig.url}/insights/${post.slug}`,
-      lastModified: new Date(post.updatedAt ?? post.publishedAt),
+      lastModified: new Date(
+        post.updatedAt ?? post.publishedAt
+      ),
       changeFrequency: 'monthly',
       priority: 0.6
-    })
-  )
+    }))
 
   return [...staticEntries, ...postEntries]
 }
