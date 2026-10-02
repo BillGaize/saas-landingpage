@@ -3,9 +3,9 @@ export const siteConfig = {
   url: 'https://www.billgaize.com',
   // Positioning-forward description (product + operations + AI + delivery), geo-targeted.
   description:
-    'Bill Gaize — Product Manager y Project Manager de tecnologia en Santiago de Chile (Region Metropolitana), con raices en Venezuela y experiencia en toda Latinoamerica. Especialista en product development, delivery y logistica, integraciones Shopify/API y automatizacion con IA.',
+    'Bill Gaize — Product Manager de plataformas B2B e integraciones API en mercados internacionales (LATAM/Africa), remoto desde Santiago de Chile. Onboarding, contracts, partner APIs, configs por pais y diagnosis en produccion.',
   descriptionEn:
-    'Bill Gaize — Product Manager and technology Project Manager based in Santiago, Chile (Región Metropolitana), originally from Venezuela, working across Latin America. Expert in product development, delivery and logistics operations, Shopify/API integrations, and AI automation.',
+    'Bill Gaize — Product Manager for B2B platforms and API integrations across international markets (LATAM/Africa), remote from Santiago, Chile. Onboarding, contracts, partner APIs, country configs, and production diagnosis.',
   locale: 'es_CL',
   localeAlternate: 'en_US',
   // Geo signals
@@ -16,7 +16,7 @@ export const siteConfig = {
     lat: -33.4489,
     lng: -70.6693
   },
-  jobTitle: 'Product Manager & Project Manager',
+  jobTitle: 'Product Manager · B2B Platforms & API Integrations',
   sameAs: [
     'https://www.linkedin.com/in/billgaize/',
     'https://github.com/BillGaize'
@@ -28,6 +28,14 @@ export const siteConfig = {
 // Master keyword set — ES + EN, geo-targeted (Chile / RM / Santiago / Venezuela / LATAM).
 // Used in <meta keywords>, JSON-LD knowsAbout, and llms.txt.
 export const seoKeywords: string[] = [
+  // Pitch A — B2B integrations
+  'B2B Product Manager',
+  'API Integrations Product Manager',
+  'Integrations Platform PM',
+  'Product Manager LATAM',
+  'Product Manager Africa',
+  'B2B onboarding funnel',
+  'Partner API integrations',
   // Core role — Spanish
   'Product Manager Chile',
   'Product Manager Santiago',
