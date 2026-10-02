@@ -9,17 +9,20 @@ export interface PortfolioProject {
   href?: string
 }
 
-export interface LinkedInFeedItem {
-  eyebrow: string
-  title: string
-  body: string
-  tags: string[]
+export interface SelectedImpactItem {
+  stat: string
+  label: string
+  labelEn: string
 }
 
 export const profileFacts = {
   name: 'Bill Gaize',
-  role: 'Product Manager y Project Manager orientado a tecnologia',
-  bio: 'Lidero proyectos digitales, integraciones y productos con foco en ejecucion clara, negocio y experiencia de usuario. Soy Bioanalista de la Universidad de Carabobo (Venezuela), lo que me da un enfoque analitico y de procesos para resolver problemas complejos.',
+  role: 'Product Manager · B2B Platforms & API Integrations · International Markets (LATAM/Africa) · Remote (Chile)',
+  roleEn:
+    'Product Manager · B2B Platforms & API Integrations · International Markets (LATAM/Africa) · Remote (Chile)',
+  bio: 'Ownership end-to-end del funnel B2B: onboarding, contratos, integraciones API con partners, configs por pais y diagnosis en produccion. Foco en activacion medible, no en slideware.',
+  bioEn:
+    'End-to-end ownership of the B2B funnel: onboarding, contracts, partner API integrations, country configs, and production diagnosis. Focused on measurable activation, not slideware.',
   age: 29,
   languages: ['Espanol', 'Ingles'],
   aiExpertise:
@@ -35,6 +38,7 @@ export const profileFacts = {
     'Chile',
     'Region Metropolitana',
     'Latinoamerica',
+    'Africa',
     'Venezuela',
     'Global (remoto)'
   ],
@@ -43,47 +47,91 @@ export const profileFacts = {
   linkedin: 'https://www.linkedin.com/in/billgaize/',
   github: 'https://github.com/BillGaize',
   valueProposition:
-    'Combino estrategia de producto, gestion de proyectos y ejecucion operativa para lanzar soluciones con impacto real en delivery, logistica, e-commerce y automatizacion con IA.'
+    'Product Manager de plataformas B2B e integraciones API en mercados internacionales (LATAM/Africa), con operating system de IA para discovery, metricas y diagnosis.'
 }
 
 export const coreServices = [
-  'Rescate de apps creadas con IA: Next.js, Lovable, Bolt, v0 y Replit',
-  'Gestion de proyectos e-commerce en Shopify',
-  'Migraciones de tiendas y optimizacion de conversion',
-  'Integraciones API de logistica para last mile y middle mile',
-  'Product management para lanzamiento de features',
-  'Estrategia de procesos y operacion apoyada con IA'
+  'Product management B2B: onboarding → first order',
+  'Integraciones API con partners (REST, webhooks, playbooks)',
+  'Configs por pais y diagnosis en produccion',
+  'Operating system con IA (discovery, metricas, ops)',
+  'Shopify / e-commerce project management',
+  'AI App Rescue para apps Lovable, Bolt, v0 y Next.js'
 ]
 
-export const linkedinFeedItems: LinkedInFeedItem[] = [
+export const selectedImpact: SelectedImpactItem[] = [
   {
-    eyebrow: 'AI workflow automation',
-    title: 'Automatizar no es reemplazar criterio',
-    body: 'Estoy probando agentes, voz clonada y flujos RAG para quitar friccion operativa sin perder revision humana donde importa.',
-    tags: ['AI', 'Operations', 'RAG']
+    stat: '70K+',
+    label:
+      'deliveries escalados en tarifario C2C / USD 165K+ gross booking',
+    labelEn:
+      'deliveries scaled on C2C tariff products / USD 165K+ gross booking'
   },
   {
-    eyebrow: 'Product & logistics',
-    title: 'La integracion no termina en el API',
-    body: 'En delivery B2B, el exito vive en pricing, soporte, operaciones y claridad para el partner, no solo en que el endpoint responda 200.',
-    tags: ['Product', 'Logistics', 'B2B']
+    stat: '6+',
+    label:
+      'lanzamientos de mercado en LATAM y Africa (3 continentes)',
+    labelEn:
+      'market launches across LATAM and Africa (3 continents)'
   },
   {
-    eyebrow: 'Shopify delivery',
-    title: 'E-commerce simple, operacion clara',
-    body: 'Para tiendas Shopify, priorizo discovery, handoff y procesos que el cliente pueda operar despues del lanzamiento.',
-    tags: ['Shopify', 'E-commerce', 'PM']
+    stat: '~4x',
+    label:
+      'mas rapido el onboarding de partners con tooling API y playbooks',
+    labelEn:
+      'faster partner onboarding with API tooling and playbooks'
+  },
+  {
+    stat: 'AI',
+    label:
+      'harness operativo: discovery, metricas y diagnosis de producto',
+    labelEn:
+      'operating harness: discovery, metrics, and product diagnosis'
   }
 ]
 
 export const profileHighlights = [
-  'Experiencia liderando proyectos Shopify desde discovery hasta handoff y capacitacion.',
-  'Coordinacion entre negocio, diseno UX/UI y desarrollo para lograr ejecucion alineada a vision del cliente.',
-  'Liderazgo de integraciones B2B multinacionales para operaciones de delivery con APIs complejas.',
-  'Background en salud para tomar decisiones guiadas por evidencia, proceso y mejora continua.'
+  'Ownership del funnel B2B Delivery: registro, contratos, top-up y primera orden exitosa.',
+  'Integraciones API multi-pais con partners en LATAM y Africa (REST, webhooks, playbooks).',
+  'Configs por pais y diagnosis en produccion con GMs regionales e ingenieria de plataforma.',
+  'AI-native operating system para discovery, metricas y ops (adopcion en el equipo de producto).'
 ]
 
 export const portfolioProjects: PortfolioProject[] = [
+  {
+    slug: 'yango-b2b-integrations',
+    title: 'Yango Delivery - Integraciones B2B Multi-pais',
+    summary:
+      'Liderazgo de integraciones API con empresas en Peru, Bolivia, Chile, Dubai, Costa de Marfil y Zambia para incluir Yango en flujos de last mile y middle mile.',
+    impact:
+      'Aceleracion de despliegues de integracion y estandarizacion operativa en diferentes mercados.',
+    role: 'Lead Project Manager',
+    scope:
+      'Coordinacion de equipos regionales, habilitacion tecnica con partners y seguimiento del cumplimiento de flujos operativos.',
+    stack: [
+      'API Integrations',
+      'Logistics Tech',
+      'B2B Operations'
+    ],
+    href: 'https://delivery.yango.com'
+  },
+  {
+    slug: 'yango-c2c-app-latam',
+    title: 'Yango C2C App - Product Management LATAM',
+    summary:
+      'Trabajo como Product Manager para Latinoamerica en la app de Yango, apoyando el lanzamiento de funcionalidades orientadas a eficiencia de envios.',
+    impact:
+      'Lanzamiento de features como tarifas lentas para batching de multiples pedidos, reduciendo costo de envios y aumentando NIGB.',
+    role: 'Product Manager LATAM',
+    scope:
+      'Definicion y priorizacion de features, coordinacion con equipos cross-funcionales y seguimiento de impacto de negocio.',
+    stack: [
+      'Product Strategy',
+      'Marketplace Logistics',
+      'Data-informed Prioritization'
+    ],
+    href: 'https://apps.apple.com/us/app/yango-taxi-food-delivery/'
+  },
   {
     slug: 'nup-shopify-build',
     title: 'NUP Chile - Construccion en Shopify',
@@ -134,40 +182,6 @@ export const portfolioProjects: PortfolioProject[] = [
       'Process Management'
     ],
     href: 'https://thebluelab.cl/'
-  },
-  {
-    slug: 'yango-b2b-integrations',
-    title: 'Yango Delivery - Integraciones B2B Multi-pais',
-    summary:
-      'Liderazgo de integraciones API con empresas en Peru, Bolivia, Chile, Dubai, Costa de Marfil y Zambia para incluir Yango en flujos de last mile y middle mile.',
-    impact:
-      'Aceleracion de despliegues de integracion y estandarizacion operativa en diferentes mercados.',
-    role: 'Lead Project Manager',
-    scope:
-      'Coordinacion de equipos regionales, habilitacion tecnica con partners y seguimiento del cumplimiento de flujos operativos.',
-    stack: [
-      'API Integrations',
-      'Logistics Tech',
-      'B2B Operations'
-    ],
-    href: 'https://delivery.yango.com'
-  },
-  {
-    slug: 'yango-c2c-app-latam',
-    title: 'Yango C2C App - Product Management LATAM',
-    summary:
-      'Trabajo como Product Manager para Latinoamerica en la app de Yango, apoyando el lanzamiento de funcionalidades orientadas a eficiencia de envios.',
-    impact:
-      'Lanzamiento de features como tarifas lentas para batching de multiples pedidos, reduciendo costo de envios y aumentando NIGB.',
-    role: 'Product Manager LATAM',
-    scope:
-      'Definicion y priorizacion de features, coordinacion con equipos cross-funcionales y seguimiento de impacto de negocio.',
-    stack: [
-      'Product Strategy',
-      'Marketplace Logistics',
-      'Data-informed Prioritization'
-    ],
-    href: 'https://apps.apple.com/us/app/yango-taxi-food-delivery/'
   }
 ]
 
@@ -184,7 +198,7 @@ export const quickAnswers = [
       'bio'
     ],
     answer:
-      'Bill es Project Manager y Product Manager en tecnologia con experiencia en Shopify e integraciones logisticas. Es Bioanalista de la Universidad de Carabobo, lo que aporta un enfoque de proceso y evidencia al trabajo digital.'
+      'Bill es Product Manager de plataformas B2B e integraciones API en mercados internacionales (LATAM/Africa), remoto desde Santiago de Chile. Ownership del funnel onboarding → first order, configs por pais y diagnosis en produccion.'
   },
   {
     id: 'services',
@@ -201,7 +215,7 @@ export const quickAnswers = [
       'ofreces'
     ],
     answer:
-      'Puede ayudarte con gestion de proyectos Shopify, migraciones de tiendas, integraciones API para operaciones logisticas y desarrollo de flujos de producto apoyados con IA.'
+      'Puede ayudarte con product management B2B, integraciones API con partners, configs por pais, diagnosis en produccion y un operating system con IA. Shopify y AI App Rescue son secundarios.'
   },
   {
     id: 'contact',

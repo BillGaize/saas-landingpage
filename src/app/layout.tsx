@@ -10,7 +10,7 @@ import { StructuredData } from '@/components/seo/structured-data'
 const inter = Inter({ subsets: ['latin'] })
 
 const TITLE_DEFAULT =
-  'Bill Gaize | Product Manager & Project Manager en Santiago, Chile'
+  'Bill Gaize | Product Manager B2B Platforms & API Integrations | Santiago, Chile'
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
         url: '/opengraph-image.png',
         width: 1200,
         height: 630,
-        alt: 'Bill Gaize — Product Manager & Project Manager, Santiago, Chile'
+        alt: 'Bill Gaize — Product Manager B2B Platforms & API Integrations, Santiago, Chile'
       }
     ]
   },

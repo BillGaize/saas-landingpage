@@ -7,9 +7,9 @@ import {
 
 export const metadata: Metadata = {
   title:
-    'Contacto | Product Manager & Project Manager en Chile',
+    'Contacto | Product Manager B2B & API Integrations',
   description:
-    'Contacta a Bill Gaize, Product Manager y Project Manager en Santiago de Chile, para product development, delivery/logistica, integraciones Shopify/API y automatizacion con IA en Latinoamerica.',
+    'Contacta a Bill Gaize, Product Manager de plataformas B2B e integraciones API (LATAM/Africa), remoto desde Santiago de Chile. Abierto a roles PM / Project Manager / Integrations-Platform.',
   alternates: {
     canonical: '/contact'
   }
@@ -27,7 +27,7 @@ export default async function ContactPage() {
           label: 'Contact',
           title: 'Let us build something solid',
           intro:
-            'If you need a partner who moves from planning to execution, I am open to freelance, consulting, and long-term collaboration.',
+            'Open to Product Manager / Project Manager / Integrations-Platform PM roles — ideally remote worldwide (based in Santiago, Chile). Also open to focused consulting on B2B onboarding and partner APIs.',
           directContact: 'Direct contact',
           schedule: 'Book a call',
           alsoFind: 'You can also find me on',
@@ -40,7 +40,7 @@ export default async function ContactPage() {
           label: 'Contacto',
           title: 'Construyamos algo solido',
           intro:
-            'Si necesitas un partner tecnico que pase de arquitectura a entrega, estoy abierto a freelance, consultoria y colaboraciones de largo plazo.',
+            'Abierto a roles Product Manager / Project Manager / Integrations-Platform PM — idealmente remote worldwide (base Santiago, Chile). Tambien consultoria puntual en onboarding B2B e integraciones API.',
           directContact: 'Contacto directo',
           schedule: 'Agendar una llamada',
           alsoFind: 'Tambien puedes encontrarme en',

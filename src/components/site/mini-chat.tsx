@@ -45,9 +45,9 @@ const CHAT_COPY = {
   es: {
     title: 'Chat con Bill AI',
     subtitle:
-      'Preguntame por proyectos, edad, background, idiomas o experiencia con IA/RAG.',
+      'Preguntame por B2B integrations, mercados LATAM/Africa, proyectos, idiomas o IA.',
     welcome:
-      'Hola. Soy el asistente del portafolio de Bill. Puedes preguntarme sobre proyectos, experiencia, edad, background en salud, idiomas o como contactarlo.',
+      'Hola. Soy el asistente del portafolio de Bill. Preguntame por product management B2B, integraciones API, mercados intl, proyectos o como contactarlo.',
     placeholder: 'Escribe tu pregunta sobre Bill...',
     thinking: 'Pensando...',
     fallback:
@@ -71,7 +71,7 @@ const CHAT_COPY = {
       ],
       [
         'En que paises lideraste integraciones de Yango Delivery?',
-        'Que experiencia tienes como Product Manager en LATAM?',
+        'Que experiencia tienes como PM B2B e integraciones API?',
         'Hablas ingles para reuniones con equipos globales?',
         'Como te contacto para trabajar juntos?'
       ]
@@ -80,9 +80,9 @@ const CHAT_COPY = {
   en: {
     title: 'Chat with Bill AI',
     subtitle:
-      'Ask about projects, age, healthcare background, languages, or AI/RAG experience.',
+      'Ask about B2B integrations, LATAM/Africa markets, projects, languages, or AI workflows.',
     welcome:
-      "Hi. I'm Bill's portfolio assistant. You can ask about projects, experience, age, healthcare background, languages, or how to get in touch.",
+      "Hi. I'm Bill's portfolio assistant. Ask about B2B product management, API integrations, international markets, projects, or how to get in touch.",
     placeholder: 'Ask anything about Bill...',
     thinking: 'Thinking...',
     fallback:
@@ -93,7 +93,7 @@ const CHAT_COPY = {
     ariaSend: 'Send',
     suggestionPools: [
       [
-        'Tell me about your Shopify projects',
+        'Tell me about your B2B API integrations',
         'What was your role at Yango Delivery?',
         'What is your age and background?',
         'Do you speak English and work with AI/RAG?'

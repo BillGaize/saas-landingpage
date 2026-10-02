@@ -86,7 +86,7 @@ export function StructuredData() {
     '@type': 'ProfilePage',
     '@id': `${siteConfig.url}/#profilepage`,
     url: siteConfig.url,
-    name: 'Bill Gaize | Product Manager & Project Manager',
+    name: 'Bill Gaize | Product Manager B2B Platforms & API Integrations',
     isPartOf: { '@id': `${siteConfig.url}/#website` },
     about: { '@id': `${siteConfig.url}/#person` },
     inLanguage: 'es'
@@ -101,7 +101,7 @@ export function StructuredData() {
         name: '¿Quién es Bill Gaize?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Bill Gaize es Product Manager y Project Manager de tecnología basado en Santiago de Chile (Región Metropolitana), originario de Venezuela, con experiencia en Latinoamérica en desarrollo de producto, delivery y logística, integraciones Shopify/API y automatización con IA.'
+          text: 'Bill Gaize es Product Manager de plataformas B2B e integraciones API en mercados internacionales (LATAM/Africa), remoto desde Santiago de Chile. Ownership del funnel de onboarding a first order, configs por país y diagnosis en producción.'
         }
       },
       {
@@ -109,7 +109,7 @@ export function StructuredData() {
         name: '¿Bill Gaize trabaja como Product Manager en Chile?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Sí. Bill Gaize trabaja como Product Manager y Project Manager en Santiago de Chile y en toda la Región Metropolitana, además de colaborar de forma remota con equipos en Latinoamérica y a nivel global.'
+          text: 'Sí. Bill Gaize trabaja como Product Manager remoto desde Santiago de Chile, con experiencia en mercados LATAM y África, y colabora con equipos globales.'
         }
       },
       {
