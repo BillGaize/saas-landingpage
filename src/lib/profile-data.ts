@@ -212,15 +212,13 @@ export const quickAnswers = [
   {
     id: 'employer-yango',
     keywords: [
-      'yango',
-      'yandex',
       'dejaste',
       'dejó',
-      'dejo',
+      'dejo yango',
       'left yango',
       'no trabajas',
       'ya no trabaj',
-      'quit',
+      'quit yango',
       'resigned',
       'employer',
       'empleador',
@@ -234,7 +232,10 @@ export const quickAnswers = [
       'diciembre',
       'december',
       'saliste',
-      'leaving'
+      'leaving yango',
+      'sigues en yango',
+      'still at yango',
+      'trabajas en yango'
     ],
     answer:
       'Hoy Bill sigue en Yango Delivery (Yandex) como PM de B2B Delivery International (LATAM/Africa/Asia). Su rol se esta phaseando out por la transicion Delivery → Yango B2B Taxi; a fines de diciembre 2026 deja Yango. Hasta entonces lidera funnel onboarding→first order, integraciones API multi-pais y configs/diagnosis en produccion. Este sitio es portafolio personal y canal para roles nuevos.'

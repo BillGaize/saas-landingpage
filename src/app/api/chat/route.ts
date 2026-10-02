@@ -263,7 +263,7 @@ function detectIntent(message: string): Intent {
     .toLowerCase()
 
   if (
-    /yango|yandex|dejaste|left yango|ya no trabaj|donde trabaj|where do you work|empleador|employer|current role|rol actual/.test(
+    /dejaste|left yango|ya no trabaj|donde trabaj|where do you work|empleador|employer|current role|rol actual|phase[\s-]?out|phaseout|fines de diciembre|late december|saliste de yango|leaving yango/.test(
       raw
     )
   ) {
