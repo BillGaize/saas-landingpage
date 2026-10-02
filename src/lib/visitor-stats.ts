@@ -105,14 +105,16 @@ function writeJsonFile(
 }
 
 async function loadFromBlob(): Promise<VisitorStatsState | null> {
-  if (!hasBlobToken()) {
+  const token = process.env.BLOB_READ_WRITE_TOKEN
+  if (!token) {
     return null
   }
 
   try {
     const listed = await list({
       prefix: BLOB_PATHNAME,
-      limit: 10
+      limit: 10,
+      token
     })
     const match = listed.blobs.find(
       (blob) =>
@@ -123,8 +125,12 @@ async function loadFromBlob(): Promise<VisitorStatsState | null> {
       return null
     }
 
+    // Private blobs require the RW token on read.
     const response = await fetch(match.url, {
-      cache: 'no-store'
+      cache: 'no-store',
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
     })
     if (!response.ok) {
       return null
@@ -137,17 +143,18 @@ async function loadFromBlob(): Promise<VisitorStatsState | null> {
 }
 
 async function saveToBlob(state: VisitorStatsState) {
-  if (!hasBlobToken()) {
+  const token = process.env.BLOB_READ_WRITE_TOKEN
+  if (!token) {
     return false
   }
 
   try {
     await put(BLOB_PATHNAME, JSON.stringify(state), {
-      access: 'public',
+      access: 'private',
       addRandomSuffix: false,
       allowOverwrite: true,
       contentType: 'application/json',
-      token: process.env.BLOB_READ_WRITE_TOKEN
+      token
     })
     return true
   } catch {
@@ -191,8 +198,9 @@ async function persist(state: VisitorStatsState) {
   memoryState = state
   memoryLoaded = true
 
+  let blobOk = false
   writeChain = writeChain.then(async () => {
-    const blobOk = await saveToBlob(state)
+    blobOk = await saveToBlob(state)
     // Always try /tmp (works on Vercel instances) + local data/ (dev).
     writeJsonFile(TMP_FILE, state)
     if (!blobOk) {
@@ -201,6 +209,7 @@ async function persist(state: VisitorStatsState) {
   })
 
   await writeChain
+  return blobOk
 }
 
 export async function registerVisit(input: {
@@ -213,7 +222,7 @@ export async function registerVisit(input: {
   )
 
   if (state.seenSessions[input.sessionId]) {
-    return state
+    return { state, blobOk: hasBlobToken() }
   }
 
   const nextState: VisitorStatsState = {
@@ -236,8 +245,8 @@ export async function registerVisit(input: {
     ].slice(-250)
   }
 
-  await persist(nextState)
-  return nextState
+  const blobOk = await persist(nextState)
+  return { state: nextState, blobOk }
 }
 
 export async function readStats(since?: number) {

@@ -87,14 +87,17 @@ export async function POST(request: Request) {
 
     const countryCode = await resolveCountryCode(request)
 
-    await registerVisit({
+    const { blobOk } = await registerVisit({
       sessionId: body.sessionId,
       countryCode
     })
 
     const stats = await readStats()
 
-    return NextResponse.json(stats)
+    return NextResponse.json({
+      ...stats,
+      blobOk
+    })
   } catch {
     return NextResponse.json(
       {
