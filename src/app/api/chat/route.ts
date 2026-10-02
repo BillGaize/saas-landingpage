@@ -626,10 +626,12 @@ export async function POST(request: Request) {
       countryCode
     )
 
-    // Always pin employment + profile; then top ranked non-duplicate chunks.
+    // Always pin employment + yango experience + profile; then top ranked.
     const pinned = knowledge.filter(
       (chunk) =>
-        chunk.id === 'employment' || chunk.id === 'profile'
+        chunk.id === 'employment' ||
+        chunk.id === 'profile' ||
+        chunk.id === 'yango-experience'
     )
     const extras = (
       topRanked.length ? topRanked : ranked.slice(0, 5)
@@ -638,7 +640,8 @@ export async function POST(request: Request) {
       .filter(
         (chunk) =>
           chunk.id !== 'employment' &&
-          chunk.id !== 'profile'
+          chunk.id !== 'profile' &&
+          chunk.id !== 'yango-experience'
       )
       .slice(0, 4)
 
