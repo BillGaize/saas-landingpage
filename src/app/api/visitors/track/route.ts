@@ -87,12 +87,12 @@ export async function POST(request: Request) {
 
     const countryCode = await resolveCountryCode(request)
 
-    registerVisit({
+    await registerVisit({
       sessionId: body.sessionId,
       countryCode
     })
 
-    const stats = readStats()
+    const stats = await readStats()
 
     return NextResponse.json(stats)
   } catch {

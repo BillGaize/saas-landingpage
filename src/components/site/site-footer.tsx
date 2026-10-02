@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 
 type SiteLanguage = 'es' | 'en'
 
@@ -20,6 +20,7 @@ interface VisitorApiResponse {
   counts: Record<string, number>
   latestTimestamp: number
   events: VisitorEvent[]
+  durable?: boolean
 }
 
 const COUNTRY_META: Record<
@@ -73,6 +74,8 @@ const COPY = {
   }
 } as const
 
+const COUNTS_CACHE_KEY = 'visitor-counts-floor'
+
 function getOrCreateSessionId() {
   const existing = window.sessionStorage.getItem(
     'visitor-session-id'
@@ -94,19 +97,61 @@ function getOrCreateSessionId() {
   return generated
 }
 
+function mergeCounts(
+  current: Record<string, number> | null,
+  incoming: Record<string, number>
+) {
+  const merged: Record<string, number> = {
+    ...(current ?? {})
+  }
+  for (const [code, total] of Object.entries(incoming)) {
+    merged[code] = Math.max(merged[code] ?? 0, total)
+  }
+  return merged
+}
+
+function readCachedCounts() {
+  try {
+    const raw = window.localStorage.getItem(COUNTS_CACHE_KEY)
+    if (!raw) return null
+    const parsed = JSON.parse(raw) as Record<string, number>
+    return parsed && typeof parsed === 'object' ? parsed : null
+  } catch {
+    return null
+  }
+}
+
+function writeCachedCounts(counts: Record<string, number>) {
+  try {
+    window.localStorage.setItem(
+      COUNTS_CACHE_KEY,
+      JSON.stringify(counts)
+    )
+  } catch {
+    // ignore quota / private mode
+  }
+}
+
 export function SiteFooter({ language }: SiteFooterProps) {
   const copy = COPY[language]
   const [counts, setCounts] = useState<Record<
     string,
     number
   > | null>(null)
-  const [latestTimestamp, setLatestTimestamp] = useState(0)
   const [sessionId, setSessionId] = useState('')
   const [toast, setToast] = useState('')
+  const latestTimestampRef = useRef(0)
+  const sessionIdRef = useRef('')
 
   useEffect(() => {
+    const cached = readCachedCounts()
+    if (cached) {
+      setCounts(cached)
+    }
+
     const id = getOrCreateSessionId()
     setSessionId(id)
+    sessionIdRef.current = id
 
     const registerVisit = async () => {
       const response = await fetch('/api/visitors/track', {
@@ -123,8 +168,12 @@ export function SiteFooter({ language }: SiteFooterProps) {
 
       const data =
         (await response.json()) as VisitorApiResponse
-      setCounts(data.counts)
-      setLatestTimestamp(data.latestTimestamp)
+      setCounts((prev) => {
+        const next = mergeCounts(prev, data.counts)
+        writeCachedCounts(next)
+        return next
+      })
+      latestTimestampRef.current = data.latestTimestamp
     }
 
     void registerVisit()
@@ -138,7 +187,7 @@ export function SiteFooter({ language }: SiteFooterProps) {
     const interval = window.setInterval(() => {
       void (async () => {
         const response = await fetch(
-          `/api/visitors/updates?since=${latestTimestamp}`
+          `/api/visitors/updates?since=${latestTimestampRef.current}`
         )
 
         if (!response.ok) {
@@ -148,12 +197,22 @@ export function SiteFooter({ language }: SiteFooterProps) {
         const data =
           (await response.json()) as VisitorApiResponse
 
-        setCounts(data.counts)
-        setLatestTimestamp(data.latestTimestamp)
+        setCounts((prev) => {
+          const next = mergeCounts(prev, data.counts)
+          writeCachedCounts(next)
+          return next
+        })
+
+        if (data.latestTimestamp > latestTimestampRef.current) {
+          latestTimestampRef.current = data.latestTimestamp
+        }
 
         const latestExternalEvent = [...data.events]
           .reverse()
-          .find((event) => event.sessionId !== sessionId)
+          .find(
+            (event) =>
+              event.sessionId !== sessionIdRef.current
+          )
 
         if (!latestExternalEvent) {
           return
@@ -170,17 +229,12 @@ export function SiteFooter({ language }: SiteFooterProps) {
           `${country.flag} ${copy.newVisitor} ${countryName}`
         )
       })()
-    }, 10000)
+    }, 8000)
 
     return () => {
       window.clearInterval(interval)
     }
-  }, [
-    copy.newVisitor,
-    language,
-    latestTimestamp,
-    sessionId
-  ])
+  }, [copy.newVisitor, language, sessionId])
 
   useEffect(() => {
     if (!toast) {

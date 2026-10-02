@@ -8,7 +8,7 @@ export async function GET(request: Request) {
     ? sinceParam
     : undefined
 
-  const stats = readStats(since)
+  const stats = await readStats(since)
 
   return NextResponse.json(stats)
 }

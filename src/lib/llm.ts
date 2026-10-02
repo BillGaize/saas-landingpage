@@ -13,11 +13,11 @@ const NVIDIA_BASE_URL =
   process.env.NVIDIA_BASE_URL ??
   'https://integrate.api.nvidia.com/v1'
 
-// Default: small Instruct model that works on this NVIDIA account.
-// (old default nvidia/nvidia-nemotron-nano-9b-v2 hit EOL 2026-08-26 → HTTP 410)
+// Default: Nemotron Ultra — better instruction-following than small Llama for portfolio Q&A.
+// Override with NVIDIA_CHAT_MODEL if needed. (old nano-9b-v2 hit EOL 2026-08-26 → HTTP 410)
 const NVIDIA_MODEL =
   process.env.NVIDIA_CHAT_MODEL ??
-  'meta/llama-3.2-11b-vision-instruct'
+  'nvidia/nemotron-3-ultra-550b-a55b'
 
 export interface LlmMessage {
   role: 'system' | 'user' | 'assistant'

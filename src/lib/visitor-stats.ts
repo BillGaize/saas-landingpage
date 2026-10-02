@@ -1,5 +1,6 @@
 import fs from 'fs'
 import path from 'path'
+import { put, list } from '@vercel/blob'
 
 export interface VisitorEvent {
   id: string
@@ -14,6 +15,7 @@ export interface VisitorStatsState {
   seenSessions: Record<string, boolean>
 }
 
+/** Baseline seed so the footer is not empty on first boot. */
 const INITIAL_COUNTS: Record<string, number> = {
   CL: 23,
   VE: 12,
@@ -21,130 +23,209 @@ const INITIAL_COUNTS: Record<string, number> = {
   RU: 3
 }
 
+const BLOB_PATHNAME = 'visitor-stats.json'
 const STORAGE_DIR = path.join(process.cwd(), 'data')
-const STORAGE_FILE = path.join(
-  STORAGE_DIR,
-  'visitor-stats.json'
-)
+const STORAGE_FILE = path.join(STORAGE_DIR, 'visitor-stats.json')
+const TMP_FILE = path.join('/tmp', 'billgaize-visitor-stats.json')
 
-let memoryState: VisitorStatsState = {
-  counts: INITIAL_COUNTS,
+const emptyState = (): VisitorStatsState => ({
+  counts: { ...INITIAL_COUNTS },
   events: [],
   seenSessions: {}
-}
+})
+
+let memoryState: VisitorStatsState = emptyState()
+let memoryLoaded = false
+let writeChain: Promise<void> = Promise.resolve()
 
 function normalizeCountryCode(countryCode: string) {
   const clean = countryCode.trim().toUpperCase()
-
   if (!/^[A-Z]{2}$/.test(clean)) {
     return 'OTHER'
   }
-
   return clean
 }
 
-function loadFromDisk() {
+function isValidState(value: unknown): value is VisitorStatsState {
+  if (!value || typeof value !== 'object') {
+    return false
+  }
+  const parsed = value as VisitorStatsState
+  return Boolean(
+    parsed.counts && parsed.events && parsed.seenSessions
+  )
+}
+
+function hasBlobToken() {
+  return Boolean(process.env.BLOB_READ_WRITE_TOKEN)
+}
+
+function readJsonFile(filePath: string): VisitorStatsState | null {
   try {
-    if (!fs.existsSync(STORAGE_FILE)) {
+    if (!fs.existsSync(filePath)) {
       return null
     }
-
-    const raw = fs.readFileSync(STORAGE_FILE, 'utf8')
-    const parsed = JSON.parse(raw) as VisitorStatsState
-
-    if (
-      !parsed.counts ||
-      !parsed.events ||
-      !parsed.seenSessions
-    ) {
-      return null
-    }
-
-    return parsed
+    const parsed = JSON.parse(
+      fs.readFileSync(filePath, 'utf8')
+    ) as unknown
+    return isValidState(parsed) ? parsed : null
   } catch {
     return null
   }
 }
 
-function saveToDisk(state: VisitorStatsState) {
+function writeJsonFile(filePath: string, state: VisitorStatsState) {
   try {
-    if (!fs.existsSync(STORAGE_DIR)) {
-      fs.mkdirSync(STORAGE_DIR, { recursive: true })
+    const dir = path.dirname(filePath)
+    if (!fs.existsSync(dir)) {
+      fs.mkdirSync(dir, { recursive: true })
     }
-
     fs.writeFileSync(
-      STORAGE_FILE,
+      filePath,
       JSON.stringify(state, null, 2),
       'utf8'
     )
+    return true
   } catch {
-    // Fallback to in-memory state when filesystem is read-only.
+    return false
   }
 }
 
-function getState() {
-  const diskState = loadFromDisk()
-
-  if (diskState) {
-    memoryState = diskState
+async function loadFromBlob(): Promise<VisitorStatsState | null> {
+  if (!hasBlobToken()) {
+    return null
   }
 
+  try {
+    const listed = await list({ prefix: BLOB_PATHNAME, limit: 10 })
+    const match = listed.blobs.find(
+      (blob) =>
+        blob.pathname === BLOB_PATHNAME ||
+        blob.pathname.endsWith(`/${BLOB_PATHNAME}`)
+    )
+    if (!match?.url) {
+      return null
+    }
+
+    const response = await fetch(match.url, { cache: 'no-store' })
+    if (!response.ok) {
+      return null
+    }
+    const parsed = (await response.json()) as unknown
+    return isValidState(parsed) ? parsed : null
+  } catch {
+    return null
+  }
+}
+
+async function saveToBlob(state: VisitorStatsState) {
+  if (!hasBlobToken()) {
+    return false
+  }
+
+  try {
+    await put(BLOB_PATHNAME, JSON.stringify(state), {
+      access: 'public',
+      addRandomSuffix: false,
+      allowOverwrite: true,
+      contentType: 'application/json',
+      token: process.env.BLOB_READ_WRITE_TOKEN
+    })
+    return true
+  } catch {
+    return false
+  }
+}
+
+async function ensureLoaded() {
+  if (memoryLoaded) {
+    return memoryState
+  }
+
+  const fromBlob = await loadFromBlob()
+  if (fromBlob) {
+    memoryState = fromBlob
+    memoryLoaded = true
+    return memoryState
+  }
+
+  // Prefer /tmp on Vercel (writable), then local data/ for dev.
+  const fromTmp = readJsonFile(TMP_FILE)
+  if (fromTmp) {
+    memoryState = fromTmp
+    memoryLoaded = true
+    return memoryState
+  }
+
+  const fromDisk = readJsonFile(STORAGE_FILE)
+  if (fromDisk) {
+    memoryState = fromDisk
+    memoryLoaded = true
+    return memoryState
+  }
+
+  memoryState = emptyState()
+  memoryLoaded = true
   return memoryState
 }
 
-function setState(nextState: VisitorStatsState) {
-  memoryState = nextState
-  saveToDisk(nextState)
+async function persist(state: VisitorStatsState) {
+  memoryState = state
+  memoryLoaded = true
+
+  writeChain = writeChain.then(async () => {
+    const blobOk = await saveToBlob(state)
+    // Always try /tmp (works on Vercel instances) + local data/ (dev).
+    writeJsonFile(TMP_FILE, state)
+    if (!blobOk) {
+      writeJsonFile(STORAGE_FILE, state)
+    }
+  })
+
+  await writeChain
 }
 
-export function registerVisit(input: {
+export async function registerVisit(input: {
   sessionId: string
   countryCode: string
 }) {
-  const state = getState()
-  const countryCode = normalizeCountryCode(
-    input.countryCode
-  )
+  const state = await ensureLoaded()
+  const countryCode = normalizeCountryCode(input.countryCode)
 
   if (state.seenSessions[input.sessionId]) {
     return state
   }
 
-  const nextCounts = {
-    ...state.counts,
-    [countryCode]: (state.counts[countryCode] ?? 0) + 1
-  }
-
-  const timestamp = Date.now()
-  const nextEvent: VisitorEvent = {
-    id: `${timestamp}-${Math.random().toString(36).slice(2, 8)}`,
-    countryCode,
-    sessionId: input.sessionId,
-    timestamp
-  }
-
   const nextState: VisitorStatsState = {
-    counts: nextCounts,
+    counts: {
+      ...state.counts,
+      [countryCode]: (state.counts[countryCode] ?? 0) + 1
+    },
     seenSessions: {
       ...state.seenSessions,
       [input.sessionId]: true
     },
-    events: [...state.events, nextEvent].slice(-250)
+    events: [
+      ...state.events,
+      {
+        id: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+        countryCode,
+        sessionId: input.sessionId,
+        timestamp: Date.now()
+      }
+    ].slice(-250)
   }
 
-  setState(nextState)
-
+  await persist(nextState)
   return nextState
 }
 
-export function readStats(since?: number) {
-  const state = getState()
+export async function readStats(since?: number) {
+  const state = await ensureLoaded()
 
   const events =
     typeof since === 'number'
-      ? state.events.filter(
-          (event) => event.timestamp > since
-        )
+      ? state.events.filter((event) => event.timestamp > since)
       : state.events
 
   const latestTimestamp =
@@ -155,6 +236,7 @@ export function readStats(since?: number) {
   return {
     counts: state.counts,
     events,
-    latestTimestamp
+    latestTimestamp,
+    durable: hasBlobToken()
   }
 }
