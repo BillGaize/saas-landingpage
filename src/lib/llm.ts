@@ -78,7 +78,9 @@ export async function callLlm(
     const data = (await response.json()) as {
       choices?: Array<{
         message?: {
-          content?: string | Array<{ type?: string; text?: string }>
+          content?:
+            | string
+            | Array<{ type?: string; text?: string }>
           reasoning_content?: string
         }
       }>
@@ -92,7 +94,9 @@ export async function callLlm(
         : Array.isArray(raw)
           ? raw
               .map((part) =>
-                typeof part?.text === 'string' ? part.text : ''
+                typeof part?.text === 'string'
+                  ? part.text
+                  : ''
               )
               .join('')
               .trim()

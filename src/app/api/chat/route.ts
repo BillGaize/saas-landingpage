@@ -154,7 +154,9 @@ function scoreChunk(
   if (queryTokens.length === 0) {
     return 0
   }
-  const haystack = new Set(tokenize(`${chunk.title} ${chunk.text}`))
+  const haystack = new Set(
+    tokenize(`${chunk.title} ${chunk.text}`)
+  )
   let hits = 0
   for (const token of queryTokens) {
     if (haystack.has(token)) {
@@ -175,7 +177,12 @@ function scoreChunk(
   confidence += typeBoost[chunk.type]
 
   // Hard boost when employer tokens appear in both query and chunk.
-  const employerTokens = ['yango', 'yandex', 'employer', 'empleador']
+  const employerTokens = [
+    'yango',
+    'yandex',
+    'employer',
+    'empleador'
+  ]
   if (
     queryTokens.some((t) => employerTokens.includes(t)) &&
     (chunk.type === 'empleo' ||
@@ -332,10 +339,9 @@ function buildOpenReply(
     if (intent === 'blog') return true
     return entry.chunk.type !== 'post'
   })
-  const usable = (preferred.length ? preferred : ranked).slice(
-    0,
-    3
-  )
+  const usable = (
+    preferred.length ? preferred : ranked
+  ).slice(0, 3)
 
   if (intent === 'empleo') {
     return language === 'en'
@@ -350,9 +356,13 @@ function buildOpenReply(
   }
 
   const lines = usable.map((entry) => {
-    const text = entry.chunk.text.replace(/\s+/g, ' ').trim()
+    const text = entry.chunk.text
+      .replace(/\s+/g, ' ')
+      .trim()
     const short =
-      text.length > 220 ? `${text.slice(0, 220).trim()}…` : text
+      text.length > 220
+        ? `${text.slice(0, 220).trim()}…`
+        : text
     return short
   })
 
@@ -389,7 +399,10 @@ function quickReply(
       })
     ) {
       // Employer answer has EN twin for English UI.
-      if (entry.id === 'employer-yango' && language === 'en') {
+      if (
+        entry.id === 'employer-yango' &&
+        language === 'en'
+      ) {
         return `${profileFacts.employerNoteEn} Portfolio: /projects. Contact: ${profileFacts.contactEmail}.`
       }
       return entry.answer
@@ -564,7 +577,10 @@ export async function POST(request: Request) {
 
   // Deterministic answers first for high-stakes facts (employment, contact, etc.)
   const canned = quickReply(safeMessage, language)
-  if (canned && (intent === 'empleo' || intent === 'contacto')) {
+  if (
+    canned &&
+    (intent === 'empleo' || intent === 'contacto')
+  ) {
     return NextResponse.json({
       reply: canned,
       engine: 'canned'
@@ -614,7 +630,8 @@ export async function POST(request: Request) {
       .map((entry) => entry.chunk)
       .filter(
         (chunk) =>
-          chunk.id !== 'employment' && chunk.id !== 'profile'
+          chunk.id !== 'employment' &&
+          chunk.id !== 'profile'
       )
       .slice(0, 4)
 

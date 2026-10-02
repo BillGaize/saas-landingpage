@@ -267,7 +267,13 @@ export const quickAnswers = [
   },
   {
     id: 'age',
-    keywords: ['edad', 'age', 'cuantos anos', 'cuántos años', 'how old'],
+    keywords: [
+      'edad',
+      'age',
+      'cuantos anos',
+      'cuántos años',
+      'how old'
+    ],
     answer: 'Bill tiene 29 anos.'
   },
   {
