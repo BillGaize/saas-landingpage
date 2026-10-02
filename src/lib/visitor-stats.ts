@@ -25,8 +25,14 @@ const INITIAL_COUNTS: Record<string, number> = {
 
 const BLOB_PATHNAME = 'visitor-stats.json'
 const STORAGE_DIR = path.join(process.cwd(), 'data')
-const STORAGE_FILE = path.join(STORAGE_DIR, 'visitor-stats.json')
-const TMP_FILE = path.join('/tmp', 'billgaize-visitor-stats.json')
+const STORAGE_FILE = path.join(
+  STORAGE_DIR,
+  'visitor-stats.json'
+)
+const TMP_FILE = path.join(
+  '/tmp',
+  'billgaize-visitor-stats.json'
+)
 
 const emptyState = (): VisitorStatsState => ({
   counts: { ...INITIAL_COUNTS },
@@ -46,7 +52,9 @@ function normalizeCountryCode(countryCode: string) {
   return clean
 }
 
-function isValidState(value: unknown): value is VisitorStatsState {
+function isValidState(
+  value: unknown
+): value is VisitorStatsState {
   if (!value || typeof value !== 'object') {
     return false
   }
@@ -60,7 +68,9 @@ function hasBlobToken() {
   return Boolean(process.env.BLOB_READ_WRITE_TOKEN)
 }
 
-function readJsonFile(filePath: string): VisitorStatsState | null {
+function readJsonFile(
+  filePath: string
+): VisitorStatsState | null {
   try {
     if (!fs.existsSync(filePath)) {
       return null
@@ -74,7 +84,10 @@ function readJsonFile(filePath: string): VisitorStatsState | null {
   }
 }
 
-function writeJsonFile(filePath: string, state: VisitorStatsState) {
+function writeJsonFile(
+  filePath: string,
+  state: VisitorStatsState
+) {
   try {
     const dir = path.dirname(filePath)
     if (!fs.existsSync(dir)) {
@@ -97,7 +110,10 @@ async function loadFromBlob(): Promise<VisitorStatsState | null> {
   }
 
   try {
-    const listed = await list({ prefix: BLOB_PATHNAME, limit: 10 })
+    const listed = await list({
+      prefix: BLOB_PATHNAME,
+      limit: 10
+    })
     const match = listed.blobs.find(
       (blob) =>
         blob.pathname === BLOB_PATHNAME ||
@@ -107,7 +123,9 @@ async function loadFromBlob(): Promise<VisitorStatsState | null> {
       return null
     }
 
-    const response = await fetch(match.url, { cache: 'no-store' })
+    const response = await fetch(match.url, {
+      cache: 'no-store'
+    })
     if (!response.ok) {
       return null
     }
@@ -190,7 +208,9 @@ export async function registerVisit(input: {
   countryCode: string
 }) {
   const state = await ensureLoaded()
-  const countryCode = normalizeCountryCode(input.countryCode)
+  const countryCode = normalizeCountryCode(
+    input.countryCode
+  )
 
   if (state.seenSessions[input.sessionId]) {
     return state
@@ -225,7 +245,9 @@ export async function readStats(since?: number) {
 
   const events =
     typeof since === 'number'
-      ? state.events.filter((event) => event.timestamp > since)
+      ? state.events.filter(
+          (event) => event.timestamp > since
+        )
       : state.events
 
   const latestTimestamp =

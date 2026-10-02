@@ -112,10 +112,14 @@ function mergeCounts(
 
 function readCachedCounts() {
   try {
-    const raw = window.localStorage.getItem(COUNTS_CACHE_KEY)
+    const raw = window.localStorage.getItem(
+      COUNTS_CACHE_KEY
+    )
     if (!raw) return null
     const parsed = JSON.parse(raw) as Record<string, number>
-    return parsed && typeof parsed === 'object' ? parsed : null
+    return parsed && typeof parsed === 'object'
+      ? parsed
+      : null
   } catch {
     return null
   }
@@ -203,7 +207,9 @@ export function SiteFooter({ language }: SiteFooterProps) {
           return next
         })
 
-        if (data.latestTimestamp > latestTimestampRef.current) {
+        if (
+          data.latestTimestamp > latestTimestampRef.current
+        ) {
           latestTimestampRef.current = data.latestTimestamp
         }
 
