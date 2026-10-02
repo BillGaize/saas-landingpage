@@ -23,6 +23,13 @@ export const profileFacts = {
   bio: 'Ownership end-to-end del funnel B2B: onboarding, contratos, integraciones API con partners, configs por pais y diagnosis en produccion. Foco en activacion medible, no en slideware.',
   bioEn:
     'End-to-end ownership of the B2B funnel: onboarding, contracts, partner API integrations, country configs, and production diagnosis. Focused on measurable activation, not slideware.',
+  // Employment status — keep explicit so the chatbot never invents "left Yango".
+  employer: 'Yango Delivery (Yandex)',
+  employerStatus: 'current',
+  employerNote:
+    'Bill sigue trabajando en Yango Delivery (Yandex) como Product Manager de B2B Delivery International (LATAM/Africa/Asia). No dejo Yango: el portafolio personal es paralelo a su rol full-time.',
+  employerNoteEn:
+    'Bill still works at Yango Delivery (Yandex) as Product Manager for B2B Delivery International (LATAM/Africa/Asia). He did not leave Yango: the personal portfolio runs in parallel with his full-time role.',
   age: 29,
   languages: ['Espanol', 'Ingles'],
   aiExpertise:
@@ -130,7 +137,7 @@ export const portfolioProjects: PortfolioProject[] = [
       'Marketplace Logistics',
       'Data-informed Prioritization'
     ],
-    href: 'https://apps.apple.com/us/app/yango-taxi-food-delivery/'
+    href: 'https://apps.apple.com/us/app/yango-taxi-food-delivery/id1437157286'
   },
   {
     slug: 'nup-shopify-build',
@@ -187,32 +194,57 @@ export const portfolioProjects: PortfolioProject[] = [
 
 export const quickAnswers = [
   {
+    id: 'employer-yango',
+    keywords: [
+      'yango',
+      'yandex',
+      'dejaste',
+      'dejó',
+      'dejo',
+      'left yango',
+      'no trabajas',
+      'ya no trabaj',
+      'quit',
+      'resigned',
+      'employer',
+      'empleador',
+      'donde trabajas',
+      'where do you work',
+      'current role',
+      'rol actual'
+    ],
+    answer:
+      'Bill sigue en Yango Delivery (Yandex) como Product Manager de B2B Delivery International (LATAM/Africa/Asia). No dejo la empresa: este sitio es su portafolio personal en paralelo al rol full-time. Lidera integraciones API, onboarding B2B y configs por pais.'
+  },
+  {
     id: 'background',
     keywords: [
-      'quien',
-      'eres',
-      'who',
+      'quien es bill',
+      'quién es bill',
+      'who is bill',
+      'quien eres',
+      'quién eres',
+      'about bill',
       'background',
-      'about',
+      'experiencia',
       'experience',
       'bio'
     ],
     answer:
-      'Bill es Product Manager de plataformas B2B e integraciones API en mercados internacionales (LATAM/Africa), remoto desde Santiago de Chile. Ownership del funnel onboarding → first order, configs por pais y diagnosis en produccion.'
+      'Bill es Product Manager de plataformas B2B e integraciones API en mercados internacionales (LATAM/Africa), remoto desde Santiago de Chile. Hoy trabaja en Yango Delivery (Yandex). Ownership del funnel onboarding → first order, configs por pais y diagnosis en produccion.'
   },
   {
     id: 'services',
     keywords: [
       'service',
       'offer',
-      'help',
-      'work',
       'hire',
       'servicio',
       'servicios',
-      'trabajo',
-      'ayuda',
-      'ofreces'
+      'ofreces',
+      'contratar',
+      'puedes ayudar',
+      'how can you help'
     ],
     answer:
       'Puede ayudarte con product management B2B, integraciones API con partners, configs por pais, diagnosis en produccion y un operating system con IA. Shopify y AI App Rescue son secundarios.'
@@ -235,7 +267,7 @@ export const quickAnswers = [
   },
   {
     id: 'age',
-    keywords: ['edad', 'age', 'cuantos anos', 'how old'],
+    keywords: ['edad', 'age', 'cuantos anos', 'cuántos años', 'how old'],
     answer: 'Bill tiene 29 anos.'
   },
   {
@@ -256,13 +288,12 @@ export const quickAnswers = [
       'idioma',
       'idiomas',
       'ingles',
+      'español',
       'espanol',
       'english',
-      'ai',
-      'ia',
       'rag',
-      'modelo',
-      'modelos'
+      'modelo de ia',
+      'modelos de ia'
     ],
     answer:
       'Bill habla ingles y espanol, y es fluido en herramientas de IA, implementacion de modelos y enfoques RAG aplicados a casos de negocio.'

@@ -20,7 +20,8 @@ function collectVisitorContext() {
     const now = new Date()
     return {
       timezone:
-        Intl.DateTimeFormat().resolvedOptions().timeZone ?? '',
+        Intl.DateTimeFormat().resolvedOptions().timeZone ??
+        '',
       localTime: now.toLocaleString(undefined, {
         weekday: 'long',
         hour: '2-digit',
@@ -30,8 +31,13 @@ function collectVisitorContext() {
         ? navigator.languages.slice(0, 4)
         : [navigator.language],
       platform:
-        (navigator as Navigator & { userAgentData?: { platform?: string } })
-          .userAgentData?.platform ?? navigator.platform ?? '',
+        (
+          navigator as Navigator & {
+            userAgentData?: { platform?: string }
+          }
+        ).userAgentData?.platform ??
+        navigator.platform ??
+        '',
       screen: `${window.screen.width}x${window.screen.height}`,
       referrer: document.referrer || '',
       pagePath: window.location.pathname

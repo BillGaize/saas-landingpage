@@ -164,14 +164,22 @@ export function StructuredData() {
 
   const graph = {
     '@context': 'https://schema.org',
-    '@graph': [person, website, profilePage, faq, breadcrumb]
+    '@graph': [
+      person,
+      website,
+      profilePage,
+      faq,
+      breadcrumb
+    ]
   }
 
   return (
     <script
       type="application/ld+json"
       // eslint-disable-next-line react/no-danger
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(graph) }}
+      dangerouslySetInnerHTML={{
+        __html: JSON.stringify(graph)
+      }}
     />
   )
 }

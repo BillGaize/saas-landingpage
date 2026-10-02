@@ -27,7 +27,10 @@ const LLM_GLOBAL_PER_HOUR = Number(
 )
 
 const ipBuckets = new Map<string, Bucket>()
-let globalBucket: Bucket = { count: 0, resetAt: Date.now() + WINDOW_MS }
+let globalBucket: Bucket = {
+  count: 0,
+  resetAt: Date.now() + WINDOW_MS
+}
 
 function tick(bucket: Bucket): Bucket {
   const now = Date.now()
@@ -49,7 +52,9 @@ export function allowLlm(ip: string): boolean {
   }
 
   const existing = ipBuckets.get(ip)
-  const bucket = existing ? tick(existing) : { count: 0, resetAt: Date.now() + WINDOW_MS }
+  const bucket = existing
+    ? tick(existing)
+    : { count: 0, resetAt: Date.now() + WINDOW_MS }
 
   if (bucket.count >= LLM_PER_IP_PER_HOUR) {
     ipBuckets.set(ip, bucket)
@@ -63,11 +68,13 @@ export function allowLlm(ip: string): boolean {
   // Opportunistic cleanup to bound memory.
   if (ipBuckets.size > 5000) {
     const now = Date.now()
-    Array.from(ipBuckets.entries()).forEach(([key, value]) => {
-      if (now > value.resetAt) {
-        ipBuckets.delete(key)
+    Array.from(ipBuckets.entries()).forEach(
+      ([key, value]) => {
+        if (now > value.resetAt) {
+          ipBuckets.delete(key)
+        }
       }
-    })
+    )
   }
 
   return true

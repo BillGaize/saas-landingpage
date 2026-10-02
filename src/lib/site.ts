@@ -16,7 +16,8 @@ export const siteConfig = {
     lat: -33.4489,
     lng: -70.6693
   },
-  jobTitle: 'Product Manager · B2B Platforms & API Integrations',
+  jobTitle:
+    'Product Manager · B2B Platforms & API Integrations',
   sameAs: [
     'https://www.linkedin.com/in/billgaize/',
     'https://github.com/BillGaize'

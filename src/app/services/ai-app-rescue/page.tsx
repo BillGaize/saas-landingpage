@@ -145,7 +145,7 @@ const copy = {
       {
         title: 'Integraciones B2B multi-país',
         body: 'Liderazgo de integraciones API y operaciones de delivery en seis mercados, coordinando producto, partners y ejecución técnica.',
-        href: '/projects/yango-b2b-integrations',
+        href: '/projects',
         link: 'Ver caso de proyecto'
       }
     ],
@@ -285,7 +285,7 @@ const copy = {
       {
         title: 'Multi-country B2B integrations',
         body: 'Led delivery API integrations and operations across six markets, coordinating product, partners and technical execution.',
-        href: '/projects/yango-b2b-integrations',
+        href: '/projects',
         link: 'View project case'
       }
     ],

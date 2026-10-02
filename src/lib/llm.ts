@@ -33,7 +33,11 @@ export function isLlmConfigured() {
  */
 export async function callLlm(
   messages: LlmMessage[],
-  options?: { maxTokens?: number; temperature?: number; timeoutMs?: number }
+  options?: {
+    maxTokens?: number
+    temperature?: number
+    timeoutMs?: number
+  }
 ): Promise<string | null> {
   const apiKey = process.env.NVIDIA_API_KEY
   if (!apiKey) {
@@ -41,12 +45,9 @@ export async function callLlm(
   }
 
   const controller = new AbortController()
-  const timeout = setTimeout(
-    () => {
-      controller.abort()
-    },
-    options?.timeoutMs ?? 8000
-  )
+  const timeout = setTimeout(() => {
+    controller.abort()
+  }, options?.timeoutMs ?? 8000)
 
   try {
     const response = await fetch(
@@ -75,11 +76,33 @@ export async function callLlm(
     }
 
     const data = (await response.json()) as {
-      choices?: Array<{ message?: { content?: string } }>
+      choices?: Array<{
+        message?: {
+          content?: string | Array<{ type?: string; text?: string }>
+          reasoning_content?: string
+        }
+      }>
     }
 
-    const text = data.choices?.[0]?.message?.content?.trim()
-    return text && text.length > 0 ? text : null
+    const message = data.choices?.[0]?.message
+    const raw = message?.content
+    const text =
+      typeof raw === 'string'
+        ? raw.trim()
+        : Array.isArray(raw)
+          ? raw
+              .map((part) =>
+                typeof part?.text === 'string' ? part.text : ''
+              )
+              .join('')
+              .trim()
+          : ''
+
+    // Some NIM models put visible answer after reasoning; strip empty shells.
+    if (text.length > 0) {
+      return text
+    }
+    return null
   } catch {
     return null
   } finally {
