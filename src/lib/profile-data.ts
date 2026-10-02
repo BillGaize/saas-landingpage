@@ -23,13 +23,28 @@ export const profileFacts = {
   bio: 'Ownership end-to-end del funnel B2B: onboarding, contratos, integraciones API con partners, configs por pais y diagnosis en produccion. Foco en activacion medible, no en slideware.',
   bioEn:
     'End-to-end ownership of the B2B funnel: onboarding, contracts, partner API integrations, country configs, and production diagnosis. Focused on measurable activation, not slideware.',
-  // Employment status — keep explicit so the chatbot never invents "left Yango".
+  // Employment — current through late Dec 2026, then phase-out exit.
   employer: 'Yango Delivery (Yandex)',
-  employerStatus: 'current',
+  employerStatus: 'current_until_late_dec_2026',
+  employerEnd: 'late December 2026',
   employerNote:
-    'Bill sigue trabajando en Yango Delivery (Yandex) como Product Manager de B2B Delivery International (LATAM/Africa/Asia). No dejo Yango: el portafolio personal es paralelo a su rol full-time.',
+    'Bill sigue hoy en Yango Delivery (Yandex) como Product Manager de B2B Delivery International (LATAM/Africa/Asia), remoto desde Santiago. Su rol se esta phaseando out por la transicion Delivery → Yango B2B Taxi; a partir de fines de diciembre 2026 ya no estara en Yango. El portafolio personal (billgaize.com) es paralelo al rol full-time y tambien sirve para oportunidades post-phase-out.',
   employerNoteEn:
-    'Bill still works at Yango Delivery (Yandex) as Product Manager for B2B Delivery International (LATAM/Africa/Asia). He did not leave Yango: the personal portfolio runs in parallel with his full-time role.',
+    'Bill currently still works at Yango Delivery (Yandex) as Product Manager for B2B Delivery International (LATAM/Africa/Asia), remote from Santiago. His role is being phased out in the Delivery → Yango B2B Taxi transition; from late December 2026 he will no longer be at Yango. The personal portfolio (billgaize.com) runs in parallel with the full-time role and also supports post-phase-out opportunities.',
+  yangoExperience: `
+Yango / Yandex Delivery — B2B Delivery International (current through late Dec 2026):
+- Role: Product Manager, B2B Delivery Platform Solutions; reports to Tien (TM); remote Chile GMT-4.
+- Scope: end-to-end B2B Delivery outside Russia/CIS — client acquisition through API integration to active ops.
+- Markets: Peru, Bolivia, Colombia, Ghana, plus expansions with regional GMs (also worked integrations involving Chile, Dubai/UAE, Cote d'Ivoire, Zambia).
+- Funnel ownership: registration → contract → top-up → first successful order; finds friction and runs experiments.
+- API integrations with partners (REST, webhooks, playbooks); technical intake, docs, launch monitoring to BAU.
+- Country configs (payment methods, self-registration, offer/card flags), tariff/zone enablement with platform eng.
+- Production diagnosis for B2B clients (pickup codes, sync failures, payment flow bugs) with GMs and platform.
+- AI tooling adoption for the product team (discovery, metrics, ops harness).
+- Secondary Shopify / e-commerce PM work and AI App Rescue are personal/parallel, not Yango core scope.
+- Out of scope at Yango: Russia/CIS NDD, Taxi ride-hailing product, C2C product, payments gateway build, pricing.
+- Transition: role phase-out as Delivery moves toward Yango B2B Taxi; exit window late December 2026.
+`.trim(),
   age: 29,
   languages: ['Espanol', 'Ingles'],
   aiExpertise:
@@ -54,7 +69,7 @@ export const profileFacts = {
   linkedin: 'https://www.linkedin.com/in/billgaize/',
   github: 'https://github.com/BillGaize',
   valueProposition:
-    'Product Manager de plataformas B2B e integraciones API en mercados internacionales (LATAM/Africa), con operating system de IA para discovery, metricas y diagnosis.'
+    'Product Manager de plataformas B2B e integraciones API en mercados internacionales (LATAM/Africa), con operating system de IA para discovery, metricas y diagnosis. Abierto a roles nuevos tras el phase-out de Yango a fines de 2026.'
 }
 
 export const coreServices = [
@@ -109,16 +124,17 @@ export const portfolioProjects: PortfolioProject[] = [
     slug: 'yango-b2b-integrations',
     title: 'Yango Delivery - Integraciones B2B Multi-pais',
     summary:
-      'Liderazgo de integraciones API con empresas en Peru, Bolivia, Chile, Dubai, Costa de Marfil y Zambia para incluir Yango en flujos de last mile y middle mile.',
+      'Ownership de integraciones API B2B con empresas en Peru, Bolivia, Colombia, Ghana, Chile, Dubai, Costa de Marfil y Zambia para meter Yango Delivery en flujos last-mile y middle-mile (REST, webhooks, playbooks, handoff a BAU).',
     impact:
-      'Aceleracion de despliegues de integracion y estandarizacion operativa en diferentes mercados.',
-    role: 'Lead Project Manager',
+      'Onboarding de partners ~4x mas rapido con tooling API y playbooks; estandarizacion operativa multi-mercado y menos friccion en el camino a primera orden.',
+    role: 'Product Manager / Lead Project Manager — B2B Delivery International',
     scope:
-      'Coordinacion de equipos regionales, habilitacion tecnica con partners y seguimiento del cumplimiento de flujos operativos.',
+      'Intake tecnico, documentacion, coordinacion con GMs regionales y platform eng, configs por pais, monitoreo de launch y diagnosis en produccion hasta Business-as-Usual.',
     stack: [
       'API Integrations',
       'Logistics Tech',
-      'B2B Operations'
+      'B2B Operations',
+      'Country Configs'
     ],
     href: 'https://delivery.yango.com'
   },
@@ -126,12 +142,12 @@ export const portfolioProjects: PortfolioProject[] = [
     slug: 'yango-c2c-app-latam',
     title: 'Yango C2C App - Product Management LATAM',
     summary:
-      'Trabajo como Product Manager para Latinoamerica en la app de Yango, apoyando el lanzamiento de funcionalidades orientadas a eficiencia de envios.',
+      'Product Manager LATAM en la app Yango apoyando features de eficiencia de envios (incl. tarifas lentas / batching) en el producto C2C.',
     impact:
-      'Lanzamiento de features como tarifas lentas para batching de multiples pedidos, reduciendo costo de envios y aumentando NIGB.',
+      '70K+ deliveries escalados en tarifario C2C / USD 165K+ gross booking; features orientadas a bajar costo de envio y subir NIGB.',
     role: 'Product Manager LATAM',
     scope:
-      'Definicion y priorizacion de features, coordinacion con equipos cross-funcionales y seguimiento de impacto de negocio.',
+      'Definicion y priorizacion de features, coordinacion cross-funcional y seguimiento de impacto de negocio.',
     stack: [
       'Product Strategy',
       'Marketplace Logistics',
@@ -211,10 +227,17 @@ export const quickAnswers = [
       'donde trabajas',
       'where do you work',
       'current role',
-      'rol actual'
+      'rol actual',
+      'phase out',
+      'phase-out',
+      'phaseout',
+      'diciembre',
+      'december',
+      'saliste',
+      'leaving'
     ],
     answer:
-      'Bill sigue en Yango Delivery (Yandex) como Product Manager de B2B Delivery International (LATAM/Africa/Asia). No dejo la empresa: este sitio es su portafolio personal en paralelo al rol full-time. Lidera integraciones API, onboarding B2B y configs por pais.'
+      'Hoy Bill sigue en Yango Delivery (Yandex) como PM de B2B Delivery International (LATAM/Africa/Asia). Su rol se esta phaseando out por la transicion Delivery → Yango B2B Taxi; a fines de diciembre 2026 deja Yango. Hasta entonces lidera funnel onboarding→first order, integraciones API multi-pais y configs/diagnosis en produccion. Este sitio es portafolio personal y canal para roles nuevos.'
   },
   {
     id: 'background',
@@ -231,7 +254,7 @@ export const quickAnswers = [
       'bio'
     ],
     answer:
-      'Bill es Product Manager de plataformas B2B e integraciones API en mercados internacionales (LATAM/Africa), remoto desde Santiago de Chile. Hoy trabaja en Yango Delivery (Yandex). Ownership del funnel onboarding → first order, configs por pais y diagnosis en produccion.'
+      'Bill es Product Manager de plataformas B2B e integraciones API en mercados internacionales (LATAM/Africa), remoto desde Santiago de Chile. Hoy trabaja en Yango Delivery (Yandex) hasta fines de dic 2026 (phase-out del rol). Ownership del funnel onboarding → first order, configs por pais y diagnosis en produccion.'
   },
   {
     id: 'services',
@@ -244,10 +267,12 @@ export const quickAnswers = [
       'ofreces',
       'contratar',
       'puedes ayudar',
-      'how can you help'
+      'how can you help',
+      'disponible',
+      'available'
     ],
     answer:
-      'Puede ayudarte con product management B2B, integraciones API con partners, configs por pais, diagnosis en produccion y un operating system con IA. Shopify y AI App Rescue son secundarios.'
+      'Puede ayudarte con product management B2B, integraciones API con partners, configs por pais, diagnosis en produccion y un operating system con IA. Shopify y AI App Rescue son secundarios. Abierto a conversaciones de roles/proyectos de cara al phase-out de Yango a fines de 2026.'
   },
   {
     id: 'contact',
