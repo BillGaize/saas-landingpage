@@ -11,7 +11,7 @@ export default async function Page() {
       ? {
           legal: 'Legal',
           title: 'Privacy Policy',
-          updated: 'Last updated: March 27, 2026',
+          updated: 'Last updated: October 23, 2026',
           intro1:
             'This site collects only minimal data required to operate and improve the portfolio experience. Information is not sold.',
           intro2:
@@ -26,6 +26,9 @@ export default async function Page() {
           thirdPartyTitle: 'Third-party services',
           thirdPartyText:
             'This site may use trusted external services (for example analytics, scheduling, and hosting). Each provider handles data according to its own policy.',
+          analyticsTitle: 'Analytics and session recordings',
+          analyticsText:
+            'This site uses PostHog (US cloud) to measure visits, page views, clicks and web performance, and to record anonymized sessions (screen interactions) to improve the experience. Text typed into form fields is masked and not recorded. Data includes approximate location (country), browser, device and referring page. It is not sold or used for advertising. The site honors the Do Not Track setting of your browser.',
           contactTitle: 'Contact',
           contactText: 'For privacy inquiries, write to:'
         }
@@ -33,7 +36,7 @@ export default async function Page() {
           legal: 'Legal',
           title: 'Politica de privacidad',
           updated:
-            'Ultima actualizacion: 27 de marzo de 2026',
+            'Ultima actualizacion: 23 de octubre de 2026',
           intro1:
             'Este sitio recopila datos minimos necesarios para operar y mejorar la experiencia del portafolio. La informacion no se vende.',
           intro2:
@@ -48,6 +51,9 @@ export default async function Page() {
           thirdPartyTitle: 'Servicios de terceros',
           thirdPartyText:
             'Este sitio puede usar servicios externos confiables (por ejemplo analytics, agendamiento y hosting). Cada proveedor maneja datos segun su propia politica.',
+          analyticsTitle: 'Analitica y grabaciones de sesion',
+          analyticsText:
+            'Este sitio usa PostHog (nube de EE. UU.) para medir visitas, paginas vistas, clics y rendimiento web, y para grabar sesiones anonimizadas (interacciones en pantalla) con el fin de mejorar la experiencia. El texto que escribes en campos de formulario se enmascara y no se graba. Los datos incluyen ubicacion aproximada (pais), navegador, dispositivo y pagina de origen. No se venden ni se usan para publicidad. El sitio respeta la opcion No Rastrear (Do Not Track) de tu navegador.',
           contactTitle: 'Contacto',
           contactText:
             'Para consultas de privacidad, escribe a:'
@@ -86,6 +92,13 @@ export default async function Page() {
           {copy.thirdPartyTitle}
         </h2>
         <p>{copy.thirdPartyText}</p>
+      </section>
+
+      <section className="notion-card space-y-4 text-base leading-8 text-zinc-700">
+        <h2 className="text-2xl font-semibold text-black">
+          {copy.analyticsTitle}
+        </h2>
+        <p>{copy.analyticsText}</p>
       </section>
 
       <section className="notion-card space-y-4 text-base leading-8 text-zinc-700">
