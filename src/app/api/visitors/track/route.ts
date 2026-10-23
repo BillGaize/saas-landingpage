@@ -75,7 +75,8 @@ async function resolveCountryCode(request: Request) {
 }
 
 function readGeo(request: Request) {
-  const h = (name: string) => request.headers.get(name) ?? ''
+  const h = (name: string) =>
+    request.headers.get(name) ?? ''
   let city = h('x-vercel-ip-city')
   try {
     city = decodeURIComponent(city)
@@ -90,7 +91,9 @@ function readGeo(request: Request) {
   }
 }
 
-function readDevice(request: Request): 'mobile' | 'desktop' {
+function readDevice(
+  request: Request
+): 'mobile' | 'desktop' {
   return /Mobi|Android|iPhone|iPad/i.test(
     request.headers.get('user-agent') ?? ''
   )

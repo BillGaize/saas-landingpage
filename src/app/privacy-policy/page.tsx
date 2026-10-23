@@ -29,7 +29,7 @@ export default async function Page() {
           analyticsTitle:
             'Analytics and session recordings',
           analyticsText:
-            'This site uses PostHog (US cloud) to measure visits, page views, clicks and web performance, and to record anonymized sessions (screen interactions) to improve the experience. Text typed into form fields is masked and not recorded. Data includes approximate location (country), browser, device and referring page. It is not sold or used for advertising. The site honors the Do Not Track setting of your browser.',
+            'This site uses PostHog (US cloud) to measure visits, page views, clicks and web performance, and to record anonymized sessions (screen interactions) to improve the experience. Text typed into form fields is masked and not recorded. Data includes approximate location (country and city), browser, device, referring page and campaign parameters (UTM). The visitor counter stores only country, device type and time; your IP address is never stored there. The referring page and city are also used to show you a one-time welcome message, and a card with your own connection details (visible only to you). It is not sold or used for advertising. The site honors the Do Not Track setting of your browser.',
           contactTitle: 'Contact',
           contactText: 'For privacy inquiries, write to:'
         }
@@ -55,7 +55,7 @@ export default async function Page() {
           analyticsTitle:
             'Analitica y grabaciones de sesion',
           analyticsText:
-            'Este sitio usa PostHog (nube de EE. UU.) para medir visitas, paginas vistas, clics y rendimiento web, y para grabar sesiones anonimizadas (interacciones en pantalla) con el fin de mejorar la experiencia. El texto que escribes en campos de formulario se enmascara y no se graba. Los datos incluyen ubicacion aproximada (pais), navegador, dispositivo y pagina de origen. No se venden ni se usan para publicidad. El sitio respeta la opcion No Rastrear (Do Not Track) de tu navegador.',
+            'Este sitio usa PostHog (nube de EE. UU.) para medir visitas, paginas vistas, clics y rendimiento web, y para grabar sesiones anonimizadas (interacciones en pantalla) con el fin de mejorar la experiencia. El texto que escribes en campos de formulario se enmascara y no se graba. Los datos incluyen ubicacion aproximada (pais y ciudad), navegador, dispositivo, pagina de origen y parametros de campana (UTM). El contador de visitantes guarda solo pais, tipo de dispositivo y hora; tu direccion IP nunca se guarda ahi. La pagina de origen y la ciudad tambien se usan para mostrarte un mensaje de bienvenida una sola vez y una tarjeta con los datos de tu propia conexion (visible solo para ti). No se venden ni se usan para publicidad. El sitio respeta la opcion No Rastrear (Do Not Track) de tu navegador.',
           contactTitle: 'Contacto',
           contactText:
             'Para consultas de privacidad, escribe a:'
