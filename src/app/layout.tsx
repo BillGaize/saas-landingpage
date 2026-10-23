@@ -6,6 +6,7 @@ import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import { siteConfig, seoKeywords } from '@/lib/site'
 import { StructuredData } from '@/components/seo/structured-data'
+import { PostHogProvider } from '@/components/analytics/posthog-provider'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -91,9 +92,11 @@ export default function RootLayout({
         <StructuredData />
       </head>
       <body className={inter.className}>
-        <Analytics />
-        <SpeedInsights />
-        <SiteShell>{children}</SiteShell>
+        <PostHogProvider>
+          <Analytics />
+          <SpeedInsights />
+          <SiteShell>{children}</SiteShell>
+        </PostHogProvider>
       </body>
     </html>
   )
