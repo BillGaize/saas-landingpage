@@ -7,6 +7,7 @@ export interface VisitorEvent {
   countryCode: string
   sessionId: string
   timestamp: number
+  device?: 'mobile' | 'desktop'
 }
 
 export interface VisitorStatsState {
@@ -215,6 +216,7 @@ async function persist(state: VisitorStatsState) {
 export async function registerVisit(input: {
   sessionId: string
   countryCode: string
+  device?: 'mobile' | 'desktop'
 }) {
   const state = await ensureLoaded()
   const countryCode = normalizeCountryCode(
@@ -240,7 +242,8 @@ export async function registerVisit(input: {
         id: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
         countryCode,
         sessionId: input.sessionId,
-        timestamp: Date.now()
+        timestamp: Date.now(),
+        device: input.device
       }
     ].slice(-250)
   }

@@ -1,6 +1,8 @@
 'use client'
 
 import Link from 'next/link'
+import { countryMeta } from '@/lib/countries'
+import { WelcomeToast } from './welcome-toast'
 import { useEffect, useMemo, useRef, useState } from 'react'
 
 type SiteLanguage = 'es' | 'en'
@@ -14,6 +16,15 @@ interface VisitorEvent {
   countryCode: string
   sessionId: string
   timestamp: number
+  device?: 'mobile' | 'desktop'
+}
+
+interface YouInfo {
+  countryCode: string
+  ip: string
+  city: string
+  region: string
+  timezone: string
 }
 
 interface VisitorApiResponse {
@@ -21,34 +32,43 @@ interface VisitorApiResponse {
   latestTimestamp: number
   events: VisitorEvent[]
   durable?: boolean
+  you?: YouInfo
 }
 
-const COUNTRY_META: Record<
-  string,
-  { flag: string; es: string; en: string }
-> = {
-  CL: { flag: '🇨🇱', es: 'Chile', en: 'Chile' },
-  VE: { flag: '🇻🇪', es: 'Venezuela', en: 'Venezuela' },
-  US: {
-    flag: '🇺🇸',
-    es: 'Estados Unidos',
-    en: 'United States'
-  },
-  RU: { flag: '🇷🇺', es: 'Rusia', en: 'Russia' },
-  PE: { flag: '🇵🇪', es: 'Peru', en: 'Peru' },
-  BO: { flag: '🇧🇴', es: 'Bolivia', en: 'Bolivia' },
-  AE: {
-    flag: '🇦🇪',
-    es: 'Emiratos Arabes Unidos',
-    en: 'United Arab Emirates'
-  },
-  CI: {
-    flag: '🇨🇮',
-    es: 'Costa de Marfil',
-    en: "Cote d'Ivoire"
-  },
-  ZM: { flag: '🇿🇲', es: 'Zambia', en: 'Zambia' },
-  OTHER: { flag: '🌍', es: 'Otros', en: 'Others' }
+function describeClient() {
+  const ua = navigator.userAgent
+  const has = (...keys: string[]) =>
+    keys.some((key) => ua.includes(key))
+  const browser = has('Edg/')
+    ? 'Edge'
+    : has('OPR/')
+      ? 'Opera'
+      : has('CriOS', 'Chrome/')
+        ? 'Chrome'
+        : has('FxiOS', 'Firefox/')
+          ? 'Firefox'
+          : has('Safari/')
+            ? 'Safari'
+            : 'Browser'
+  const os = has('iPhone', 'iPad')
+    ? 'iOS'
+    : has('Android')
+      ? 'Android'
+      : has('Mac OS X')
+        ? 'macOS'
+        : has('Windows')
+          ? 'Windows'
+          : has('Linux')
+            ? 'Linux'
+            : ''
+  const tz =
+    Intl.DateTimeFormat().resolvedOptions().timeZone
+  return {
+    label: os ? `${browser} / ${os}` : browser,
+    screen: `${window.screen.width}x${window.screen.height}`,
+    tz,
+    lang: navigator.language
+  }
 }
 
 const COPY = {
@@ -60,6 +80,12 @@ const COPY = {
     blog: 'Blog',
     schedule: 'Agendar llamada',
     newVisitor: 'Nuevo visitante desde',
+    onMobile: 'desde el celular',
+    yourConnection: 'Tu conexion',
+    yourNote:
+      'Solo lo ves tu. No se guarda en el contador.',
+    ipLabel: 'IP',
+    localTime: 'hora local',
     loading: 'Cargando contador...'
   },
   en: {
@@ -70,6 +96,12 @@ const COPY = {
     blog: 'Blog',
     schedule: 'Book a call',
     newVisitor: 'New visitor from',
+    onMobile: 'on mobile',
+    yourConnection: 'Your connection',
+    yourNote:
+      'Only you see this. It is not stored in the counter.',
+    ipLabel: 'IP',
+    localTime: 'local time',
     loading: 'Loading counter...'
   }
 } as const
@@ -144,6 +176,10 @@ export function SiteFooter({ language }: SiteFooterProps) {
   > | null>(null)
   const [sessionId, setSessionId] = useState('')
   const [toast, setToast] = useState('')
+  const [you, setYou] = useState<YouInfo | null>(null)
+  const [client, setClient] = useState<ReturnType<
+    typeof describeClient
+  > | null>(null)
   const latestTimestampRef = useRef(0)
   const sessionIdRef = useRef('')
 
@@ -178,6 +214,10 @@ export function SiteFooter({ language }: SiteFooterProps) {
         return next
       })
       latestTimestampRef.current = data.latestTimestamp
+      if (data.you) {
+        setYou(data.you)
+      }
+      setClient(describeClient())
     }
 
     void registerVisit()
@@ -224,15 +264,17 @@ export function SiteFooter({ language }: SiteFooterProps) {
           return
         }
 
-        const country =
-          COUNTRY_META[latestExternalEvent.countryCode] ??
-          COUNTRY_META.OTHER
-
-        const countryName =
-          language === 'en' ? country.en : country.es
+        const country = countryMeta(
+          latestExternalEvent.countryCode,
+          language
+        )
+        const device =
+          latestExternalEvent.device === 'mobile'
+            ? ` · ${copy.onMobile}`
+            : ''
 
         setToast(
-          `${country.flag} ${copy.newVisitor} ${countryName}`
+          `${country.flag} ${copy.newVisitor} ${country.name}${device}`
         )
       })()
     }, 8000)
@@ -240,7 +282,7 @@ export function SiteFooter({ language }: SiteFooterProps) {
     return () => {
       window.clearInterval(interval)
     }
-  }, [copy.newVisitor, language, sessionId])
+  }, [copy.newVisitor, copy.onMobile, language, sessionId])
 
   useEffect(() => {
     if (!toast) {
@@ -263,13 +305,13 @@ export function SiteFooter({ language }: SiteFooterProps) {
 
     return Object.entries(counts)
       .sort((a, b) => b[1] - a[1])
-      .slice(0, 6)
+      .slice(0, 8)
       .map(([code, total]) => ({
         code,
         total,
-        meta: COUNTRY_META[code] ?? COUNTRY_META.OTHER
+        meta: countryMeta(code, language)
       }))
-  }, [counts])
+  }, [counts, language])
 
   return (
     <footer className="border-t border-line bg-paper/80">
@@ -328,11 +370,7 @@ export function SiteFooter({ language }: SiteFooterProps) {
                     border-line bg-white px-3 py-1 text-xs"
                 >
                   <span>{country.meta.flag}</span>
-                  <span>
-                    {language === 'en'
-                      ? country.meta.en
-                      : country.meta.es}
-                  </span>
+                  <span>{country.meta.name}</span>
                   <span className="font-semibold">
                     {country.total}
                   </span>
@@ -344,8 +382,43 @@ export function SiteFooter({ language }: SiteFooterProps) {
               {copy.loading}
             </p>
           )}
+          {you && client ? (
+            <div
+              data-attr="your-connection"
+              className="mt-3 border-t border-line pt-2 text-xs text-zinc-600"
+            >
+              <p className="font-semibold text-zinc-700">
+                {copy.yourConnection}
+              </p>
+              <p className="mt-1">
+                {
+                  countryMeta(you.countryCode, language)
+                    .flag
+                }{' '}
+                {[
+                  you.city,
+                  countryMeta(you.countryCode, language)
+                    .name
+                ]
+                  .filter(Boolean)
+                  .join(', ')}
+                {you.ip
+                  ? ` · ${copy.ipLabel} ${you.ip}`
+                  : ''}
+              </p>
+              <p>
+                {client.label} · {client.screen} ·{' '}
+                {client.tz} · {client.lang}
+              </p>
+              <p className="text-zinc-400">
+                {copy.yourNote}
+              </p>
+            </div>
+          ) : null}
         </div>
       </div>
+
+      <WelcomeToast language={language} />
 
       {toast ? (
         <div

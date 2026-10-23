@@ -74,6 +74,30 @@ async function resolveCountryCode(request: Request) {
   }
 }
 
+function readGeo(request: Request) {
+  const h = (name: string) => request.headers.get(name) ?? ''
+  let city = h('x-vercel-ip-city')
+  try {
+    city = decodeURIComponent(city)
+  } catch {
+    // keep raw header
+  }
+  return {
+    ip: getIPFromRequest(request),
+    city,
+    region: h('x-vercel-ip-country-region'),
+    timezone: h('x-vercel-ip-timezone')
+  }
+}
+
+function readDevice(request: Request): 'mobile' | 'desktop' {
+  return /Mobi|Android|iPhone|iPad/i.test(
+    request.headers.get('user-agent') ?? ''
+  )
+    ? 'mobile'
+    : 'desktop'
+}
+
 export async function POST(request: Request) {
   try {
     const body = (await request.json()) as VisitorTrackBody
@@ -89,14 +113,18 @@ export async function POST(request: Request) {
 
     const { blobOk } = await registerVisit({
       sessionId: body.sessionId,
-      countryCode
+      countryCode,
+      device: readDevice(request)
     })
 
     const stats = await readStats()
 
+    // `you` is returned only to the requester and is never stored
+    // (the IP is not written to the counter / blob).
     return NextResponse.json({
       ...stats,
-      blobOk
+      blobOk,
+      you: { countryCode, ...readGeo(request) }
     })
   } catch {
     return NextResponse.json(
