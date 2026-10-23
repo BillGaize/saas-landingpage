@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from 'react'
 import { EyeOff, SendHorizontal } from 'lucide-react'
+import { track } from '@/lib/analytics'
 
 interface ChatMessage {
   role: 'user' | 'assistant'
@@ -175,6 +176,14 @@ export function MiniChat({
     setMessages(nextMessages)
     setValue('')
     setLoading(true)
+    track('chat_message_sent', {
+      language,
+      message_number: nextMessages.filter(
+        (item) => item.role === 'user'
+      ).length,
+      length: trimmed.length,
+      path: window.location.pathname
+    })
 
     try {
       const response = await fetch('/api/chat', {
@@ -198,6 +207,7 @@ export function MiniChat({
         reply?: string
       }
 
+      track('chat_reply_received', { language })
       setMessages((prev) => [
         ...prev,
         {
@@ -207,6 +217,7 @@ export function MiniChat({
       ])
       rotateSuggestions()
     } catch {
+      track('chat_error', { language })
       setMessages((prev) => [
         ...prev,
         {
@@ -238,7 +249,11 @@ export function MiniChat({
           {onHide ? (
             <button
               type="button"
-              onClick={onHide}
+              data-attr="chat-hide"
+              onClick={() => {
+                track('chat_hidden', { language })
+                onHide()
+              }}
               className="inline-flex items-center gap-1 rounded-lg border border-line
                 px-2 py-1 text-xs font-medium text-zinc-700 hover:bg-zinc-50"
             >
@@ -274,7 +289,12 @@ export function MiniChat({
             <button
               key={suggestion}
               type="button"
+              data-attr="chat-suggestion"
               onClick={() => {
+                track('chat_suggestion_click', {
+                  suggestion,
+                  language
+                })
                 setValue(suggestion)
               }}
               className="block w-full rounded-xl border border-line bg-zinc-50 px-3

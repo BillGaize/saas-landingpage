@@ -286,6 +286,7 @@ export function SiteFooter({ language }: SiteFooterProps) {
               {copy.blog}
             </Link>
             <a
+              data-attr="footer-calendly"
               href="https://calendly.com/me--52uo/30min"
               target="_blank"
               rel="noopener noreferrer"

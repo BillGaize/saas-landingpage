@@ -19,6 +19,7 @@ import {
 } from 'lucide-react'
 import { useEffect, useMemo, useState } from 'react'
 import { MiniChat } from '@/components/site/mini-chat'
+import { track } from '@/lib/analytics'
 import { SiteFooter } from '@/components/site/site-footer'
 
 interface SiteShellProps {
@@ -249,7 +250,11 @@ export function SiteShell({ children }: SiteShellProps) {
               </a>
               <button
                 type="button"
+                data-attr="chat-toggle"
                 onClick={() => {
+                  track('chat_toggled', {
+                    opened: !chatOpen
+                  })
                   setChatOpen((prev) => !prev)
                 }}
                 className="inline-flex w-full items-center justify-center gap-2
@@ -366,7 +371,9 @@ export function SiteShell({ children }: SiteShellProps) {
             <div className="mt-10 xl:hidden">
               <button
                 type="button"
+                data-attr="chat-open-mobile"
                 onClick={() => {
+                  track('chat_opened', { device: 'mobile' })
                   setChatOpen(true)
                 }}
                 className="inline-flex items-center gap-2 rounded-xl border border-line
@@ -394,7 +401,9 @@ export function SiteShell({ children }: SiteShellProps) {
             ) : (
               <button
                 type="button"
+                data-attr="chat-open-mobile"
                 onClick={() => {
+                  track('chat_opened', { device: 'mobile' })
                   setChatOpen(true)
                 }}
                 className="inline-flex items-center gap-2 rounded-xl border border-line

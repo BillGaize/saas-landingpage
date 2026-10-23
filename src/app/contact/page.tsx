@@ -69,6 +69,7 @@ export default async function ContactPage() {
             {profileFacts.location}
           </p>
           <a
+            data-attr="contact-email"
             href={`mailto:${profileFacts.contactEmail}`}
             className="inline-block rounded-xl bg-black px-4 py-2.5 text-sm
               font-medium text-white"
@@ -76,6 +77,7 @@ export default async function ContactPage() {
             {profileFacts.contactEmail}
           </a>
           <a
+            data-attr="contact-calendly"
             href={profileFacts.calendly}
             target="_blank"
             rel="noopener noreferrer"

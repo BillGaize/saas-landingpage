@@ -26,7 +26,8 @@ export default async function Page() {
           thirdPartyTitle: 'Third-party services',
           thirdPartyText:
             'This site may use trusted external services (for example analytics, scheduling, and hosting). Each provider handles data according to its own policy.',
-          analyticsTitle: 'Analytics and session recordings',
+          analyticsTitle:
+            'Analytics and session recordings',
           analyticsText:
             'This site uses PostHog (US cloud) to measure visits, page views, clicks and web performance, and to record anonymized sessions (screen interactions) to improve the experience. Text typed into form fields is masked and not recorded. Data includes approximate location (country), browser, device and referring page. It is not sold or used for advertising. The site honors the Do Not Track setting of your browser.',
           contactTitle: 'Contact',
@@ -51,7 +52,8 @@ export default async function Page() {
           thirdPartyTitle: 'Servicios de terceros',
           thirdPartyText:
             'Este sitio puede usar servicios externos confiables (por ejemplo analytics, agendamiento y hosting). Cada proveedor maneja datos segun su propia politica.',
-          analyticsTitle: 'Analitica y grabaciones de sesion',
+          analyticsTitle:
+            'Analitica y grabaciones de sesion',
           analyticsText:
             'Este sitio usa PostHog (nube de EE. UU.) para medir visitas, paginas vistas, clics y rendimiento web, y para grabar sesiones anonimizadas (interacciones en pantalla) con el fin de mejorar la experiencia. El texto que escribes en campos de formulario se enmascara y no se graba. Los datos incluyen ubicacion aproximada (pais), navegador, dispositivo y pagina de origen. No se venden ni se usan para publicidad. El sitio respeta la opcion No Rastrear (Do Not Track) de tu navegador.',
           contactTitle: 'Contacto',

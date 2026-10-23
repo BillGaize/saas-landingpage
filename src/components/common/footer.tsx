@@ -33,6 +33,7 @@ export function Footer() {
             </Typography>
           </Link>
           <Link
+            data-attr="footer-calendly"
             href="https://calendly.com/me--52uo/30min"
             target="_blank"
             rel="noopener noreferrer"

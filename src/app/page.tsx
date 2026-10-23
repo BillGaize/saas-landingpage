@@ -87,6 +87,7 @@ export default async function Home() {
             LinkedIn
           </a>
           <a
+            data-attr="home-email"
             href={`mailto:${profileFacts.contactEmail}`}
             className="rounded-xl border border-line px-5 py-3 text-base
               font-medium"

@@ -399,6 +399,7 @@ export default async function AiAppRescuePage() {
         </p>
         <div className="mt-8 flex flex-col gap-3 sm:flex-row">
           <a
+            data-attr="rescue-primary-mailto"
             href={primaryMailto}
             className="inline-flex items-center justify-center gap-2 rounded-xl
               bg-black px-5 py-3.5 text-base font-medium text-white
@@ -408,6 +409,7 @@ export default async function AiAppRescuePage() {
             <ArrowRight size={18} />
           </a>
           <a
+            data-attr="rescue-calendly"
             href={profileFacts.calendly}
             target="_blank"
             rel="noopener noreferrer"
@@ -657,6 +659,7 @@ export default async function AiAppRescuePage() {
         </p>
         <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
           <a
+            data-attr="rescue-primary-mailto"
             href={primaryMailto}
             className="inline-flex items-center justify-center gap-2 rounded-xl
               bg-black px-6 py-3.5 font-medium text-white"
@@ -665,6 +668,7 @@ export default async function AiAppRescuePage() {
             <ArrowRight size={18} />
           </a>
           <a
+            data-attr="rescue-calendly"
             href={profileFacts.calendly}
             target="_blank"
             rel="noopener noreferrer"
