@@ -12,6 +12,7 @@ export interface Post {
   updatedAt?: string
   readingTime: string
   featured: boolean
+  unlisted?: boolean
   hero: string
   body: string
 }
@@ -46,12 +47,24 @@ export function getAllPosts() {
     )
 }
 
+export function getPublicPosts() {
+  return getAllPosts().filter((post) => !post.unlisted)
+}
+
 export function getFeaturedPosts() {
-  return getAllPosts().filter((post) => post.featured)
+  return getPublicPosts().filter((post) => post.featured)
 }
 
 export function getPostBySlug(slug: string) {
   return getAllPosts().find((post) => post.slug === slug)
+}
+
+export function getPublicPostBySlug(slug: string) {
+  const post = getPostBySlug(slug)
+  if (!post || post.unlisted) {
+    return undefined
+  }
+  return post
 }
 
 export function getPostFilePath(slug: string) {

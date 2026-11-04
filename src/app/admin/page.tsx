@@ -16,16 +16,13 @@ export default async function AdminPostsPage() {
       <div className="w-full max-w-5xl space-y-8">
         <div className="flex flex-wrap items-center justify-between gap-4">
           <div className="space-y-2">
-            <p className="text-xs uppercase tracking-[0.32em] text-muted-foreground">
-              Admin
-            </p>
             <h1 className="text-3xl font-semibold tracking-tight">
-              Gestion de posts
+              Gestión de posts
             </h1>
             <p className="text-sm leading-7 text-muted-foreground">
-              Crea, edita y borra posts. Si usas GitHub como
-              storage, cada cambio dispara un nuevo deploy
-              del sitio.
+              Crea, edita y borra artículos. Si usas GitHub
+              como almacenamiento, cada cambio vuelve a
+              publicar el sitio.
             </p>
           </div>
           <div className="flex gap-3">

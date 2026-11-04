@@ -50,37 +50,37 @@ function collectVisitorContext() {
 
 const CHAT_COPY = {
   es: {
-    title: 'Chat con Bill AI',
+    title: 'Asistente',
     subtitle:
-      'Preguntame por B2B integrations, mercados LATAM/Africa, proyectos, idiomas o IA.',
+      'Pregunta por Yango, los proyectos, los idiomas o cómo contactar a Bill.',
     welcome:
-      'Hola. Soy el asistente del portafolio de Bill. Preguntame por product management B2B, integraciones API, mercados intl, proyectos o como contactarlo.',
+      'Hola. Puedo responder sobre el trabajo de Bill en Yango Delivery, sus proyectos y cómo contactarlo.',
     placeholder: 'Escribe tu pregunta sobre Bill...',
     thinking: 'Pensando...',
     fallback:
-      'No encontre contexto suficiente en este momento, pero puedes escribirme a me@billgaize.com.',
+      'No encontré contexto suficiente en este momento, pero puedes escribir a me@billgaize.com.',
     error:
-      'Tuve un problema temporal respondiendo. Igual puedes escribirme a me@billgaize.com.',
+      'Tuve un problema temporal al responder. Igual puedes escribir a me@billgaize.com.',
     hide: 'Ocultar',
     ariaSend: 'Enviar',
     suggestionPools: [
       [
-        'Cuentame sobre tus proyectos en Shopify',
-        'Que rol tuviste en Yango Delivery?',
-        'Cual es tu edad y background?',
-        'Hablas ingles y trabajas con AI/RAG?'
+        '¿Qué rol tienes hoy en Yango Delivery?',
+        '¿Cuánto tardaba el onboarding de partners?',
+        '¿Qué es HoyCerca?',
+        '¿Cómo te contacto?'
       ],
       [
-        'Que resultados lograste en NUP y Murph Fitness?',
-        'Como fue la migracion de The Blue Lab a Shopify?',
-        'Que valor te aporta tu formacion como Bioanalista?',
-        'Como aplicas modelos de IA y RAG en proyectos reales?'
+        '¿Qué resultados hubo con las tarifas lentas en C2C?',
+        '¿En qué países hubo lanzamientos?',
+        '¿Qué hiciste en Haciendola.com?',
+        '¿Hablas inglés?'
       ],
       [
-        'En que paises lideraste integraciones de Yango Delivery?',
-        'Que experiencia tienes como PM B2B e integraciones API?',
-        'Hablas ingles para reuniones con equipos globales?',
-        'Como te contacto para trabajar juntos?'
+        'Cuéntame del lanzamiento C2C en Venezuela',
+        '¿Qué es la app de Shopify para Yango B2B Cargo?',
+        '¿Cuál es tu edad?',
+        '¿Dónde estás basado?'
       ]
     ]
   },
@@ -233,8 +233,8 @@ export function MiniChat({
 
   return (
     <div
-      className="flex h-[72vh] min-h-[520px] w-full flex-col rounded-2xl
-        border border-line bg-paper shadow-sm"
+      className="flex h-[72vh] min-h-[520px] w-full flex-col border
+        border-line bg-paper"
     >
       <div className="border-b border-line px-4 py-3">
         <div className="flex items-start justify-between gap-3">

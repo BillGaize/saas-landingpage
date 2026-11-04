@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Newsreader, Source_Sans_3 } from 'next/font/google'
 import './globals.css'
 import { SiteShell } from '@/components/site/site-shell'
 import { Analytics } from '@vercel/analytics/react'
@@ -8,10 +8,20 @@ import { siteConfig, seoKeywords } from '@/lib/site'
 import { StructuredData } from '@/components/seo/structured-data'
 import { PostHogProvider } from '@/components/analytics/posthog-provider'
 
-const inter = Inter({ subsets: ['latin'] })
+const bodyFont = Source_Sans_3({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-body'
+})
+
+const headingFont = Newsreader({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-heading'
+})
 
 const TITLE_DEFAULT =
-  'Bill Gaize | Product Manager B2B Platforms & API Integrations | Santiago, Chile'
+  'Bill Gaize | Product manager de integraciones B2B | Santiago, Chile'
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -24,7 +34,7 @@ export const metadata: Metadata = {
   authors: [{ name: 'Bill Gaize', url: siteConfig.url }],
   creator: 'Bill Gaize',
   publisher: 'Bill Gaize',
-  applicationName: 'Bill Gaize Portfolio',
+  applicationName: 'Bill Gaize',
   category: 'technology',
   alternates: {
     canonical: '/',
@@ -48,7 +58,7 @@ export const metadata: Metadata = {
         url: '/opengraph-image.png',
         width: 1200,
         height: 630,
-        alt: 'Bill Gaize — Product Manager B2B Platforms & API Integrations, Santiago, Chile'
+        alt: 'Bill Gaize, product manager de integraciones B2B, Santiago, Chile'
       }
     ]
   },
@@ -86,12 +96,12 @@ export default function RootLayout({
     <html
       lang="es"
       suppressHydrationWarning
-      className="antialiased"
+      className={`${bodyFont.variable} ${headingFont.variable} antialiased`}
     >
       <head>
         <StructuredData />
       </head>
-      <body className={inter.className}>
+      <body className="font-sans">
         <PostHogProvider>
           <Analytics />
           <SpeedInsights />

@@ -1,16 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { cookies } from 'next/headers'
-import {
-  ArrowRight,
-  Check,
-  CheckCircle2,
-  Clock3,
-  Code2,
-  ExternalLink,
-  ShieldCheck,
-  Wrench
-} from 'lucide-react'
 import { profileFacts } from '@/lib/profile-data'
 import { siteConfig } from '@/lib/site'
 
@@ -24,7 +14,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title:
-      'AI App Rescue — From AI demo to stable production',
+      'AI App Rescue: from an AI demo to stable production',
     description:
       'A focused rescue service for Next.js, Lovable, Bolt, v0 and Replit apps with broken auth, databases, payments or deployments.',
     url: `${siteConfig.url}/services/ai-app-rescue`,
@@ -34,8 +24,7 @@ export const metadata: Metadata = {
 
 const copy = {
   es: {
-    eyebrow: 'AI App Rescue · remoto desde Chile',
-    title: 'De demo con IA a producción estable.',
+    title: 'De un demo con IA a producción estable.',
     subtitle:
       'Rescato aplicaciones creadas con Lovable, Bolt, v0, Replit, Cursor o Next.js cuando el demo funciona, pero auth, base de datos, pagos o deploy fallan en producción.',
     primaryCta: 'Solicitar diagnóstico por US$79',
@@ -61,7 +50,6 @@ const copy = {
       'Variables y deploy documentados',
       'Walkthrough de entrega'
     ],
-    pricingEyebrow: 'Alcance y precio',
     pricingTitle:
       'Empieza pequeño. Escala sólo si tiene sentido.',
     pricingNote:
@@ -80,7 +68,7 @@ const copy = {
           'Cotización fija del siguiente paso'
         ],
         cta: 'Diagnosticar mi app',
-        subject: 'AI App Rescue — Diagnóstico US$79'
+        subject: 'AI App Rescue: diagnóstico US$79'
       },
       {
         name: 'Rescate enfocado',
@@ -95,7 +83,7 @@ const copy = {
           'Deploy o instrucciones exactas'
         ],
         cta: 'Solicitar rescate',
-        subject: 'AI App Rescue — Rescate enfocado US$249',
+        subject: 'AI App Rescue: rescate enfocado US$249',
         featured: true
       },
       {
@@ -111,7 +99,7 @@ const copy = {
           'Handoff técnico grabado'
         ],
         cta: 'Evaluar mi sprint',
-        subject: 'AI App Rescue — Sprint de producción'
+        subject: 'AI App Rescue: sprint de producción'
       }
     ],
     processTitle: 'Un proceso corto y comprobable',
@@ -133,8 +121,7 @@ const copy = {
         'Recibes cambios, evidencia, checklist y walkthrough.'
       ]
     ],
-    proofEyebrow: 'Evidencia relevante',
-    proofTitle: 'Producto, integraciones y operación real',
+    proofTitle: 'Producto e integraciones',
     proof: [
       {
         title: 'HoyCerca',
@@ -144,7 +131,7 @@ const copy = {
       },
       {
         title: 'Integraciones B2B multi-país',
-        body: 'Liderazgo de integraciones API y operaciones de delivery en seis mercados, coordinando producto, partners y ejecución técnica.',
+        body: "Integraciones API de delivery en Perú, Bolivia, Colombia, Ghana, Côte d'Ivoire y Zambia.",
         href: '/projects',
         link: 'Ver caso de proyecto'
       }
@@ -173,8 +160,7 @@ const copy = {
       'Disponible para equipos globales · Español e inglés'
   },
   en: {
-    eyebrow: 'AI App Rescue · remote from Chile',
-    title: 'From AI demo to stable production.',
+    title: 'From an AI demo to stable production.',
     subtitle:
       'I rescue apps built with Lovable, Bolt, v0, Replit, Cursor or Next.js when the demo works but auth, databases, payments or deployment fail in production.',
     primaryCta: 'Request a US$79 diagnosis',
@@ -200,7 +186,6 @@ const copy = {
       'Environment and deploy documented',
       'Delivery walkthrough'
     ],
-    pricingEyebrow: 'Scope and pricing',
     pricingTitle:
       'Start small. Scale only when it makes sense.',
     pricingNote:
@@ -219,7 +204,7 @@ const copy = {
           'Fixed-price next step'
         ],
         cta: 'Diagnose my app',
-        subject: 'AI App Rescue — US$79 diagnosis'
+        subject: 'AI App Rescue: US$79 diagnosis'
       },
       {
         name: 'Focused rescue',
@@ -234,7 +219,7 @@ const copy = {
           'Deployment or exact instructions'
         ],
         cta: 'Request a rescue',
-        subject: 'AI App Rescue — US$249 focused rescue',
+        subject: 'AI App Rescue: US$249 focused rescue',
         featured: true
       },
       {
@@ -250,7 +235,7 @@ const copy = {
           'Recorded technical handoff'
         ],
         cta: 'Assess my sprint',
-        subject: 'AI App Rescue — production sprint'
+        subject: 'AI App Rescue: production sprint'
       }
     ],
     processTitle: 'A short, verifiable process',
@@ -272,9 +257,7 @@ const copy = {
         'You receive changes, evidence, a checklist and walkthrough.'
       ]
     ],
-    proofEyebrow: 'Relevant evidence',
-    proofTitle:
-      'Real product, integration and operations work',
+    proofTitle: 'Product and integrations',
     proof: [
       {
         title: 'HoyCerca',
@@ -284,7 +267,7 @@ const copy = {
       },
       {
         title: 'Multi-country B2B integrations',
-        body: 'Led delivery API integrations and operations across six markets, coordinating product, partners and technical execution.',
+        body: "Delivery API integrations in Peru, Bolivia, Colombia, Ghana, Côte d'Ivoire, and Zambia.",
         href: '/projects',
         link: 'View project case'
       }
@@ -371,20 +354,7 @@ export default async function AiAppRescuePage() {
         }}
       />
 
-      <section
-        className="relative overflow-hidden border-b border-line pb-14 pt-6
-          sm:pb-20 sm:pt-10"
-      >
-        <div
-          className="absolute -right-20 top-0 -z-10 h-64 w-64 rounded-full
-            bg-emerald-200/50 blur-3xl"
-        />
-        <p
-          className="text-sm font-medium uppercase tracking-[0.22em]
-            text-emerald-700"
-        >
-          {text.eyebrow}
-        </p>
+      <section className="border-b border-line pb-14 pt-6 sm:pb-20 sm:pt-10">
         <h1
           className="mt-5 max-w-4xl text-5xl font-semibold tracking-[-0.05em]
             sm:text-7xl"
@@ -401,23 +371,19 @@ export default async function AiAppRescuePage() {
           <a
             data-attr="rescue-primary-mailto"
             href={primaryMailto}
-            className="inline-flex items-center justify-center gap-2 rounded-xl
-              bg-black px-5 py-3.5 text-base font-medium text-white
-              transition-transform hover:-translate-y-0.5"
+            className="inline-flex items-center justify-center bg-black px-5 py-3.5
+              text-base text-white"
           >
             {text.primaryCta}
-            <ArrowRight size={18} />
           </a>
           <a
             data-attr="rescue-calendly"
             href={profileFacts.calendly}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 rounded-xl
-              border border-line bg-white px-5 py-3.5 text-base
-              font-medium"
+            className="inline-flex items-center justify-center border border-line
+              bg-paper px-5 py-3.5 text-base"
           >
-            <Clock3 size={18} />
             {text.secondaryCta}
           </a>
         </div>
@@ -437,12 +403,8 @@ export default async function AiAppRescuePage() {
           {text.signals.map((signal) => (
             <li
               key={signal}
-              className="flex gap-3 py-4 text-lg leading-7 text-zinc-700"
+              className="py-4 text-lg leading-7 text-zinc-800"
             >
-              <Wrench
-                className="mt-1 shrink-0 text-emerald-700"
-                size={18}
-              />
               {signal}
             </li>
           ))}
@@ -450,27 +412,16 @@ export default async function AiAppRescuePage() {
       </section>
 
       <section className="border-b border-line py-14">
-        <div className="rounded-[2rem] bg-zinc-950 px-6 py-10 text-white sm:px-10">
-          <Code2 className="text-emerald-300" size={32} />
-          <h2
-            className="mt-6 max-w-3xl text-3xl font-semibold tracking-tight
-              sm:text-4xl"
-          >
+        <div className="border-l-2 border-clay pl-6">
+          <h2 className="max-w-3xl text-3xl sm:text-4xl">
             {text.outcomeTitle}
           </h2>
-          <p className="mt-4 max-w-3xl text-lg leading-8 text-zinc-300">
+          <p className="mt-4 max-w-3xl text-lg leading-8 text-zinc-800">
             {text.outcomeBody}
           </p>
-          <ul className="mt-8 grid gap-4 sm:grid-cols-2">
+          <ul className="mt-6 space-y-2">
             {text.outcomes.map((outcome) => (
-              <li
-                key={outcome}
-                className="flex items-center gap-3 text-base"
-              >
-                <CheckCircle2
-                  className="shrink-0 text-emerald-300"
-                  size={20}
-                />
+              <li key={outcome} className="text-base">
                 {outcome}
               </li>
             ))}
@@ -479,20 +430,17 @@ export default async function AiAppRescuePage() {
       </section>
 
       <section className="border-b border-line py-14">
-        <p className="text-sm font-medium uppercase tracking-[0.22em] text-subtle">
-          {text.pricingEyebrow}
-        </p>
-        <h2 className="mt-4 max-w-3xl text-4xl font-semibold tracking-tight">
+        <h2 className="max-w-3xl text-4xl">
           {text.pricingTitle}
         </h2>
         <div className="mt-9 grid gap-5 lg:grid-cols-3">
           {text.plans.map((plan) => (
             <article
               key={plan.name}
-              className={`flex flex-col border p-6 ${
+              className={`flex flex-col border-t p-0 pt-6 ${
                 'featured' in plan && plan.featured
-                  ? 'border-emerald-500 bg-emerald-50'
-                  : 'border-line bg-white'
+                  ? 'border-clay'
+                  : 'border-line'
               }`}
             >
               <p className="text-sm font-medium text-zinc-600">
@@ -513,21 +461,16 @@ export default async function AiAppRescuePage() {
                     key={feature}
                     className="flex gap-2 text-sm leading-6 text-zinc-700"
                   >
-                    <Check
-                      className="mt-1 shrink-0 text-emerald-700"
-                      size={15}
-                    />
                     {feature}
                   </li>
                 ))}
               </ul>
               <a
                 href={createMailto(plan.subject, language)}
-                className="mt-7 inline-flex items-center justify-center gap-2
-                  rounded-xl bg-black px-4 py-3 text-sm font-medium text-white"
+                className="mt-7 inline-flex items-center justify-center bg-black px-4
+                  py-3 text-sm text-white"
               >
                 {plan.cta}
-                <ArrowRight size={16} />
               </a>
             </article>
           ))}
@@ -559,19 +502,14 @@ export default async function AiAppRescuePage() {
       </section>
 
       <section className="border-b border-line py-14">
-        <p className="text-sm font-medium uppercase tracking-[0.22em] text-subtle">
-          {text.proofEyebrow}
-        </p>
-        <h2 className="mt-4 text-4xl font-semibold tracking-tight">
-          {text.proofTitle}
-        </h2>
+        <h2 className="text-4xl">{text.proofTitle}</h2>
         <div className="mt-8 grid gap-8 md:grid-cols-2">
           {text.proof.map((item) => {
             const external = item.href.startsWith('http')
             return (
               <article
                 key={item.title}
-                className="border-l-4 border-emerald-500 pl-5"
+                className="border-l-2 border-clay pl-5"
               >
                 <h3 className="text-2xl font-semibold">
                   {item.title}
@@ -588,7 +526,6 @@ export default async function AiAppRescuePage() {
                       underline underline-offset-4"
                   >
                     {item.link}
-                    <ExternalLink size={15} />
                   </a>
                 ) : (
                   <Link
@@ -597,7 +534,6 @@ export default async function AiAppRescuePage() {
                       underline underline-offset-4"
                   >
                     {item.link}
-                    <ArrowRight size={15} />
                   </Link>
                 )}
               </article>
@@ -617,10 +553,6 @@ export default async function AiAppRescuePage() {
                 key={item}
                 className="flex gap-3 leading-7 text-zinc-700"
               >
-                <CheckCircle2
-                  className="mt-1 shrink-0 text-emerald-700"
-                  size={18}
-                />
                 {item}
               </li>
             ))}
@@ -636,10 +568,6 @@ export default async function AiAppRescuePage() {
                 key={item}
                 className="flex gap-3 leading-7 text-zinc-700"
               >
-                <ShieldCheck
-                  className="mt-1 shrink-0 text-zinc-500"
-                  size={18}
-                />
                 {item}
               </li>
             ))}
@@ -661,11 +589,10 @@ export default async function AiAppRescuePage() {
           <a
             data-attr="rescue-primary-mailto"
             href={primaryMailto}
-            className="inline-flex items-center justify-center gap-2 rounded-xl
-              bg-black px-6 py-3.5 font-medium text-white"
+            className="inline-flex items-center justify-center bg-black px-6 py-3.5
+              text-white"
           >
             {text.finalCta}
-            <ArrowRight size={18} />
           </a>
           <a
             data-attr="rescue-calendly"
