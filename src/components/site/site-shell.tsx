@@ -3,7 +3,20 @@
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import { cn } from '@/lib/utils'
-import { Check, Copy, Menu, X } from 'lucide-react'
+import {
+  Briefcase,
+  Check,
+  Copy,
+  Eye,
+  EyeOff,
+  FileText,
+  Home,
+  Mail,
+  Menu,
+  MessageSquareText,
+  Wrench,
+  X
+} from 'lucide-react'
 import { useEffect, useMemo, useState } from 'react'
 import { MiniChat } from '@/components/site/mini-chat'
 import { track } from '@/lib/analytics'
@@ -17,31 +30,41 @@ type SiteLanguage = 'es' | 'en'
 
 const navItems = {
   es: [
-    { href: '/', label: 'Inicio' },
-    { href: '/projects', label: 'Proyectos' },
+    { href: '/', label: 'Inicio', icon: Home },
+    {
+      href: '/projects',
+      label: 'Proyectos',
+      icon: Briefcase
+    },
     {
       href: '/services/ai-app-rescue',
-      label: 'AI App Rescue'
+      label: 'AI App Rescue',
+      icon: Wrench
     },
-    { href: '/insights', label: 'Artículos' },
-    { href: '/contact', label: 'Contacto' }
+    { href: '/insights', label: 'Blog', icon: FileText },
+    { href: '/contact', label: 'Contacto', icon: Mail }
   ],
   en: [
-    { href: '/', label: 'Home' },
-    { href: '/projects', label: 'Projects' },
+    { href: '/', label: 'Home', icon: Home },
+    {
+      href: '/projects',
+      label: 'Projects',
+      icon: Briefcase
+    },
     {
       href: '/services/ai-app-rescue',
-      label: 'AI App Rescue'
+      label: 'AI App Rescue',
+      icon: Wrench
     },
-    { href: '/insights', label: 'Articles' },
-    { href: '/contact', label: 'Contact' }
+    { href: '/insights', label: 'Blog', icon: FileText },
+    { href: '/contact', label: 'Contact', icon: Mail }
   ]
 } as const
 
 const shellCopy = {
   es: {
-    openNav: 'Abrir navegación',
-    writeMe: 'Escríbeme',
+    openNav: 'Abrir navegacion',
+    writeMe: 'Escribeme',
     copy: 'Copiar',
     copied: 'Copiado',
     emailAria: 'Copiar correo',
@@ -51,7 +74,7 @@ const shellCopy = {
   },
   en: {
     openNav: 'Open navigation',
-    writeMe: 'Email me',
+    writeMe: 'Write me',
     copy: 'Copy',
     copied: 'Copied',
     emailAria: 'Copy email',
@@ -61,41 +84,6 @@ const shellCopy = {
   }
 } as const
 
-function LanguageToggle({
-  language,
-  label,
-  onClick
-}: {
-  language: SiteLanguage
-  label: string
-  onClick: () => void
-}) {
-  return (
-    <button
-      type="button"
-      aria-label={label}
-      className="border border-line px-3 py-2 text-sm"
-      onClick={onClick}
-    >
-      <span
-        className={
-          language === 'es' ? 'font-semibold text-clay' : ''
-        }
-      >
-        ES
-      </span>
-      {' / '}
-      <span
-        className={
-          language === 'en' ? 'font-semibold text-clay' : ''
-        }
-      >
-        EN
-      </span>
-    </button>
-  )
-}
-
 export function SiteShell({ children }: SiteShellProps) {
   const router = useRouter()
   const pathname = usePathname()
@@ -103,7 +91,7 @@ export function SiteShell({ children }: SiteShellProps) {
   const [emailCopied, setEmailCopied] = useState(false)
   const [language, setLanguage] =
     useState<SiteLanguage>('es')
-  const [chatOpen, setChatOpen] = useState(false)
+  const [chatOpen, setChatOpen] = useState(true)
 
   const copy = shellCopy[language]
   const items = navItems[language]
@@ -157,94 +145,107 @@ export function SiteShell({ children }: SiteShellProps) {
 
   return (
     <div className="min-h-screen w-full bg-paper">
-      <header className="sticky top-0 z-40 border-b border-line bg-paper lg:hidden">
+      <div className="pointer-events-none fixed inset-0 -z-10 mesh-bg" />
+
+      <header
+        className="sticky top-0 z-40 border-b border-line bg-paper/90
+          backdrop-blur-md lg:hidden"
+      >
         <div
-          className="mx-auto flex h-16 w-full max-w-7xl items-center
+          className="mx-auto flex h-20 w-full max-w-7xl items-center
             justify-between px-5"
         >
-          <Link href="/" className="font-heading text-2xl">
-            Bill Gaize
+          <Link
+            href="/"
+            className="text-4xl font-semibold tracking-tight"
+          >
+            Bill Gaize Dev
           </Link>
           <div className="flex items-center gap-2">
-            <LanguageToggle
-              language={language}
-              label={copy.langButtonAria}
+            <button
+              type="button"
+              aria-label={copy.langButtonAria}
+              className="rounded-xl border border-line px-3 py-2 text-sm font-medium"
               onClick={toggleLanguage}
-            />
+            >
+              {language === 'es' ? '🇺🇸' : '🇪🇸'}
+            </button>
             <button
               type="button"
               aria-label={copy.openNav}
-              className="border border-line p-2.5"
+              className="rounded-xl border border-line p-2.5"
               onClick={() => {
                 setMobileOpen((prev) => !prev)
               }}
             >
               {mobileOpen ? (
-                <X size={22} />
+                <X size={24} />
               ) : (
-                <Menu size={22} />
+                <Menu size={24} />
               )}
             </button>
           </div>
         </div>
       </header>
 
-      <div className="mx-auto flex w-full max-w-6xl lg:min-h-screen">
+      <div className="mx-auto flex w-full max-w-[1500px] gap-0 lg:min-h-screen">
         <aside
-          className="hidden w-64 shrink-0 border-r border-line px-6 py-10
+          className="hidden w-[280px] shrink-0 border-r border-line px-5 py-8
             lg:block"
         >
-          <div className="sticky top-10 space-y-8">
-            <div className="space-y-4">
+          <div className="sticky top-8 space-y-10">
+            <div className="flex items-center justify-between gap-3">
               <Link
                 href="/"
-                className="block font-heading text-3xl leading-none"
+                className="block text-4xl font-semibold tracking-tight"
               >
-                Bill Gaize
+                Bill Gaize Dev
               </Link>
-              <span
-                aria-hidden
-                className="block h-0.5 w-10 bg-[#8f3d2c]"
-              />
-              <LanguageToggle
-                language={language}
-                label={copy.langButtonAria}
+              <button
+                type="button"
+                aria-label={copy.langButtonAria}
+                className="rounded-xl border border-line px-3 py-2 text-sm font-medium"
                 onClick={toggleLanguage}
-              />
+              >
+                {language === 'es' ? '🇺🇸' : '🇪🇸'}
+              </button>
             </div>
 
-            <nav aria-label="Navegación principal">
-              <ul className="space-y-1">
-                {items.map((item) => {
-                  const active =
-                    item.href === '/'
-                      ? pathname === '/'
-                      : pathname === item.href ||
-                        pathname.startsWith(`${item.href}/`)
-                  return (
-                    <li key={item.href}>
-                      <Link
-                        href={item.href}
-                        className={cn(
-                          'block py-1.5 text-lg',
-                          active
-                            ? 'text-clay'
-                            : 'hover:text-clay'
-                        )}
-                      >
-                        {item.label}
-                      </Link>
-                    </li>
-                  )
-                })}
-              </ul>
+            <nav
+              className="space-y-2"
+              aria-label="Navegacion principal"
+            >
+              {items.map((item) => {
+                const Icon = item.icon
+                const active =
+                  pathname === item.href ||
+                  pathname.startsWith(`${item.href}/`)
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className={cn(
+                      `flex items-center gap-3 rounded-xl px-3 py-2.5 text-xl
+                        transition-colors`,
+                      active
+                        ? 'bg-black text-white'
+                        : 'text-black hover:bg-zinc-100'
+                    )}
+                  >
+                    <Icon size={20} />
+                    <span>{item.label}</span>
+                  </Link>
+                )
+              })}
             </nav>
 
-            <div className="space-y-3 text-sm">
+            <div className="space-y-2">
               <a
                 href="mailto:me@billgaize.com"
-                className="block text-clay underline"
+                className="inline-flex w-full items-center gap-2 rounded-xl border
+                  border-line px-4 py-3 text-base"
               >
+                <MessageSquareText size={18} />
                 {copy.writeMe}
               </a>
               <button
@@ -256,8 +257,14 @@ export function SiteShell({ children }: SiteShellProps) {
                   })
                   setChatOpen((prev) => !prev)
                 }}
-                className="block text-left underline"
+                className="inline-flex w-full items-center justify-center gap-2
+                  rounded-xl border border-line bg-zinc-50 px-4 py-2.5 text-sm"
               >
+                {chatOpen ? (
+                  <EyeOff size={16} />
+                ) : (
+                  <Eye size={16} />
+                )}
                 {chatOpen
                   ? copy.hideAssistant
                   : copy.showAssistant}
@@ -268,13 +275,13 @@ export function SiteShell({ children }: SiteShellProps) {
                   void copyEmailToClipboard()
                 }}
                 aria-label={copy.emailAria}
-                className="flex w-full items-center justify-between gap-2 border
-                  border-line px-3 py-2 text-left text-zinc-700"
+                className="flex w-full items-center justify-between rounded-xl border
+                  border-line bg-zinc-50 px-4 py-2.5 text-sm text-zinc-700"
               >
                 <span className="truncate">
                   me@billgaize.com
                 </span>
-                <span className="inline-flex items-center gap-1 text-xs">
+                <span className="inline-flex items-center gap-1 text-xs font-medium">
                   {emailCopied ? (
                     <Check size={14} />
                   ) : (
@@ -287,98 +294,130 @@ export function SiteShell({ children }: SiteShellProps) {
           </div>
         </aside>
 
-        <div className="min-w-0 flex-1">
-          <main
-            className="min-h-[calc(100vh-4rem)] px-5 py-8 sm:px-8 lg:min-h-screen
-              lg:px-12 lg:py-12"
-          >
-            {mobileOpen ? (
-              <div className="mb-8 border border-line p-3 lg:hidden">
-                <nav aria-label="Navegación móvil">
-                  <ul className="space-y-1">
-                    {items.map((item) => {
-                      const active =
-                        item.href === '/'
-                          ? pathname === '/'
-                          : pathname === item.href ||
-                            pathname.startsWith(
-                              `${item.href}/`
-                            )
-                      return (
-                        <li key={item.href}>
-                          <Link
-                            href={item.href}
-                            onClick={() => {
-                              setMobileOpen(false)
-                            }}
-                            className={cn(
-                              'block px-2 py-2 text-lg',
-                              active
-                                ? 'text-clay'
-                                : 'hover:text-clay'
-                            )}
-                          >
-                            {item.label}
-                          </Link>
-                        </li>
-                      )
-                    })}
-                  </ul>
-                </nav>
-                <button
-                  type="button"
-                  onClick={() => {
-                    void copyEmailToClipboard()
-                  }}
-                  className="mt-3 flex w-full items-center justify-between border
-                    border-line px-3 py-2 text-sm text-zinc-700"
-                >
-                  <span className="truncate">
-                    me@billgaize.com
-                  </span>
-                  <span className="inline-flex items-center gap-1 text-xs">
-                    {emailCopied ? (
-                      <Check size={14} />
-                    ) : (
-                      <Copy size={14} />
-                    )}
-                    {emailCopied ? copy.copied : copy.copy}
-                  </span>
-                </button>
-              </div>
-            ) : null}
-
-            <div className="mx-auto w-full max-w-3xl">
-              {children}
-              <div className="mt-16 border-t border-line pt-6">
-                {chatOpen ? (
-                  <MiniChat
-                    language={language}
-                    onHide={() => {
-                      setChatOpen(false)
-                    }}
-                  />
-                ) : (
-                  <button
-                    type="button"
-                    data-attr="chat-open"
-                    onClick={() => {
-                      track('chat_opened', {
-                        device: 'inline'
-                      })
-                      setChatOpen(true)
-                    }}
-                    className="text-sm underline"
-                  >
-                    {copy.showAssistant}
-                  </button>
-                )}
-              </div>
+        <main
+          className="min-h-[calc(100vh-80px)] flex-1 px-5 py-8 sm:px-8
+            lg:min-h-screen lg:px-12 lg:py-12"
+        >
+          {mobileOpen ? (
+            <div className="mb-8 rounded-2xl border border-line bg-paper p-3 lg:hidden">
+              <nav
+                className="space-y-1"
+                aria-label="Navegacion movil"
+              >
+                {items.map((item) => {
+                  const Icon = item.icon
+                  const active =
+                    pathname === item.href ||
+                    pathname.startsWith(`${item.href}/`)
+                  return (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      onClick={() => {
+                        setMobileOpen(false)
+                      }}
+                      className={cn(
+                        `flex items-center gap-3 rounded-xl px-3 py-3 text-lg
+                          transition-colors`,
+                        active
+                          ? 'bg-black text-white'
+                          : 'text-black hover:bg-zinc-100'
+                      )}
+                    >
+                      <Icon size={20} />
+                      <span>{item.label}</span>
+                    </Link>
+                  )
+                })}
+              </nav>
+              <button
+                type="button"
+                onClick={() => {
+                  void copyEmailToClipboard()
+                }}
+                className="mt-3 flex w-full items-center justify-between rounded-xl
+                  border border-line bg-zinc-50 px-3 py-2.5 text-sm
+                  text-zinc-700"
+              >
+                <span className="truncate">
+                  me@billgaize.com
+                </span>
+                <span className="inline-flex items-center gap-1 text-xs font-medium">
+                  {emailCopied ? (
+                    <Check size={14} />
+                  ) : (
+                    <Copy size={14} />
+                  )}
+                  {emailCopied ? copy.copied : copy.copy}
+                </span>
+              </button>
             </div>
-          </main>
-          <SiteFooter language={language} />
-        </div>
+          ) : null}
+
+          <div className="mx-auto w-full max-w-4xl">
+            {children}
+          </div>
+
+          {chatOpen ? (
+            <div className="mt-10 xl:hidden">
+              <MiniChat
+                language={language}
+                onHide={() => {
+                  setChatOpen(false)
+                }}
+              />
+            </div>
+          ) : (
+            <div className="mt-10 xl:hidden">
+              <button
+                type="button"
+                data-attr="chat-open-mobile"
+                onClick={() => {
+                  track('chat_opened', { device: 'mobile' })
+                  setChatOpen(true)
+                }}
+                className="inline-flex items-center gap-2 rounded-xl border border-line
+                  px-4 py-2.5 text-sm font-medium"
+              >
+                <Eye size={16} />
+                {copy.showAssistant}
+              </button>
+            </div>
+          )}
+        </main>
+
+        <aside
+          className="hidden w-[420px] shrink-0 border-l border-line px-4 py-8
+            xl:block"
+        >
+          <div className="sticky top-8">
+            {chatOpen ? (
+              <MiniChat
+                language={language}
+                onHide={() => {
+                  setChatOpen(false)
+                }}
+              />
+            ) : (
+              <button
+                type="button"
+                data-attr="chat-open-mobile"
+                onClick={() => {
+                  track('chat_opened', { device: 'mobile' })
+                  setChatOpen(true)
+                }}
+                className="inline-flex items-center gap-2 rounded-xl border border-line
+                  px-4 py-2.5 text-sm font-medium"
+              >
+                <Eye size={16} />
+                {copy.showAssistant}
+              </button>
+            )}
+          </div>
+        </aside>
       </div>
+
+      <SiteFooter language={language} />
     </div>
   )
 }

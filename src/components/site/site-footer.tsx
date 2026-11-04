@@ -75,17 +75,18 @@ const COPY = {
   es: {
     recentVisitors: 'Visitantes recientes',
     legal: 'Legal',
-    terms: 'Términos de servicio',
-    privacy: 'Política de privacidad',
-    blog: 'Artículos',
+    terms: 'Terminos de servicio',
+    privacy: 'Politica de privacidad',
+    blog: 'Blog',
     schedule: 'Agendar llamada',
     newVisitor: 'Nuevo visitante desde',
     onMobile: 'desde el celular',
-    yourConnection: 'Tu conexión',
+    yourConnection: 'Tu conexion',
     yourNote:
-      'Solo lo ves tú. No se guarda en el contador.',
+      'Solo lo ves tu. No se guarda en el contador.',
     ipLabel: 'IP',
-    localTime: 'hora local'
+    localTime: 'hora local',
+    loading: 'Cargando contador...'
   },
   en: {
     recentVisitors: 'Recent visitors',
@@ -100,7 +101,8 @@ const COPY = {
     yourNote:
       'Only you see this. It is not stored in the counter.',
     ipLabel: 'IP',
-    localTime: 'local time'
+    localTime: 'local time',
+    loading: 'Loading counter...'
   }
 } as const
 
@@ -272,7 +274,7 @@ export function SiteFooter({ language }: SiteFooterProps) {
             : ''
 
         setToast(
-          `${copy.newVisitor} ${country.name}${device}`
+          `${country.flag} ${copy.newVisitor} ${country.name}${device}`
         )
       })()
     }, 8000)
@@ -318,7 +320,9 @@ export function SiteFooter({ language }: SiteFooterProps) {
           lg:grid-cols-[1fr_auto] lg:items-center lg:px-12"
       >
         <div className="space-y-3">
-          <p className="font-heading text-lg">Bill Gaize</p>
+          <p className="text-sm font-semibold tracking-wide">
+            Bill Gaize Dev
+          </p>
           <div className="flex flex-wrap items-center gap-4 text-sm text-zinc-700">
             <Link href="/insights" className="underline">
               {copy.blog}
@@ -350,51 +354,68 @@ export function SiteFooter({ language }: SiteFooterProps) {
           </div>
         </div>
 
-        {rankedCountries.length > 0 || (you && client) ? (
-          <div className="text-sm text-zinc-700">
-            {rankedCountries.length > 0 ? (
-              <div>
-                <p>{copy.recentVisitors}</p>
-                <ul className="mt-2 space-y-1">
-                  {rankedCountries.map((country) => (
-                    <li key={country.code}>
-                      {country.meta.name} {country.total}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ) : null}
-            {you && client ? (
-              <div
-                data-attr="your-connection"
-                className="mt-3 border-t border-line pt-2 text-xs text-zinc-600"
-              >
-                <p className="text-zinc-700">
-                  {copy.yourConnection}
-                </p>
-                <p className="mt-1">
-                  {[
-                    you.city,
-                    countryMeta(you.countryCode, language)
-                      .name
-                  ]
-                    .filter(Boolean)
-                    .join(', ')}
-                  {you.ip
-                    ? ` · ${copy.ipLabel} ${you.ip}`
-                    : ''}
-                </p>
-                <p>
-                  {client.label} · {client.screen} ·{' '}
-                  {client.tz} · {client.lang}
-                </p>
-                <p className="text-zinc-500">
-                  {copy.yourNote}
-                </p>
-              </div>
-            ) : null}
-          </div>
-        ) : null}
+        <div className="rounded-2xl border border-line bg-zinc-50 px-4 py-3">
+          <p
+            className="text-xs font-semibold uppercase tracking-[0.16em]
+              text-zinc-500"
+          >
+            {copy.recentVisitors}
+          </p>
+          {rankedCountries.length > 0 ? (
+            <div className="mt-2 flex flex-wrap gap-2">
+              {rankedCountries.map((country) => (
+                <span
+                  key={country.code}
+                  className="inline-flex items-center gap-2 rounded-full border
+                    border-line bg-white px-3 py-1 text-xs"
+                >
+                  <span>{country.meta.flag}</span>
+                  <span>{country.meta.name}</span>
+                  <span className="font-semibold">
+                    {country.total}
+                  </span>
+                </span>
+              ))}
+            </div>
+          ) : (
+            <p className="mt-2 text-xs text-zinc-500">
+              {copy.loading}
+            </p>
+          )}
+          {you && client ? (
+            <div
+              data-attr="your-connection"
+              className="mt-3 border-t border-line pt-2 text-xs text-zinc-600"
+            >
+              <p className="font-semibold text-zinc-700">
+                {copy.yourConnection}
+              </p>
+              <p className="mt-1">
+                {
+                  countryMeta(you.countryCode, language)
+                    .flag
+                }{' '}
+                {[
+                  you.city,
+                  countryMeta(you.countryCode, language)
+                    .name
+                ]
+                  .filter(Boolean)
+                  .join(', ')}
+                {you.ip
+                  ? ` · ${copy.ipLabel} ${you.ip}`
+                  : ''}
+              </p>
+              <p>
+                {client.label} · {client.screen} ·{' '}
+                {client.tz} · {client.lang}
+              </p>
+              <p className="text-zinc-400">
+                {copy.yourNote}
+              </p>
+            </div>
+          ) : null}
+        </div>
       </div>
 
       <WelcomeToast language={language} />

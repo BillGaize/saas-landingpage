@@ -35,27 +35,27 @@ export default async function Page() {
         }
       : {
           legal: 'Legal',
-          title: 'Política de privacidad',
+          title: 'Politica de privacidad',
           updated:
-            'Última actualización: 23 de octubre de 2026',
+            'Ultima actualizacion: 23 de octubre de 2026',
           intro1:
-            'Este sitio recopila los datos mínimos para operar y mejorar el portafolio. La información no se vende.',
+            'Este sitio recopila datos minimos necesarios para operar y mejorar la experiencia del portafolio. La informacion no se vende.',
           intro2:
-            'Los datos pueden incluir uso anónimo del sitio, metadatos del navegador y datos de contacto que compartas por correo o al agendar.',
-          usageTitle: 'Cómo se usa la información',
+            'Los datos pueden incluir uso anonimo del sitio, metadatos del navegador y datos de contacto que compartas voluntariamente por correo o enlaces de agenda.',
+          usageTitle: 'Como se usa la informacion',
           usage1:
-            'Responder consultas y solicitudes de colaboración.',
+            'Responder consultas y solicitudes de colaboracion.',
           usage2:
-            'Analizar el rendimiento del sitio y mejorar la experiencia.',
+            'Analizar rendimiento del sitio y mejorar UX.',
           usage3:
-            'Mantener la seguridad y el funcionamiento del sitio.',
+            'Mantener seguridad y confiabilidad del sitio.',
           thirdPartyTitle: 'Servicios de terceros',
           thirdPartyText:
-            'Este sitio puede usar servicios externos (por ejemplo analítica, agenda y hosting). Cada proveedor maneja los datos según su propia política.',
+            'Este sitio puede usar servicios externos confiables (por ejemplo analytics, agendamiento y hosting). Cada proveedor maneja datos segun su propia politica.',
           analyticsTitle:
-            'Analítica y grabaciones de sesión',
+            'Analitica y grabaciones de sesion',
           analyticsText:
-            'Este sitio usa PostHog (nube de Estados Unidos) para medir visitas, páginas vistas, clics y rendimiento, y para grabar sesiones anonimizadas y mejorar la experiencia. El texto que escribes en formularios se enmascara y no se graba. Los datos incluyen ubicación aproximada (país y ciudad), navegador, dispositivo, página de origen y parámetros de campaña (UTM). El contador de visitantes guarda solo país, tipo de dispositivo y hora. Tu dirección IP no se guarda ahí. La página de origen y la ciudad también se usan para un mensaje de bienvenida, una sola vez, y para una nota con los datos de tu conexión, visible solo para ti. No se venden ni se usan para publicidad. El sitio respeta la opción No rastrear (Do Not Track) del navegador.',
+            'Este sitio usa PostHog (nube de EE. UU.) para medir visitas, paginas vistas, clics y rendimiento web, y para grabar sesiones anonimizadas (interacciones en pantalla) con el fin de mejorar la experiencia. El texto que escribes en campos de formulario se enmascara y no se graba. Los datos incluyen ubicacion aproximada (pais y ciudad), navegador, dispositivo, pagina de origen y parametros de campana (UTM). El contador de visitantes guarda solo pais, tipo de dispositivo y hora; tu direccion IP nunca se guarda ahi. La pagina de origen y la ciudad tambien se usan para mostrarte un mensaje de bienvenida una sola vez y una tarjeta con los datos de tu propia conexion (visible solo para ti). No se venden ni se usan para publicidad. El sitio respeta la opcion No Rastrear (Do Not Track) de tu navegador.',
           contactTitle: 'Contacto',
           contactText:
             'Para consultas de privacidad, escribe a:'
@@ -64,6 +64,9 @@ export default async function Page() {
   return (
     <article className="space-y-8 pb-14 pt-6 sm:pt-10">
       <header className="space-y-4">
+        <p className="text-sm uppercase tracking-[0.24em] text-subtle">
+          {copy.legal}
+        </p>
         <h1 className="section-title">{copy.title}</h1>
         <p className="text-base text-subtle">
           {copy.updated}

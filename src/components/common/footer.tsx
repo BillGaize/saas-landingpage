@@ -13,13 +13,13 @@ export function Footer() {
           >
             <Image
               src="/logo.svg"
-              alt="Bill Gaize"
+              alt="Bill Gaize Dev logo"
               className="mr-3"
               width={24}
               height={24}
             />
             <Typography className="!text-white !text-base font-medium ">
-              Bill Gaize
+              Bill Gaize Dev
             </Typography>
           </Link>
         </div>
@@ -48,7 +48,7 @@ export function Footer() {
             className="pointer block w-fit flex-1"
           >
             <Typography variant="p" className="w-max">
-              Términos de servicio
+              Terminos de servicio
             </Typography>
           </Link>
           <Link
@@ -56,7 +56,7 @@ export function Footer() {
             className="pointer block w-fit"
           >
             <Typography variant="p">
-              Política de privacidad
+              Politica de privacidad
             </Typography>
           </Link>
         </div>
