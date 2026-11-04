@@ -10,28 +10,48 @@ export function PostCard({
   post,
   language
 }: PostCardProps) {
-  const locale = language === 'en' ? 'en-US' : 'es-CL'
+  const copy =
+    language === 'en'
+      ? {
+          readArticle: 'Read article',
+          locale: 'en-US'
+        }
+      : {
+          readArticle: 'Leer articulo',
+          locale: 'es-CL'
+        }
 
   return (
     <Link
       href={`/insights/${post.slug}`}
-      className="block border-t border-line py-5"
+      className="group block rounded-2xl border border-line bg-white px-6
+        py-5 transition-colors hover:bg-zinc-50"
     >
-      <p className="text-sm text-subtle">
-        {new Date(post.publishedAt).toLocaleDateString(
-          locale
-        )}
-        {' · '}
-        {post.readingTime}
-        {' · '}
-        {post.category}
-      </p>
-      <h2 className="mt-2 text-3xl text-black">
+      <div className="flex items-center gap-3 text-sm text-subtle">
+        <span>
+          {new Date(post.publishedAt).toLocaleDateString(
+            copy.locale
+          )}
+        </span>
+        <span>•</span>
+        <span>{post.readingTime}</span>
+        <span>•</span>
+        <span>{post.category}</span>
+      </div>
+      <h3 className="mt-2 text-3xl font-semibold tracking-tight text-black">
         {post.title}
-      </h2>
-      <p className="mt-2 text-lg leading-8 text-zinc-800">
+      </h3>
+      <p className="mt-2 line-clamp-2 text-lg leading-8 text-zinc-700">
         {post.description}
       </p>
+      <div className="mt-4 text-sm font-medium text-black">
+        <span className="inline-flex items-center gap-2">
+          {copy.readArticle}{' '}
+          <span className="transition-transform group-hover:translate-x-1">
+            →
+          </span>
+        </span>
+      </div>
     </Link>
   )
 }

@@ -1,5 +1,6 @@
 'use client'
 
+import { countryMeta } from '@/lib/countries'
 import { track } from '@/lib/analytics'
 import { detectSource } from '@/lib/traffic-source'
 import { useEffect, useState } from 'react'
@@ -27,8 +28,8 @@ const PACKS: Record<Lang, Pack> = {
     cv: 'Veo que llegaste desde mi CV. Un gusto.',
     email: 'Gracias por pasar desde mi correo.',
     shared:
-      'Alguien te compartió mi sitio. Gracias por entrar.',
-    ai: (l) => `Te recomendó ${l}. Espero que te sirva.`,
+      'Alguien te compartio mi sitio. Gracias por entrar.',
+    ai: (l) => `Te recomendo ${l}. Espero que te sirva.`,
     direct: 'Gracias por visitar mi sitio.'
   },
   en: {
@@ -120,13 +121,16 @@ export function WelcomeToast({
 
     void (async () => {
       let city = ''
+      let country = ''
       try {
         const response = await fetch('/api/geo')
         if (response.ok) {
           const data = (await response.json()) as {
             city?: string
+            country?: string
           }
           city = data.city ?? ''
+          country = data.country ?? ''
         }
       } catch {
         // geo is optional
@@ -139,9 +143,12 @@ export function WelcomeToast({
 
       const lang = pickLang(language)
       const pack = PACKS[lang]
+      const flag = country
+        ? countryMeta(country, 'en').flag
+        : ''
       const head = city
-        ? `${pack.hello} ${pack.from} ${city}.`
-        : `${pack.hello}.`
+        ? `${flag} ${pack.hello} ${pack.from} ${city}!`.trim()
+        : `${pack.hello}!`
 
       let body = pack.direct
       if (source) {

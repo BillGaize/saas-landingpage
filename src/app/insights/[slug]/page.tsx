@@ -4,10 +4,7 @@ import { cookies } from 'next/headers'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import { notFound } from 'next/navigation'
-import {
-  getPublicPostBySlug,
-  getPublicPosts
-} from '@/lib/posts'
+import { getAllPosts, getPostBySlug } from '@/lib/posts'
 import { siteConfig } from '@/lib/site'
 
 interface PostPageProps {
@@ -17,7 +14,7 @@ interface PostPageProps {
 }
 
 export function generateStaticParams() {
-  return getPublicPosts().map((post) => ({
+  return getAllPosts().map((post) => ({
     slug: post.slug
   }))
 }
@@ -26,7 +23,7 @@ export async function generateMetadata(
   props: PostPageProps
 ): Promise<Metadata> {
   const params = await props.params
-  const post = getPublicPostBySlug(params.slug)
+  const post = getPostBySlug(params.slug)
 
   if (!post) {
     return {}
@@ -66,7 +63,7 @@ export default async function PostPage(
   const copy =
     lang === 'en'
       ? {
-          back: 'Back to articles',
+          back: 'Back to insights',
           ctaTitle: 'Want to build something similar?',
           ctaText:
             'If this style of content or workflow fits your team, we can design a solution aligned to your stack and goals.',
@@ -75,16 +72,16 @@ export default async function PostPage(
           locale: 'en-US'
         }
       : {
-          back: 'Volver a artículos',
-          ctaTitle: '¿Quieres armar algo parecido?',
+          back: 'Volver a insights',
+          ctaTitle: 'Quieres construir algo similar?',
           ctaText:
-            'Si este tipo de trabajo encaja con tu equipo, escríbeme y lo vemos con tu stack y tus objetivos.',
-          contact: 'Escríbeme',
+            'Si este estilo de contenido o workflow encaja con tu equipo, podemos disenar una solucion alineada a tu stack y objetivos.',
+          contact: 'Escribeme',
           schedule: 'Agendar llamada',
           locale: 'es-CL'
         }
 
-  const post = getPublicPostBySlug(params.slug)
+  const post = getPostBySlug(params.slug)
 
   if (!post) {
     notFound()
@@ -146,9 +143,12 @@ export default async function PostPage(
         </p>
       </header>
 
-      <p className="text-lg leading-8 text-zinc-800">
+      <div
+        className="rounded-2xl border border-line bg-zinc-50 px-6 py-5 text-lg
+          leading-8 text-zinc-700"
+      >
         {post.hero}
-      </p>
+      </div>
 
       <div className="post-body">
         <ReactMarkdown remarkPlugins={[remarkGfm]}>

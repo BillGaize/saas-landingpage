@@ -6,9 +6,10 @@ import {
 } from '@/lib/profile-data'
 
 export const metadata: Metadata = {
-  title: 'Contacto',
+  title:
+    'Contacto | Product Manager B2B & API Integrations',
   description:
-    'Contacta a Bill Gaize, product manager de integraciones B2B, remoto desde Santiago de Chile.',
+    'Contacta a Bill Gaize, Product Manager de plataformas B2B e integraciones API (LATAM/Africa), remoto desde Santiago de Chile. Abierto a roles PM / Project Manager / Integrations-Platform.',
   alternates: {
     canonical: '/contact'
   }
@@ -23,76 +24,100 @@ export default async function ContactPage() {
   const copy =
     lang === 'en'
       ? {
-          title: 'Contact',
+          label: 'Contact',
+          title: 'Let us build something solid',
           intro:
-            'Open to product manager, project manager, and integrations roles, ideally remote, based in Santiago, Chile. I also take focused consulting on B2B onboarding and partner APIs.',
+            'Open to Product Manager / Project Manager / Integrations-Platform PM roles — ideally remote worldwide (based in Santiago, Chile). Also open to focused consulting on B2B onboarding and partner APIs.',
+          directContact: 'Direct contact',
           schedule: 'Book a call',
+          alsoFind: 'You can also find me on',
           linkedin: 'LinkedIn profile',
           responseTime:
             'I usually reply within 24 business hours.',
-          commonRequests: 'What I can help with'
+          commonRequests: 'Most common requests'
         }
       : {
-          title: 'Contacto',
+          label: 'Contacto',
+          title: 'Construyamos algo solido',
           intro:
-            'Estoy abierto a roles de product manager, project manager o integraciones, idealmente remotos, con base en Santiago de Chile. También hago consultoría puntual de onboarding B2B e integraciones API.',
+            'Abierto a roles Product Manager / Project Manager / Integrations-Platform PM — idealmente remote worldwide (base Santiago, Chile). Tambien consultoria puntual en onboarding B2B e integraciones API.',
+          directContact: 'Contacto directo',
           schedule: 'Agendar una llamada',
+          alsoFind: 'Tambien puedes encontrarme en',
           linkedin: 'Perfil de LinkedIn',
           responseTime:
-            'Respondo normalmente dentro de 24 horas hábiles.',
-          commonRequests: '¿En qué suelo ayudar?'
+            'Respondo normalmente dentro de 24 horas habiles.',
+          commonRequests: 'Solicitudes mas comunes'
         }
 
   return (
-    <div className="max-w-3xl space-y-10 pb-14 pt-6 sm:pt-10">
+    <div className="space-y-10 pb-14 pt-6 sm:pt-10">
       <section className="space-y-4">
+        <p className="text-sm uppercase tracking-[0.24em] text-subtle">
+          {copy.label}
+        </p>
         <h1 className="section-title">{copy.title}</h1>
-        <p className="body-lg">{copy.intro}</p>
+        <p className="body-lg max-w-3xl">{copy.intro}</p>
       </section>
 
-      <section className="space-y-3 border-t border-line pt-6 text-lg leading-8">
-        <p>{profileFacts.location}</p>
-        <p>
+      <section className="grid gap-4 md:grid-cols-2">
+        <article className="notion-card space-y-3">
+          <h2 className="text-2xl font-semibold">
+            {copy.directContact}
+          </h2>
+          <p className="text-base text-zinc-700">
+            {profileFacts.location}
+          </p>
           <a
             data-attr="contact-email"
             href={`mailto:${profileFacts.contactEmail}`}
-            className="text-clay underline"
+            className="inline-block rounded-xl bg-black px-4 py-2.5 text-sm
+              font-medium text-white"
           >
             {profileFacts.contactEmail}
           </a>
-        </p>
-        <p>
           <a
             data-attr="contact-calendly"
             href={profileFacts.calendly}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-clay underline"
+            className="inline-block rounded-xl border border-line px-4 py-2.5
+              text-sm font-medium"
           >
             {copy.schedule}
           </a>
-        </p>
-        <p>
+        </article>
+
+        <article className="notion-card space-y-3">
+          <h2 className="text-2xl font-semibold">
+            {copy.alsoFind}
+          </h2>
           <a
             href={profileFacts.linkedin}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-clay underline"
+            className="inline-block rounded-xl border border-line px-4 py-2.5
+              text-sm font-medium"
           >
             {copy.linkedin}
           </a>
-        </p>
-        <p className="text-base text-zinc-700">
-          {copy.responseTime}
-        </p>
+          <p className="text-base text-zinc-700">
+            {copy.responseTime}
+          </p>
+        </article>
       </section>
 
-      <section className="space-y-3 border-t border-line pt-6">
-        <h2 className="text-2xl">{copy.commonRequests}</h2>
-        <ul className="space-y-2 text-lg leading-8">
+      <section className="notion-card space-y-3">
+        <h2 className="text-2xl font-semibold">
+          {copy.commonRequests}
+        </h2>
+        <ul className="grid gap-2 sm:grid-cols-2">
           {coreServices.map((service) => (
-            <li key={service.es}>
-              {lang === 'en' ? service.en : service.es}
+            <li
+              key={service}
+              className="rounded-xl border border-line bg-zinc-50 px-3 py-2 text-sm"
+            >
+              {service}
             </li>
           ))}
         </ul>

@@ -39,18 +39,7 @@
   }
 
   body {
-    background-color: #f6f3ec;
-    color: #1c1917;
-    font-family: var(--font-body), sans-serif;
-    @apply antialiased;
-  }
-
-  h1,
-  h2,
-  h3,
-  h4 {
-    font-family: var(--font-heading), Georgia, serif;
-    font-weight: 500;
+    @apply bg-background text-foreground antialiased;
   }
 
   a {
@@ -58,22 +47,14 @@
   }
 
   ::selection {
-    background: #8f3d2c;
+    background: #111;
     color: #fff;
   }
 }
 
 @layer components {
   .bg-paper {
-    background-color: #f6f3ec;
-  }
-
-  .text-clay {
-    color: #8f3d2c;
-  }
-
-  .border-clay {
-    border-color: #8f3d2c;
+    background-color: #ffffff;
   }
 
   .border-line {
@@ -88,13 +69,38 @@
     background-color: rgba(17, 17, 17, 0.04);
   }
 
+  .mesh-bg {
+    background: radial-gradient(
+        circle at 5% 18%,
+        rgba(141, 184, 255, 0.14),
+        transparent 45%
+      ),
+      radial-gradient(
+        circle at 83% 2%,
+        rgba(187, 220, 255, 0.25),
+        transparent 40%
+      ),
+      radial-gradient(
+        circle at 82% 78%,
+        rgba(145, 171, 255, 0.16),
+        transparent 45%
+      ),
+      radial-gradient(
+        circle at 18% 88%,
+        rgba(195, 220, 255, 0.2),
+        transparent 45%
+      ),
+      #fff;
+    background-size: 110% 110%;
+    animation: meshFloat 18s ease-in-out infinite alternate;
+  }
+
   .notion-card {
-    border-top: 1px solid rgba(28, 25, 23, 0.16);
-    padding-top: 1.25rem;
+    @apply rounded-2xl border border-line bg-white p-6 shadow-[0_10px_40px_rgba(0,0,0,0.03)];
   }
 
   .section-title {
-    @apply font-heading text-4xl leading-tight sm:text-5xl;
+    @apply text-5xl font-semibold tracking-tight sm:text-6xl;
   }
 
   .body-lg {
@@ -134,13 +140,19 @@
   }
 
   .post-body blockquote {
-    border-left: 2px solid #8f3d2c;
-    padding-left: 1.25rem;
-    font-size: 1.125rem;
-    line-height: 2rem;
+    @apply rounded-2xl border border-line bg-zinc-50 px-6 py-5 text-lg font-medium leading-8 text-foreground;
   }
 
   .post-body code {
     @apply rounded bg-zinc-100 px-1.5 py-0.5 text-sm text-foreground;
+  }
+}
+
+@keyframes meshFloat {
+  0% {
+    transform: scale(1) translate3d(0, 0, 0);
+  }
+  100% {
+    transform: scale(1.05) translate3d(0, -1.5%, 0);
   }
 }

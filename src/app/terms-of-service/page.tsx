@@ -28,20 +28,20 @@ export default async function Page() {
         }
       : {
           legal: 'Legal',
-          title: 'Términos de servicio',
+          title: 'Terminos de servicio',
           updated:
-            'Última actualización: 27 de marzo de 2026',
+            'Ultima actualizacion: 27 de marzo de 2026',
           intro:
-            'Al usar este portafolio, aceptas estos términos. Si no estás de acuerdo, no utilices el sitio.',
+            'Al usar este portafolio, aceptas estos terminos. Si no estas de acuerdo, por favor no utilices el sitio.',
           useTitle: 'Uso del contenido',
           useText:
-            'El contenido original y las descripciones de proyectos se entregan con fines informativos. Si lo reutilizas, incluye una atribución clara, salvo que se indique lo contrario.',
+            'Todo el contenido original y descripciones de proyectos se entrega con fines informativos. Su reutilizacion debe incluir atribucion clara, salvo que se indique lo contrario.',
           linksTitle: 'Enlaces externos',
           linksText:
-            'Este sitio puede incluir enlaces a servicios de terceros. Esos servicios se rigen por sus propios términos y políticas de privacidad.',
+            'Este sitio puede incluir enlaces a servicios de terceros. Esos servicios se rigen por sus propios terminos y politicas de privacidad.',
           liabilityTitle: 'Responsabilidad',
           liabilityText:
-            'Este portafolio se entrega tal cual, sin garantías de ningún tipo. En la medida permitida por la ley, no se asume responsabilidad por daños directos o indirectos derivados del uso del sitio.',
+            'Este portafolio se entrega "tal cual", sin garantias de ningun tipo. En la medida permitida por la ley, no se asume responsabilidad por danos directos o indirectos derivados del uso del sitio.',
           contactTitle: 'Contacto',
           contactText: 'Para consultas legales, escribe a:'
         }
@@ -49,6 +49,9 @@ export default async function Page() {
   return (
     <article className="space-y-8 pb-14 pt-6 sm:pt-10">
       <header className="space-y-4">
+        <p className="text-sm uppercase tracking-[0.24em] text-subtle">
+          {copy.legal}
+        </p>
         <h1 className="section-title">{copy.title}</h1>
         <p className="text-base text-subtle">
           {copy.updated}
