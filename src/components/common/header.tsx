@@ -44,13 +44,13 @@ export function Header({ className }: SidebarProps) {
     <Link href="/" className="pointer flex items-center">
       <Image
         src="/logo.svg"
-        alt="Bill Gaize Dev logo"
+        alt="Bill Gaize"
         className="mr-3"
         width={24}
         height={24}
       />
       <Typography className="!text-white !text-base font-medium ">
-        Bill Gaize Dev
+        Bill Gaize
       </Typography>
     </Link>
   )
@@ -70,7 +70,7 @@ export function Header({ className }: SidebarProps) {
       >
         <Button size="tiny" variant="ghost">
           <Typography variant="p" className="text-black">
-            Escribeme
+            Escríbeme
           </Typography>
         </Button>
       </Link>

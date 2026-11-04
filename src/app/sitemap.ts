@@ -1,5 +1,5 @@
 import type { MetadataRoute } from 'next'
-import { getAllPosts } from '@/lib/posts'
+import { getPublicPosts } from '@/lib/posts'
 import { siteConfig } from '@/lib/site'
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -51,7 +51,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ]
 
   const postEntries: MetadataRoute.Sitemap =
-    getAllPosts().map((post) => ({
+    getPublicPosts().map((post) => ({
       url: `${siteConfig.url}/insights/${post.slug}`,
       lastModified: new Date(
         post.updatedAt ?? post.publishedAt

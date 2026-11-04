@@ -2,27 +2,27 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { cookies } from 'next/headers'
 import { PostCard } from '@/components/insights/post-card'
-import { getAllPosts } from '@/lib/posts'
+import { getPublicPosts } from '@/lib/posts'
 import { siteConfig } from '@/lib/site'
 
 export const metadata: Metadata = {
-  title: 'Insights',
+  title: 'Artículos',
   description:
-    'Articulos sobre Shopify, integraciones, desarrollo web y flujos de trabajo con IA escritos por Bill Gaize.',
+    'Artículos de Bill Gaize sobre producto, integraciones y escritura.',
   alternates: {
     canonical: '/insights'
   },
   openGraph: {
-    title: 'Insights | Bill Gaize',
+    title: 'Artículos | Bill Gaize',
     description:
-      'Articulos sobre Shopify, integraciones, desarrollo web y flujos de trabajo con IA escritos por Bill Gaize.',
+      'Artículos de Bill Gaize sobre producto, integraciones y escritura.',
     url: `${siteConfig.url}/insights`,
     type: 'website'
   }
 }
 
 export default async function InsightsPage() {
-  const posts = getAllPosts()
+  const posts = getPublicPosts()
   const lang =
     (await cookies()).get('site-lang')?.value === 'en'
       ? 'en'
@@ -31,26 +31,21 @@ export default async function InsightsPage() {
   const copy =
     lang === 'en'
       ? {
-          sectionLabel: 'Blog',
-          title: 'Insights',
+          title: 'Articles',
           description:
-            'Long-form articles on modern web development, integrations, and practical AI workflows.',
+            'Notes on product work, integrations, and writing.',
           back: 'Back to home'
         }
       : {
-          sectionLabel: 'Blog',
-          title: 'Insights',
+          title: 'Artículos',
           description:
-            'Articulos largos sobre desarrollo web moderno, integraciones y flujos practicos con IA.',
+            'Notas sobre producto, integraciones y escritura.',
           back: 'Volver al inicio'
         }
 
   return (
     <div className="space-y-10 pb-14 pt-6 sm:pt-10">
       <section className="space-y-4">
-        <p className="text-sm uppercase tracking-[0.24em] text-subtle">
-          {copy.sectionLabel}
-        </p>
         <h1 className="section-title">{copy.title}</h1>
         <p className="body-lg max-w-3xl">
           {copy.description}

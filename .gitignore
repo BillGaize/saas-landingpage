@@ -41,3 +41,7 @@ public/rosy/
 
 # runtime visitor counter storage
 data/visitor-stats.json
+
+# local SSH key pair leaked at the repo root; never commit
+/cred
+/cred.pub

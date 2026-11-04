@@ -1,211 +1,184 @@
+export interface LocalizedLine {
+  es: string
+  en: string
+}
+
+export interface ExperienceItem {
+  org: string
+  role: string
+  roleEn: string
+  dates: string
+  datesEn: string
+}
+
 export interface PortfolioProject {
   slug: string
   title: string
+  titleEn: string
   summary: string
-  impact: string
-  role: string
-  scope: string
-  stack: string[]
+  summaryEn: string
   href?: string
 }
 
-export interface SelectedImpactItem {
-  stat: string
-  label: string
-  labelEn: string
+export const experience: ExperienceItem[] = [
+  {
+    org: 'Yango Delivery',
+    role: 'Product Manager B2B International',
+    roleEn: 'Product Manager, B2B International',
+    dates: 'Octubre 2025 a la fecha',
+    datesEn: 'October 2025 to present'
+  },
+  {
+    org: 'Yango Delivery',
+    role: 'Product Manager C2C LATAM',
+    roleEn: 'Product Manager, C2C LATAM',
+    dates: 'Enero a septiembre 2025',
+    datesEn: 'January to September 2025'
+  },
+  {
+    org: 'Yango Delivery',
+    role: 'Product Manager de integraciones',
+    roleEn: 'Product Manager, Integrations',
+    dates: '2023 a enero 2025',
+    datesEn: '2023 to January 2025'
+  },
+  {
+    org: 'Haciendola.com',
+    role: 'Junior Product Manager, Technical Solutions',
+    roleEn: 'Junior Product Manager, Technical Solutions',
+    dates: '2023',
+    datesEn: '2023'
+  }
+]
+
+export const impactCopy: LocalizedLine = {
+  es: "Entre julio y noviembre de 2025, las tarifas lentas en C2C LATAM llegaron a más de 70.000 envíos y más de USD 165.000 de Gross Booking. El lanzamiento C2C en Venezuela llegó a 7.000 envíos y USD 25.000 de Gross Booking. La activación temprana B2B llegó a más de 2.500 envíos y USD 15.000 de Gross Booking. El onboarding de partners pasó de unos 4 meses a cerca de 1 mes. Los lanzamientos fueron en Perú, Bolivia, Colombia, Ghana, Côte d'Ivoire y Zambia.",
+  en: "From July to November 2025, slow fares in C2C LATAM reached 70K+ deliveries and USD 165K+ Gross Booking. The C2C launch in Venezuela reached 7K deliveries and USD 25K Gross Booking. Early B2B activation reached 2,500+ deliveries and USD 15K Gross Booking. Partner onboarding went from about 4 months to about 1 month. Launches ran in Peru, Bolivia, Colombia, Ghana, Côte d'Ivoire, and Zambia."
 }
+
+export const portfolioProjects: PortfolioProject[] = [
+  {
+    slug: 'yango-b2b-cargo-shopify',
+    title: 'App de Shopify para Yango B2B Cargo',
+    titleEn: 'Shopify app for Yango B2B Cargo',
+    summary:
+      'Aplicación de Shopify para la operación B2B Cargo de Yango.',
+    summaryEn:
+      'Shopify app built for Yango B2B Cargo operations.'
+  },
+  {
+    slug: 'hoycerca',
+    title: 'HoyCerca',
+    titleEn: 'HoyCerca',
+    summary:
+      'Aplicación PWA map-first en hoycerca.billgaize.com, operada en Oracle Cloud, con Google OAuth, perfiles, moderación y publicación.',
+    summaryEn:
+      'Map-first PWA at hoycerca.billgaize.com, operated on Oracle Cloud, with Google OAuth, profiles, moderation, and publishing.',
+    href: 'https://hoycerca.billgaize.com'
+  },
+  {
+    slug: 'partner-onboarding',
+    title: 'Herramientas de onboarding de partners',
+    titleEn: 'Partner onboarding tooling',
+    summary:
+      'Herramientas y playbooks de onboarding. El tiempo pasó de unos 4 meses a cerca de 1 mes.',
+    summaryEn:
+      'Onboarding tools and playbooks. The cycle went from about 4 months to about 1 month.'
+  },
+  {
+    slug: 'ai-product-harness',
+    title: 'Harness interno de producto con IA',
+    titleEn: 'Internal AI product harness',
+    summary:
+      'Herramienta interna del equipo de producto para discovery, métricas y operación.',
+    summaryEn:
+      'Internal product-team tool for discovery, metrics, and operations.'
+  }
+]
 
 export const profileFacts = {
   name: 'Bill Gaize',
-  role: 'Product Manager · B2B Platforms & API Integrations · International Markets (LATAM/Africa) · Remote (Chile)',
+  role: 'Product Manager de integraciones B2B en Yango Delivery (Yandex)',
   roleEn:
-    'Product Manager · B2B Platforms & API Integrations · International Markets (LATAM/Africa) · Remote (Chile)',
-  bio: 'Ownership end-to-end del funnel B2B: onboarding, contratos, integraciones API con partners, configs por pais y diagnosis en produccion. Foco en activacion medible, no en slideware.',
+    'Product Manager for B2B integrations at Yango Delivery (Yandex)',
+  bio: 'Llevé el onboarding de partners de ~4 meses a ~1 mes.',
   bioEn:
-    'End-to-end ownership of the B2B funnel: onboarding, contracts, partner API integrations, country configs, and production diagnosis. Focused on measurable activation, not slideware.',
-  // Employment — current through late Dec 2026, then phase-out exit.
+    'I took partner onboarding from about 4 months to about 1 month.',
   employer: 'Yango Delivery (Yandex)',
-  employerStatus: 'current_until_late_dec_2026',
-  employerEnd: 'late December 2026',
+  employerStatus: 'current',
   employerNote:
-    'Bill sigue hoy en Yango Delivery (Yandex) como Product Manager de B2B Delivery International (LATAM/Africa/Asia), remoto desde Santiago. Su rol se esta phaseando out por la transicion Delivery → Yango B2B Taxi; a partir de fines de diciembre 2026 ya no estara en Yango. El portafolio personal (billgaize.com) es paralelo al rol full-time y tambien sirve para oportunidades post-phase-out.',
+    'Bill trabaja hoy en Yango Delivery (Yandex) como Product Manager B2B International (octubre 2025 a la fecha), remoto desde Santiago de Chile. Antes, en Yango, fue Product Manager C2C LATAM (enero a septiembre 2025) y Product Manager de integraciones (2023 a enero 2025). En 2023 fue Junior Product Manager, Technical Solutions, en Haciendola.com.',
   employerNoteEn:
-    'Bill currently still works at Yango Delivery (Yandex) as Product Manager for B2B Delivery International (LATAM/Africa/Asia), remote from Santiago. His role is being phased out in the Delivery → Yango B2B Taxi transition; from late December 2026 he will no longer be at Yango. The personal portfolio (billgaize.com) runs in parallel with the full-time role and also supports post-phase-out opportunities.',
+    'Bill currently works at Yango Delivery (Yandex) as Product Manager, B2B International (October 2025 to present), remote from Santiago, Chile. Earlier at Yango he was Product Manager, C2C LATAM (January to September 2025) and Product Manager, Integrations (2023 to January 2025). In 2023 he was Junior Product Manager, Technical Solutions, at Haciendola.com.',
   yangoExperience: `
-Yango / Yandex Delivery — B2B Delivery International (current through late Dec 2026):
-- Role: Product Manager, B2B Delivery Platform Solutions; reports to Tien (TM); remote Chile GMT-4.
-- Scope: end-to-end B2B Delivery outside Russia/CIS — client acquisition through API integration to active ops.
-- Markets: Peru, Bolivia, Colombia, Ghana, plus expansions with regional GMs (also worked integrations involving Chile, Dubai/UAE, Cote d'Ivoire, Zambia).
-- Funnel ownership: registration → contract → top-up → first successful order; finds friction and runs experiments.
-- API integrations with partners (REST, webhooks, playbooks); technical intake, docs, launch monitoring to BAU.
-- Country configs (payment methods, self-registration, offer/card flags), tariff/zone enablement with platform eng.
-- Production diagnosis for B2B clients (pickup codes, sync failures, payment flow bugs) with GMs and platform.
-- AI tooling adoption for the product team (discovery, metrics, ops harness).
-- Secondary Shopify / e-commerce PM work and AI App Rescue are personal/parallel, not Yango core scope.
-- Out of scope at Yango: Russia/CIS NDD, Taxi ride-hailing product, C2C product, payments gateway build, pricing.
-- Transition: role phase-out as Delivery moves toward Yango B2B Taxi; exit window late December 2026.
+Yango Delivery (Yandex), remoto desde Santiago de Chile.
+- Product Manager B2B International, octubre 2025 a la fecha.
+- Product Manager C2C LATAM, enero a septiembre 2025.
+- Product Manager de integraciones, 2023 a enero 2025.
+Haciendola.com: Junior Product Manager, Technical Solutions, 2023.
+
+Hechos:
+- Tarifas lentas en C2C LATAM, julio a noviembre 2025: más de 70.000 envíos y más de USD 165.000 de Gross Booking.
+- Lanzamiento C2C en Venezuela: 7.000 envíos y USD 25.000 de Gross Booking.
+- Activación temprana B2B: más de 2.500 envíos y USD 15.000 de Gross Booking.
+- Onboarding de partners: de unos 4 meses a cerca de 1 mes.
+- Lanzamientos en Perú, Bolivia, Colombia, Ghana, Côte d'Ivoire y Zambia.
+
+Proyectos: app de Shopify para Yango B2B Cargo; HoyCerca (https://hoycerca.billgaize.com); herramientas de onboarding de partners; harness interno de producto con IA.
 `.trim(),
   age: 29,
-  languages: ['Espanol', 'Ingles'],
+  languages: ['Español', 'Inglés'],
   aiExpertise:
-    'Fluido en herramientas de IA, diseno de workflows con modelos y enfoques RAG para casos reales de negocio.',
-  // Geo-explicit for SEO + chatbot grounding
+    'Usa herramientas de IA en el trabajo de producto, incluidos flujos con modelos y enfoques RAG cuando el caso de negocio lo pide.',
   location:
-    'Santiago de Chile, Region Metropolitana (originario de Venezuela)',
+    'Santiago de Chile, Región Metropolitana (originario de Venezuela)',
   city: 'Santiago',
-  region: 'Region Metropolitana',
+  region: 'Región Metropolitana',
   country: 'Chile',
   origin: 'Venezuela',
   servesRegions: [
     'Chile',
-    'Region Metropolitana',
-    'Latinoamerica',
-    'Africa',
-    'Venezuela',
-    'Global (remoto)'
+    'Región Metropolitana',
+    'Latinoamérica',
+    'África',
+    'Venezuela'
   ],
   contactEmail: 'me@billgaize.com',
   calendly: 'https://calendly.com/me--52uo/30min',
   linkedin: 'https://www.linkedin.com/in/billgaize/',
   github: 'https://github.com/BillGaize',
   valueProposition:
-    'Product Manager de plataformas B2B e integraciones API en mercados internacionales (LATAM/Africa), con operating system de IA para discovery, metricas y diagnosis. Abierto a roles nuevos tras el phase-out de Yango a fines de 2026.'
+    'Product manager de integraciones B2B en Yango Delivery (Yandex), remoto desde Santiago de Chile. Llevé el onboarding de partners de unos 4 meses a cerca de 1 mes.'
 }
 
-export const coreServices = [
-  'Product management B2B: onboarding → first order',
-  'Integraciones API con partners (REST, webhooks, playbooks)',
-  'Configs por pais y diagnosis en produccion',
-  'Operating system con IA (discovery, metricas, ops)',
-  'Shopify / e-commerce project management',
-  'AI App Rescue para apps Lovable, Bolt, v0 y Next.js'
-]
-
-export const selectedImpact: SelectedImpactItem[] = [
+export const coreServices: LocalizedLine[] = [
   {
-    stat: '70K+',
-    label:
-      'deliveries escalados en tarifario C2C / USD 165K+ gross booking',
-    labelEn:
-      'deliveries scaled on C2C tariff products / USD 165K+ gross booking'
+    es: 'Gestión de producto B2B, del onboarding a la primera orden',
+    en: 'B2B product management, from onboarding to the first order'
   },
   {
-    stat: '6+',
-    label:
-      'lanzamientos de mercado en LATAM y Africa (3 continentes)',
-    labelEn:
-      'market launches across LATAM and Africa (3 continents)'
+    es: 'Integraciones API con partners (REST, webhooks y playbooks)',
+    en: 'Partner API integrations (REST, webhooks, and playbooks)'
   },
   {
-    stat: '~4x',
-    label:
-      'mas rapido el onboarding de partners con tooling API y playbooks',
-    labelEn:
-      'faster partner onboarding with API tooling and playbooks'
+    es: 'Configuración por país y diagnóstico en producción',
+    en: 'Country configuration and production diagnosis'
   },
   {
-    stat: 'AI',
-    label:
-      'harness operativo: discovery, metricas y diagnosis de producto',
-    labelEn:
-      'operating harness: discovery, metrics, and product diagnosis'
+    es: 'Gestión de proyectos Shopify y comercio electrónico',
+    en: 'Shopify and e-commerce project management'
+  },
+  {
+    es: 'Rescate de aplicaciones hechas con IA (Lovable, Bolt, v0 y Next.js)',
+    en: 'Rescue of AI-built apps (Lovable, Bolt, v0, and Next.js)'
   }
 ]
 
 export const profileHighlights = [
-  'Ownership del funnel B2B Delivery: registro, contratos, top-up y primera orden exitosa.',
-  'Integraciones API multi-pais con partners en LATAM y Africa (REST, webhooks, playbooks).',
-  'Configs por pais y diagnosis en produccion con GMs regionales e ingenieria de plataforma.',
-  'AI-native operating system para discovery, metricas y ops (adopcion en el equipo de producto).'
-]
-
-export const portfolioProjects: PortfolioProject[] = [
-  {
-    slug: 'yango-b2b-integrations',
-    title: 'Yango Delivery - Integraciones B2B Multi-pais',
-    summary:
-      'Ownership de integraciones API B2B con empresas en Peru, Bolivia, Colombia, Ghana, Chile, Dubai, Costa de Marfil y Zambia para meter Yango Delivery en flujos last-mile y middle-mile (REST, webhooks, playbooks, handoff a BAU).',
-    impact:
-      'Onboarding de partners ~4x mas rapido con tooling API y playbooks; estandarizacion operativa multi-mercado y menos friccion en el camino a primera orden.',
-    role: 'Product Manager / Lead Project Manager — B2B Delivery International',
-    scope:
-      'Intake tecnico, documentacion, coordinacion con GMs regionales y platform eng, configs por pais, monitoreo de launch y diagnosis en produccion hasta Business-as-Usual.',
-    stack: [
-      'API Integrations',
-      'Logistics Tech',
-      'B2B Operations',
-      'Country Configs'
-    ],
-    href: 'https://delivery.yango.com'
-  },
-  {
-    slug: 'yango-c2c-app-latam',
-    title: 'Yango C2C App - Product Management LATAM',
-    summary:
-      'Product Manager LATAM en la app Yango apoyando features de eficiencia de envios (incl. tarifas lentas / batching) en el producto C2C.',
-    impact:
-      '70K+ deliveries escalados en tarifario C2C / USD 165K+ gross booking; features orientadas a bajar costo de envio y subir NIGB.',
-    role: 'Product Manager LATAM',
-    scope:
-      'Definicion y priorizacion de features, coordinacion cross-funcional y seguimiento de impacto de negocio.',
-    stack: [
-      'Product Strategy',
-      'Marketplace Logistics',
-      'Data-informed Prioritization'
-    ],
-    href: 'https://apps.apple.com/us/app/yango-taxi-food-delivery/id1437157286'
-  },
-  {
-    slug: 'nup-shopify-build',
-    title: 'NUP Chile - Construccion en Shopify',
-    summary:
-      'Primera tienda lanzada en Shopify para nup.cl. Se construyo la experiencia completa de e-commerce alineada a la vision del cliente.',
-    impact:
-      'Lanzamiento exitoso de tienda y operacion comercial con entrenamiento al cliente para autogestion.',
-    role: 'Project Manager',
-    scope:
-      'Traduccion de vision del cliente al equipo de diseno/desarrollo, coordinacion de entregables, instalacion de apps y onboarding del cliente.',
-    stack: [
-      'Shopify',
-      'E-commerce Operations',
-      'UX/UI Coordination'
-    ],
-    href: 'https://nup.cl'
-  },
-  {
-    slug: 'murphfitness-shopify-build',
-    title: 'Murph Fitness - Ecommerce en Shopify',
-    summary:
-      'Implementacion de tienda Shopify para murphfitness.cl siguiendo metodologia de discovery, diseno y ejecucion operativa.',
-    impact:
-      'Entrega de una experiencia de compra estable y preparada para escalar en catalogo y operaciones.',
-    role: 'Project Manager',
-    scope:
-      'Coordinacion end-to-end del proyecto, alineacion con stakeholders y soporte en decisiones de apps y procesos.',
-    stack: [
-      'Shopify',
-      'E-commerce Operations',
-      'Stakeholder Management'
-    ],
-    href: 'https://murphfitness.cl'
-  },
-  {
-    slug: 'thebluelab-woocommerce-to-shopify',
-    title: 'The Blue Lab - Migracion WooCommerce a Shopify',
-    summary:
-      'Migracion completa de tienda desde WooCommerce hacia Shopify para mejorar operacion, mantenimiento y velocidad de ejecucion comercial.',
-    impact:
-      'Transicion ordenada hacia Shopify con menor friccion operativa y base mas escalable para crecimiento.',
-    role: 'Project Manager',
-    scope:
-      'Planificacion de migracion, coordinacion tecnica y funcional, y acompanamiento al equipo en la ejecucion del cambio de plataforma.',
-    stack: [
-      'Shopify',
-      'WooCommerce Migration',
-      'Process Management'
-    ],
-    href: 'https://thebluelab.cl/'
-  }
+  'Product Manager B2B International en Yango Delivery desde octubre 2025.',
+  'Onboarding de partners de unos 4 meses a cerca de 1 mes.',
+  "Lanzamientos en Perú, Bolivia, Colombia, Ghana, Côte d'Ivoire y Zambia.",
+  'Tarifas lentas C2C LATAM (julio a noviembre 2025): más de 70.000 envíos y más de USD 165.000 de Gross Booking.'
 ]
 
 export const quickAnswers = [
@@ -223,22 +196,18 @@ export const quickAnswers = [
       'employer',
       'empleador',
       'donde trabajas',
+      'dónde trabajas',
       'where do you work',
       'current role',
       'rol actual',
-      'phase out',
-      'phase-out',
-      'phaseout',
-      'diciembre',
-      'december',
-      'saliste',
-      'leaving yango',
       'sigues en yango',
       'still at yango',
-      'trabajas en yango'
+      'trabajas en yango',
+      'yango',
+      'yandex'
     ],
     answer:
-      'Hoy Bill sigue en Yango Delivery (Yandex) como PM de B2B Delivery International (LATAM/Africa/Asia). Su rol se esta phaseando out por la transicion Delivery → Yango B2B Taxi; a fines de diciembre 2026 deja Yango. Hasta entonces lidera funnel onboarding→first order, integraciones API multi-pais y configs/diagnosis en produccion. Este sitio es portafolio personal y canal para roles nuevos.'
+      'Hoy Bill trabaja en Yango Delivery (Yandex) como Product Manager B2B International, desde octubre 2025, remoto desde Santiago. Antes fue PM C2C LATAM (enero a septiembre 2025) y PM de integraciones (2023 a enero 2025). En 2023 fue Junior PM, Technical Solutions, en Haciendola.com.'
   },
   {
     id: 'background',
@@ -255,7 +224,28 @@ export const quickAnswers = [
       'bio'
     ],
     answer:
-      'Bill es Product Manager de plataformas B2B e integraciones API en mercados internacionales (LATAM/Africa), remoto desde Santiago de Chile. Hoy trabaja en Yango Delivery (Yandex) hasta fines de dic 2026 (phase-out del rol). Ownership del funnel onboarding → first order, configs por pais y diagnosis en produccion.'
+      "Bill es product manager de integraciones B2B en Yango Delivery (Yandex), remoto desde Santiago de Chile. Llevó el onboarding de partners de unos 4 meses a cerca de 1 mes. Los lanzamientos que cuenta son Perú, Bolivia, Colombia, Ghana, Côte d'Ivoire y Zambia."
+  },
+  {
+    id: 'results',
+    keywords: [
+      'resultado',
+      'resultados',
+      'impact',
+      'impacto',
+      'deliveries',
+      'envios',
+      'envíos',
+      'gross',
+      'booking',
+      'venezuela',
+      'onboarding',
+      '4 meses',
+      '165',
+      '70'
+    ],
+    answer:
+      'Tarifas lentas en C2C LATAM, julio a noviembre 2025: más de 70.000 envíos y más de USD 165.000 de Gross Booking. Lanzamiento C2C en Venezuela: 7.000 envíos y USD 25.000 de Gross Booking. Activación temprana B2B: más de 2.500 envíos y USD 15.000 de Gross Booking. Onboarding de partners: de unos 4 meses a cerca de 1 mes.'
   },
   {
     id: 'services',
@@ -273,7 +263,7 @@ export const quickAnswers = [
       'available'
     ],
     answer:
-      'Puede ayudarte con product management B2B, integraciones API con partners, configs por pais, diagnosis en produccion y un operating system con IA. Shopify y AI App Rescue son secundarios. Abierto a conversaciones de roles/proyectos de cara al phase-out de Yango a fines de 2026.'
+      'Puede ayudar con gestión de producto B2B, integraciones API con partners, configuración por país, diagnóstico en producción, proyectos Shopify y rescate de aplicaciones hechas con IA. El correo es me@billgaize.com.'
   },
   {
     id: 'contact',
@@ -282,6 +272,7 @@ export const quickAnswers = [
       'correo',
       'email',
       'reunion',
+      'reunión',
       'agendar',
       'contact',
       'book',
@@ -300,7 +291,7 @@ export const quickAnswers = [
       'cuántos años',
       'how old'
     ],
-    answer: 'Bill tiene 29 anos.'
+    answer: 'Bill tiene 29 años.'
   },
   {
     id: 'health-background',
@@ -312,7 +303,7 @@ export const quickAnswers = [
       'background salud'
     ],
     answer:
-      'Bill es Bioanalista de la Universidad de Carabobo en Venezuela. Ese background en salud le permite aplicar pensamiento analitico, rigor de proceso y enfoque en evidencia al desarrollo de proyectos digitales.'
+      'Bill es bioanalista de la Universidad de Carabobo, en Venezuela.'
   },
   {
     id: 'languages-ai',
@@ -320,6 +311,7 @@ export const quickAnswers = [
       'idioma',
       'idiomas',
       'ingles',
+      'inglés',
       'español',
       'espanol',
       'english',
@@ -328,6 +320,19 @@ export const quickAnswers = [
       'modelos de ia'
     ],
     answer:
-      'Bill habla ingles y espanol, y es fluido en herramientas de IA, implementacion de modelos y enfoques RAG aplicados a casos de negocio.'
+      'Bill habla español e inglés. En el trabajo de producto usa herramientas de IA, incluidos modelos y enfoques RAG cuando hacen falta.'
+  },
+  {
+    id: 'projects',
+    keywords: [
+      'proyecto',
+      'proyectos',
+      'hoycerca',
+      'shopify',
+      'cargo',
+      'harness'
+    ],
+    answer:
+      'Proyectos publicados: app de Shopify para Yango B2B Cargo, HoyCerca (hoycerca.billgaize.com), herramientas de onboarding de partners y un harness interno de producto con IA.'
   }
 ]

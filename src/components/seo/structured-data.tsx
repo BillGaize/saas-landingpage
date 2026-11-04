@@ -54,7 +54,7 @@ export function StructuredData() {
     },
     makesOffer: coreServices.map((service) => ({
       '@type': 'Offer',
-      itemOffered: { '@type': 'Service', name: service }
+      itemOffered: { '@type': 'Service', name: service.es }
     })),
     areaServed: [
       { '@type': 'Country', name: 'Chile' },
@@ -86,7 +86,7 @@ export function StructuredData() {
     '@type': 'ProfilePage',
     '@id': `${siteConfig.url}/#profilepage`,
     url: siteConfig.url,
-    name: 'Bill Gaize | Product Manager B2B Platforms & API Integrations',
+    name: 'Bill Gaize | Product manager de integraciones B2B',
     isPartOf: { '@id': `${siteConfig.url}/#website` },
     about: { '@id': `${siteConfig.url}/#person` },
     inLanguage: 'es'
@@ -101,7 +101,7 @@ export function StructuredData() {
         name: '¿Quién es Bill Gaize?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Bill Gaize es Product Manager de plataformas B2B e integraciones API en mercados internacionales (LATAM/Africa), remoto desde Santiago de Chile. Ownership del funnel de onboarding a first order, configs por país y diagnosis en producción.'
+          text: 'Bill Gaize es product manager de integraciones B2B en Yango Delivery (Yandex), remoto desde Santiago de Chile. Llevó el onboarding de partners de unos 4 meses a cerca de 1 mes, con lanzamientos en América Latina y África.'
         }
       },
       {
@@ -109,7 +109,7 @@ export function StructuredData() {
         name: '¿Bill Gaize trabaja como Product Manager en Chile?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Sí. Bill Gaize trabaja como Product Manager remoto desde Santiago de Chile, con experiencia en mercados LATAM y África, y colabora con equipos globales.'
+          text: "Sí. Bill Gaize trabaja como product manager remoto desde Santiago de Chile, con lanzamientos en Perú, Bolivia, Colombia, Ghana, Côte d'Ivoire y Zambia."
         }
       },
       {
@@ -117,7 +117,7 @@ export function StructuredData() {
         name: 'Is Bill Gaize a product manager for delivery and logistics products?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Yes. Bill Gaize specializes in product management for delivery, logistics and marketplace operations, including multi-country B2B API integrations for last-mile and middle-mile delivery across Latin America.'
+          text: "Yes. Bill Gaize is a product manager for B2B integrations at Yango Delivery (Yandex), remote from Santiago, Chile, with launches in Peru, Bolivia, Colombia, Ghana, Côte d'Ivoire, and Zambia."
         }
       },
       {
